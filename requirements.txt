@@ -1,13 +1,13 @@
 # Pinned to the versions the backend bytecode was verified against.
+# Third-party imports in the bytecode: fastapi, sqlalchemy, pydantic, jwt (PyJWT), bcrypt.
 fastapi==0.115.2
 uvicorn==0.41.0
 starlette==0.40.0
 sqlalchemy==2.0.34
 pydantic==2.12.5
 pydantic-core==2.41.5
-python-jose==3.3.0
-passlib==1.7.4
+PyJWT==2.13.0
 bcrypt==4.3.0
-python-multipart==0.0.6
-email-validator==2.3.0
+python-multipart==0.0.6   # required by FastAPI for the /upload file endpoints
+email-validator==2.3.0    # cheap insurance for any pydantic EmailStr validation
 anyio==3.7.1
