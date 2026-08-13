@@ -53,6 +53,14 @@
       </div>
     </div>
     <div>
+      <label>View <span id="resultBadge" class="badge" style="display:none">phase 1+2</span></label>
+      <div class="seg" id="sourceSeg">
+        <button data-src="packed" id="srcPacked" disabled style="opacity:.4">Phase 1+2 packed</button>
+        <button data-src="remainder" id="srcRemainder" disabled style="opacity:.4">Remainder</button>
+        <button data-src="schematic" class="active">Schematic by SKU</button>
+      </div>
+    </div>
+    <div id="layoutWrap">
       <label>Layout</label>
       <div class="seg" id="layoutSeg">
         <button data-mode="stack" class="active">Stacks by SKU</button>
@@ -110,7 +118,16 @@ function onResize(){
 }
 function animate(){ requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); }
 
-function skuColor(i){ return PALETTE[i % PALETTE.length]; }
+// Stable per-SKU color within a pack (assigned first-seen order), so the
+// schematic, packed, and remainder views all color a SKU identically.
+let skuColorMap = {};
+function colorOf(sku_id){
+  if(!(sku_id in skuColorMap))
+    skuColorMap[sku_id] = PALETTE[Object.keys(skuColorMap).length % PALETTE.length];
+  return skuColorMap[sku_id];
+}
+let curResult = null;    // {available, placed, remainder} phase-1/2 result for curOrderId
+let sourceMode = "schematic";  // "packed" | "remainder" | "schematic"
 
 // ---- layout builders -------------------------------------------------------
 // Each returns {meshesData:[{sku_id,color,pos:[x,y,z],dim:[l,w,h],name}], footprint:[X,Z], top:Y}
@@ -118,7 +135,7 @@ function skuColor(i){ return PALETTE[i % PALETTE.length]; }
 function layoutStacks(items){
   // One neat tower per SKU, towers arranged in a grid. Boxes of a SKU tile
   // perfectly (same dims). Cell sized to the largest SKU footprint.
-  const skus = items.map((it,i)=>({...it, sku:SKUS[it.sku_id], color:skuColor(i)})).filter(s=>s.sku);
+  const skus = items.map((it,i)=>({...it, sku:SKUS[it.sku_id], color:colorOf(it.sku_id)})).filter(s=>s.sku);
   const n = skus.length || 1;
   const cols = Math.ceil(Math.sqrt(n));
   const rows = Math.ceil(n/cols);
@@ -155,7 +172,7 @@ function layoutLayers(items){
   // contiguous. Shelf-packs left-to-right, wraps rows, then stacks up.
   const PW=0.8, PD=1.2;              // standard pallet footprint (m)
   const gap=0.004;
-  const skus = items.map((it,i)=>({...it, sku:SKUS[it.sku_id], color:skuColor(i)})).filter(s=>s.sku);
+  const skus = items.map((it,i)=>({...it, sku:SKUS[it.sku_id], color:colorOf(it.sku_id)})).filter(s=>s.sku);
   const out=[];
   let cx=0, cz=0, cy=0, rowDepth=0, maxTop=0;
   skus.forEach(s=>{
@@ -226,8 +243,82 @@ function onHover(e){
   } else tt.style.display="none";
 }
 
+// ---- packed (real positions) -----------------------------------------------
+// Renders a phase-1/2 packformation: boxes at solved centre positions inside the
+// real container. Data is z-up (x=width, y=depth, z=height); Three.js is y-up,
+// so we map (x, z, y).
+function renderPacked(pf){
+  if(packGroup) scene.remove(packGroup);
+  packGroup = new THREE.Group(); boxMeshes=[];
+  const c = pf.container, CW=c.width, CD=c.depth, CH=c.height;
+
+  const slab = new THREE.Mesh(new THREE.BoxGeometry(CW+0.06,0.028,CD+0.06),
+      new THREE.MeshLambertMaterial({color:0x33415e}));
+  slab.position.set(CW/2,-0.015,CD/2); packGroup.add(slab);
+  const cage = new THREE.LineSegments(
+      new THREE.EdgesGeometry(new THREE.BoxGeometry(CW,CH,CD)),
+      new THREE.LineBasicMaterial({color:0x3b4a6b}));
+  cage.position.set(CW/2,CH/2,CD/2); packGroup.add(cage);
+
+  pf.boxes.forEach(b=>{
+    const L=b.dimensions.width, W=b.dimensions.depth, H=b.dimensions.height;
+    const geo=new THREE.BoxGeometry(L,H,W);
+    const mat=new THREE.MeshLambertMaterial({color:new THREE.Color(colorOf(b.sku_id))});
+    const mesh=new THREE.Mesh(geo,mat);
+    mesh.position.set(b.position.x, b.position.z, b.position.y);
+    mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo),
+        new THREE.LineBasicMaterial({color:0x0b0e14,transparent:true,opacity:0.5})));
+    mesh.userData={sku_id:b.sku_id, name:(SKUS[b.sku_id]||{}).name, dim:[L,W,H]};
+    packGroup.add(mesh); boxMeshes.push(mesh);
+  });
+  scene.add(packGroup);
+  const top = pf.boxes.length ? Math.max(...pf.boxes.map(b=>b.position.z+b.dimensions.height/2)) : CH;
+  controls.target.set(CW/2, top*0.45, CD/2);
+  const span=Math.max(CW,CD,top);
+  camera.position.set(CW/2+span*1.1, top+span*0.8, CD/2+span*1.3);
+  controls.update();
+}
+
+// Aggregate a box list (remainder) into [{sku_id, quantity}] for schematic layout.
+function aggItems(boxes){
+  const m={}; boxes.forEach(b=>{ m[b.sku_id]=(m[b.sku_id]||0)+1; });
+  return Object.entries(m).map(([sku_id,quantity])=>({sku_id,quantity}));
+}
+
+function renderCurrent(){
+  const has = curResult && curResult.available;
+  if(sourceMode==="packed" && has){ renderPacked(curResult.placed); renderStats(); }
+  else if(sourceMode==="remainder" && has){ render(aggItems(curResult.remainder.boxes)); renderStats(); }
+  else { render(curItems); renderStats(); }
+  document.getElementById("layoutWrap").style.display =
+    (sourceMode==="packed") ? "none" : "block";  // layout toggle only affects schematic modes
+}
+
 // ---- data + UI ------------------------------------------------------------
-function renderStatsAndLegend(items){
+function renderStats(){
+  const has = curResult && curResult.available;
+  const totalBoxes=curItems.reduce((a,b)=>a+b.quantity,0);
+  const rows=[["Order",curOrderId||"—"],["Distinct SKUs",curItems.length],["Total boxes",totalBoxes]];
+  if(has){
+    const s=curResult.placed.stats||{};
+    rows.push(["Phase 1+2 placed", `${s.placed} / ${s.total}`]);
+    rows.push(["Remainder", `${s.remainder}`]);
+    if(sourceMode==="packed"){
+      const top=Math.max(0,...curResult.placed.boxes.map(b=>b.position.z+b.dimensions.height/2));
+      rows.push(["Top of stack", `${top.toFixed(3)} m / ${curResult.placed.container.height}`]);
+    }
+  }
+  document.getElementById("stats").innerHTML =
+    rows.map(r=>`<span class="k">${r[0]}</span><span class="v">${r[1]}</span>`).join("");
+  // legend reflects the SKUs of whatever is on screen
+  const items = (sourceMode==="remainder" && has) ? aggItems(curResult.remainder.boxes) : curItems;
+  document.getElementById("skuCount").textContent=items.length;
+  document.getElementById("legend").innerHTML=items.map(it=>
+    `<div class="sw"><span class="dot" style="background:${colorOf(it.sku_id)}"></span>`+
+    `<span class="lab">${it.sku_id}</span><span class="qty">×${it.quantity}</span></div>`).join("");
+}
+
+function _unusedRenderStatsAndLegend(items){
   const totalBoxes=items.reduce((a,b)=>a+b.quantity,0);
   const totalWeight=items.reduce((a,b)=>a+(SKUS[b.sku_id]?SKUS[b.sku_id].weight*b.quantity:0),0);
   const vol=items.reduce((a,b)=>{const s=SKUS[b.sku_id];return a+(s?s.length*s.width*s.height*b.quantity:0);},0);
@@ -241,18 +332,32 @@ function renderStatsAndLegend(items){
   const leg=document.getElementById("legend");
   leg.innerHTML=items.map((it,i)=>{
     const s=SKUS[it.sku_id]||{};
-    return `<div class="sw" data-i="${i}"><span class="dot" style="background:${skuColor(i)}"></span>`+
+    return `<div class="sw" data-i="${i}"><span class="dot" style="background:${colorOf(it.sku_id)}"></span>`+
       `<span class="lab">${it.sku_id}</span><span class="qty">×${it.quantity}</span></div>`;
   }).join("");
 }
 
+function setSourceButtons(){
+  const has = curResult && curResult.available;
+  document.getElementById("resultBadge").style.display = has ? "inline-block" : "none";
+  [["srcPacked","packed"],["srcRemainder","remainder"]].forEach(([id])=>{
+    const b=document.getElementById(id);
+    b.disabled = !has; b.style.opacity = has ? "1" : ".4";
+  });
+  [...document.getElementById("sourceSeg").children].forEach(b=>
+    b.classList.toggle("active", b.dataset.src===sourceMode));
+}
+
 async function loadPack(orderId){
-  curOrderId=orderId;
-  const r=await fetch(`${API}/viz-api/orders/${orderId}`);
-  const data=await r.json();
-  curItems=data.items||[];
-  render(curItems);
-  renderStatsAndLegend(curItems);
+  curOrderId=orderId; skuColorMap={};
+  const data = await (await fetch(`${API}/viz-api/orders/${orderId}`)).json();
+  curItems = data.items||[];
+  curItems.forEach(it=>colorOf(it.sku_id));   // assign stable colors in item order
+  curResult = await (await fetch(`${API}/viz-api/result/${orderId}`)).json();
+  // Default to the phase 1+2 packed result when it's been computed.
+  sourceMode = (curResult && curResult.available) ? "packed" : "schematic";
+  setSourceButtons();
+  renderCurrent();
 }
 
 async function boot(){
@@ -271,7 +376,14 @@ async function boot(){
     if(!e.target.dataset.mode) return;
     layoutMode=e.target.dataset.mode;
     [...e.currentTarget.children].forEach(b=>b.classList.toggle("active",b===e.target));
-    render(curItems);
+    renderCurrent();
+  });
+  document.getElementById("sourceSeg").addEventListener("click",e=>{
+    const src=e.target.dataset.src;
+    if(!src || e.target.disabled) return;
+    sourceMode=src;
+    [...e.currentTarget.children].forEach(b=>b.classList.toggle("active",b===e.target));
+    renderCurrent();
   });
   // Optional ?order=ID to preselect a specific pack (used when embedded from
   // the database site's "View" action).

@@ -69,6 +69,20 @@ Each pack contains a number of distinct SKUs centered near the benchmark's line
 count (avg ≈ 13.5, std ≈ 4.5) with per-line quantities drawn from the benchmark's
 per-SKU counts (avg ≈ 13.5, 1–31).
 
+## Phase 1+2 placement results
+
+`results/<order_id>.placed.json` / `.remainder.json` hold, for every one of the
+1000 packs, the result of the benchmark's **Phase 1 (pattern) + Phase 2
+(flat-space group)** placement heuristic — the exact `_cache_pattern_placement()`
+path from the 176-box benchmark engine (`hybrid_neat_palletizer_v2`, 0.8×1.2×2.0 m
+container, trained group-placement checkpoint). `placed` carries solved box
+positions; `remainder` is every box the heuristic left unplaced (all boxes −
+placed). Phase 3 (NEAT/greedy) is intentionally not run.
+
+Each order's **View** in the site loads these automatically: the 3D viewer offers
+**Phase 1+2 packed** (real positions in the container), **Remainder** (leftover
+boxes by SKU), and **Schematic by SKU**, all color-coded per SKU.
+
 ## Notes
 
 - `SECRET_KEY` defaults to a throwaway dev value; set the env var for any

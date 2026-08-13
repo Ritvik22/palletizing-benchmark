@@ -40,6 +40,7 @@ app.router.routes = [r for r in app.router.routes if getattr(r, "path", None) !=
 # ---------------------------------------------------------------------------
 VIZ = HERE / "viz"
 DB_PATH = str(BACKEND / "palletizer.db")
+RESULTS = HERE / "results"  # phase-1/2 outputs: <order_id>.placed.json / .remainder.json
 
 
 def _db():
@@ -77,6 +78,33 @@ def _viz_order(order_id: str):
             (order_id,),
         ).fetchall()
     return JSONResponse({"order_id": order_id, "items": [dict(r) for r in items]})
+
+
+@app.get("/viz-api/result/{order_id}")
+def _viz_result(order_id: str):
+    """Phase 1+2 result for an order: the packed boxes (real positions) and the
+    remainder. Returns available=False if this pack hasn't been computed yet."""
+    import json as _json
+    placed_p = RESULTS / f"{order_id}.placed.json"
+    remainder_p = RESULTS / f"{order_id}.remainder.json"
+    if not placed_p.exists() or not remainder_p.exists():
+        return JSONResponse({"available": False, "order_id": order_id})
+    return JSONResponse({
+        "available": True,
+        "order_id": order_id,
+        "placed": _json.loads(placed_p.read_text()),
+        "remainder": _json.loads(remainder_p.read_text()),
+    })
+
+
+@app.get("/viz-api/results-index")
+def _viz_results_index():
+    """Order ids that have a computed phase-1/2 result."""
+    if not RESULTS.exists():
+        return JSONResponse([])
+    ids = sorted(p.name[:-len(".placed.json")]
+                 for p in RESULTS.glob("*.placed.json"))
+    return JSONResponse(ids)
 
 
 @app.get("/viz")
