@@ -1,0 +1,19 @@
+# NOTE: the backend ships as sourceless *.pyc bytecode — do NOT ignore *.pyc.
+__pycache__/
+*.egg-info/
+.venv/
+venv/
+
+# Node (frontend ships prebuilt in frontend/dist)
+node_modules/
+
+# Local DB artifacts
+*.db.bak*
+*.sqlite-journal
+*.db-wal
+*.db-shm
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
