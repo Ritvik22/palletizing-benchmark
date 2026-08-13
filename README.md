@@ -16,6 +16,26 @@ On first run the app bootstraps a default admin account **`admin` / `admin`**
 (the shipped DB has no users — change it immediately, or set `ADMIN_USERNAME` /
 `ADMIN_PASSWORD` before the first launch).
 
+## Deploy (Render)
+
+The backend is **Python 3.11-only** bytecode, so it needs a host that runs a real
+3.11 process — not a serverless platform. This repo ships a Docker setup for that:
+
+1. Push to GitHub (already done if you're reading this there).
+2. In Render: **New → Blueprint**, point it at this repo. It reads `render.yaml`
+   and builds the `Dockerfile` (pinned to `python:3.11-slim`).
+   - Or **New → Web Service → Docker runtime** and let it use the `Dockerfile`.
+3. Render injects `$PORT`; `serve.py` binds `0.0.0.0:$PORT` automatically.
+4. Set a real `SECRET_KEY` (the blueprint generates one).
+
+Note: the container filesystem is ephemeral — the SQLite DB (and the bootstrapped
+admin) resets on each redeploy/restart. Attach a Render **Disk** mounted over
+`backend/` if you need writes to persist.
+
+> Not deployable on Vercel: its Python runtime is 3.12/3.13/3.14, and sourceless
+> `.pyc` won't import on anything but 3.11. Vercel functions also can't write the
+> SQLite DB.
+
 ## What's inside
 
 - **`serve.py`** — imports the backend, pins it to `backend/palletizer.db`, mounts

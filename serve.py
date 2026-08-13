@@ -114,6 +114,9 @@ def _spa_fallback(full_path: str):
 if __name__ == "__main__":
     import uvicorn
 
+    # Bind 0.0.0.0 so it works behind a PaaS load balancer (Render/etc.);
+    # $PORT is injected by most hosts. Both default sensibly for local use.
+    host = os.environ.get("HOST", "0.0.0.0")
     port = int(os.environ.get("PORT", "8000"))
-    print(f"Palletizer dataset UI → http://127.0.0.1:{port}")
-    uvicorn.run(app, host="127.0.0.1", port=port, log_level="warning")
+    print(f"Palletizer dataset UI → http://{host}:{port}")
+    uvicorn.run(app, host=host, port=port, log_level="warning")

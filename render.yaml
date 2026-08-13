@@ -1,0 +1,20 @@
+# Render Blueprint — deploys the database website as a Docker web service.
+# In Render: New → Blueprint → point at this repo. Or New → Web Service →
+# Docker runtime, and Render will pick up the Dockerfile.
+services:
+  - type: web
+    name: palletizing-benchmark
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      # Set a real secret in the Render dashboard for anything non-demo.
+      - key: SECRET_KEY
+        generateValue: true
+      # Optional: seed a non-default admin on first boot (DB ships with no users).
+      # - key: ADMIN_USERNAME
+      #   sync: false
+      # - key: ADMIN_PASSWORD
+      #   sync: false
