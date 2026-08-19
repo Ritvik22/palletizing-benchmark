@@ -418,9 +418,20 @@ async function boot(){
   // Optional ?order=ID to preselect a specific pack (used when embedded from
   // the database site's "View" action).
   const want = new URLSearchParams(location.search).get("order");
-  const start = (want && orders.some(o=>o.order_id===want)) ? want
-              : (orders.length ? orders[0].order_id : null);
-  if(start){ sel.value=start; loadPack(start); }
+  const known = want && orders.some(o=>o.order_id===want);
+  if(want && !known){
+    // Say so rather than quietly showing a different pack. This used to fall
+    // through to orders[0], so an embed asking for an order that did not resolve
+    // rendered someone else's pallet under that order's name — wrong data
+    // presented as right, which is the worst way for a viewer to fail.
+    document.getElementById("stats").innerHTML =
+      '<span class="k">Order</span><span class="v">' + want.replace(/[<>&]/g,"") + '</span>' +
+      '<span class="k">Status</span><span class="v">not in this dataset</span>';
+    document.getElementById("legend").innerHTML = "";
+    console.warn("[viz] no such order:", want);
+  }
+  const start = known ? want : (orders.length ? orders[0].order_id : null);
+  if(start && !(want && !known)){ sel.value=start; loadPack(start); }
 }
 boot();
 </script>

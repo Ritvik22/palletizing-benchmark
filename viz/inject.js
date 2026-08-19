@@ -58,9 +58,20 @@
     const body = modal.querySelector(".modal-body") || modal;
     // only order-detail modals carry the box thumbnails
     if (!body.querySelector(".order-detail-box")) return;
-    const m = (body.textContent || "").match(/ORD-[A-Za-z0-9]+/) ||
-              (modal.textContent || "").match(/ORD-[A-Za-z0-9]+/);
-    if (!m) return;
+    // The order id, taken from the element that holds it rather than scraped out
+    // of concatenated text. The modal renders it as
+    //   <div class="modal-title">Order: <span class="mono">ORD-99876481</span></div>
+    //   <div class="text-muted">Created 8/19/2026, ...</div>
+    // and textContent joins adjacent nodes with NO separator, so the old pattern
+    // /ORD-[A-Za-z0-9]+/ ran straight past the id into the next line and produced
+    // "ORD-99876481Created". That matches no order, so the viewer fell back to the
+    // first order in the list — which is why every View showed ORD-00178905.
+    // The regex fallback is digits-only for the same reason.
+    const mono = modal.querySelector(".modal-title .mono");
+    const id = (mono && mono.textContent.trim())
+            || ((modal.textContent || "").match(/ORD-[0-9]+/) || [])[0];
+    if (!id || !/^ORD-[0-9]+$/.test(id)) return;
+    const m = [id];
     // Key the guard on the ORDER, not on "have I run yet". React reuses the same
     // modal node for the next order you open, so a boolean flag left the iframe
     // pointing at whichever pack you viewed first: every subsequent View showed
