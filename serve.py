@@ -41,6 +41,7 @@ app.router.routes = [r for r in app.router.routes if getattr(r, "path", None) !=
 VIZ = HERE / "viz"
 DB_PATH = str(BACKEND / "palletizer.db")
 RESULTS = HERE / "results"  # phase-1/2 outputs: <order_id>.placed.json / .remainder.json
+RESULTS_EP = HERE / "results_ep"  # full EP packs: <order_id>.packformation.json
 
 
 def _db():
@@ -95,6 +96,22 @@ def _viz_result(order_id: str):
         "placed": _json.loads(placed_p.read_text()),
         "remainder": _json.loads(remainder_p.read_text()),
     })
+
+
+@app.get("/viz-api/ep-result/{order_id}")
+def _viz_ep_result(order_id: str):
+    """The FULL EP pack for an order — phases 1, 2 and 3.
+
+    Distinct from /viz-api/result, which is Phase 1+2 only. Those two together are
+    the point: Phase 1+2 is the deterministic part every engine shares, and the
+    difference between the two views is exactly what Phase 3 contributed.
+    """
+    import json as _json
+    p = RESULTS_EP / f"{order_id}.packformation.json"
+    if not p.exists():
+        return JSONResponse({"available": False, "order_id": order_id})
+    return JSONResponse({"available": True, "order_id": order_id,
+                         "pack": _json.loads(p.read_text())})
 
 
 @app.get("/viz-api/results-index")

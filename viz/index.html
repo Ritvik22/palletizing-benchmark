@@ -56,6 +56,7 @@
       <label>View <span id="resultBadge" class="badge" style="display:none">phase 1+2</span></label>
       <div class="seg" id="sourceSeg">
         <button data-src="packed" id="srcPacked" disabled style="opacity:.4">Phase 1+2 packed</button>
+        <button data-src="ep" id="srcEp" disabled style="opacity:.4" title="all three phases">Full EP pack</button>
         <button data-src="remainder" id="srcRemainder" disabled style="opacity:.4">Remainder</button>
         <button data-src="schematic" class="active">Schematic by SKU</button>
       </div>
@@ -127,6 +128,7 @@ function colorOf(sku_id){
   return skuColorMap[sku_id];
 }
 let curResult = null;    // {available, placed, remainder} phase-1/2 result for curOrderId
+let curEp = null;        // {available, pack} full EP pack (phases 1+2+3) for curOrderId
 let sourceMode = "schematic";  // "packed" | "remainder" | "schematic"
 
 // ---- layout builders -------------------------------------------------------
@@ -287,11 +289,13 @@ function aggItems(boxes){
 
 function renderCurrent(){
   const has = curResult && curResult.available;
+  const hasEp = curEp && curEp.available;
   if(sourceMode==="packed" && has){ renderPacked(curResult.placed); renderStats(); }
+  else if(sourceMode==="ep" && hasEp){ renderPacked(curEp.pack); renderStats(); }
   else if(sourceMode==="remainder" && has){ render(aggItems(curResult.remainder.boxes)); renderStats(); }
   else { render(curItems); renderStats(); }
   document.getElementById("layoutWrap").style.display =
-    (sourceMode==="packed") ? "none" : "block";  // layout toggle only affects schematic modes
+    (sourceMode==="packed"||sourceMode==="ep") ? "none" : "block";
 }
 
 // ---- data + UI ------------------------------------------------------------
@@ -303,10 +307,24 @@ function renderStats(){
     const s=curResult.placed.stats||{};
     rows.push(["Phase 1+2 placed", `${s.placed} / ${s.total}`]);
     rows.push(["Remainder", `${s.remainder}`]);
-    if(sourceMode==="packed"){
-      const top=Math.max(0,...curResult.placed.boxes.map(b=>b.position.z+b.dimensions.height/2));
-      rows.push(["Top of stack", `${top.toFixed(3)} m / ${curResult.placed.container.height}`]);
+  }
+  const hasEp = curEp && curEp.available;
+  if(hasEp){
+    const e=curEp.pack.stats||{};
+    rows.push(["Full EP placed", `${e.placed} / ${e.total}`]);
+    // Phase 3 is the only difference between the two views, so name what it added
+    // rather than making the reader subtract two numbers themselves.
+    if(has){
+      const p12=(curResult.placed.stats||{}).placed;
+      if(typeof p12==="number" && typeof e.placed==="number")
+        rows.push(["Added by phase 3", `+${e.placed - p12}`]);
     }
+  }
+  const shown = sourceMode==="ep" ? (hasEp ? curEp.pack : null)
+              : sourceMode==="packed" ? (has ? curResult.placed : null) : null;
+  if(shown && shown.boxes.length){
+    const top=Math.max(0,...shown.boxes.map(b=>b.position.z+b.dimensions.height/2));
+    rows.push(["Top of stack", `${top.toFixed(3)} m / ${shown.container.height}`]);
   }
   document.getElementById("stats").innerHTML =
     rows.map(r=>`<span class="k">${r[0]}</span><span class="v">${r[1]}</span>`).join("");
@@ -339,10 +357,15 @@ function _unusedRenderStatsAndLegend(items){
 
 function setSourceButtons(){
   const has = curResult && curResult.available;
-  document.getElementById("resultBadge").style.display = has ? "inline-block" : "none";
-  [["srcPacked","packed"],["srcRemainder","remainder"]].forEach(([id])=>{
+  const hasEp = curEp && curEp.available;
+  const badge = document.getElementById("resultBadge");
+  badge.style.display = has ? "inline-block" : "none";
+  badge.textContent = sourceMode==="ep" ? "all 3 phases" : "phase 1+2";
+  [["srcPacked",has],["srcRemainder",has],["srcEp",hasEp]].forEach(([id,on])=>{
     const b=document.getElementById(id);
-    b.disabled = !has; b.style.opacity = has ? "1" : ".4";
+    b.disabled = !on; b.style.opacity = on ? "1" : ".4";
+    if(id==="srcEp") b.title = on ? "all three phases"
+      : "the full EP pack for this order has not been computed yet";
   });
   [...document.getElementById("sourceSeg").children].forEach(b=>
     b.classList.toggle("active", b.dataset.src===sourceMode));
@@ -353,7 +376,14 @@ async function loadPack(orderId){
   const data = await (await fetch(`${API}/viz-api/orders/${orderId}`)).json();
   curItems = data.items||[];
   curItems.forEach(it=>colorOf(it.sku_id));   // assign stable colors in item order
-  curResult = await (await fetch(`${API}/viz-api/result/${orderId}`)).json();
+  // Both packs for this order: phase 1+2, and the full EP pack when it exists.
+  // Fetched together so switching between them is instant — the whole point is
+  // comparing the same order under the two, and a spinner between them hides the
+  // difference you are trying to see.
+  [curResult, curEp] = await Promise.all([
+    fetch(`${API}/viz-api/result/${orderId}`).then(r=>r.json()).catch(()=>null),
+    fetch(`${API}/viz-api/ep-result/${orderId}`).then(r=>r.json()).catch(()=>null),
+  ]);
   // Default to the phase 1+2 packed result when it's been computed.
   sourceMode = (curResult && curResult.available) ? "packed" : "schematic";
   setSourceButtons();
