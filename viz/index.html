@@ -413,6 +413,10 @@ async function boot(){
     if(!src || e.target.disabled) return;
     sourceMode=src;
     [...e.currentTarget.children].forEach(b=>b.classList.toggle("active",b===e.target));
+    // Also refresh the badge: it names which pack is on screen, and it was only
+    // being set on load, so switching to the full EP pack left it reading
+    // "phase 1+2" over a pack that was not phase 1+2.
+    setSourceButtons();
     renderCurrent();
   });
   // Optional ?order=ID to preselect a specific pack (used when embedded from
