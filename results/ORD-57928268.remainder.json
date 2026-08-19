@@ -1,1 +1,546 @@
-{"order_id": "ORD-57928268", "kind": "remainder", "container": {"width": 0.8, "depth": 1.2, "height": 2.0}, "boxes": [{"id": 32, "sku_id": "SKU-F752PF", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.17, "depth": 0.15, "height": 0.19}, "rotation": 0, "weight": 5.19}, {"id": 41, "sku_id": "SKU-PNHMX1", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.11, "depth": 0.18, "height": 0.12}, "rotation": 0, "weight": 2.04}, {"id": 42, "sku_id": "SKU-PNHMX1", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.11, "depth": 0.18, "height": 0.12}, "rotation": 0, "weight": 2.04}, {"id": 99, "sku_id": "SKU-JE9PSE", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.11, "height": 0.1}, "rotation": 0, "weight": 1.23}, {"id": 100, "sku_id": "SKU-JE9PSE", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.11, "height": 0.1}, "rotation": 0, "weight": 1.23}, {"id": 101, "sku_id": "SKU-JE9PSE", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.11, "height": 0.1}, "rotation": 0, "weight": 1.23}, {"id": 102, "sku_id": "SKU-JE9PSE", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.11, "height": 0.1}, "rotation": 0, "weight": 1.23}, {"id": 103, "sku_id": "SKU-JE9PSE", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.11, "height": 0.1}, "rotation": 0, "weight": 1.23}, {"id": 104, "sku_id": "SKU-JE9PSE", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.11, "height": 0.1}, "rotation": 0, "weight": 1.23}, {"id": 111, "sku_id": "SKU-JE9PSE", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.11, "height": 0.1}, "rotation": 0, "weight": 1.23}, {"id": 112, "sku_id": "SKU-JE9PSE", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.11, "height": 0.1}, "rotation": 0, "weight": 1.23}, {"id": 113, "sku_id": "SKU-JE9PSE", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.11, "height": 0.1}, "rotation": 0, "weight": 1.23}, {"id": 145, "sku_id": "SKU-ZYPLPH", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.27, "depth": 0.16, "height": 0.1}, "rotation": 0, "weight": 0.54}, {"id": 146, "sku_id": "SKU-OG5C3N", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.13, "depth": 0.23, "height": 0.12}, "rotation": 0, "weight": 3.91}, {"id": 147, "sku_id": "SKU-OG5C3N", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.13, "depth": 0.23, "height": 0.12}, "rotation": 0, "weight": 3.91}, {"id": 148, "sku_id": "SKU-OG5C3N", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.13, "depth": 0.23, "height": 0.12}, "rotation": 0, "weight": 3.91}, {"id": 149, "sku_id": "SKU-OG5C3N", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.13, "depth": 0.23, "height": 0.12}, "rotation": 0, "weight": 3.91}, {"id": 150, "sku_id": "SKU-OG5C3N", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.13, "depth": 0.23, "height": 0.12}, "rotation": 0, "weight": 3.91}], "stats": {"total": 151, "placed": 133, "remainder": 18, "phase": "1+2", "runtime_s": 4.76}}
+{
+ "order_id": "ORD-57928268",
+ "kind": "remainder",
+ "container": {
+  "width": 0.8,
+  "depth": 1.2,
+  "height": 2.0
+ },
+ "boxes": [
+  {
+   "id": 0,
+   "sku_id": "SKU-R2PK42",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.2,
+    "height": 0.25
+   },
+   "rotation": 0,
+   "weight": 0.75
+  },
+  {
+   "id": 1,
+   "sku_id": "SKU-R2PK42",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.2,
+    "height": 0.25
+   },
+   "rotation": 0,
+   "weight": 0.75
+  },
+  {
+   "id": 2,
+   "sku_id": "SKU-R2PK42",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.2,
+    "height": 0.25
+   },
+   "rotation": 0,
+   "weight": 0.75
+  },
+  {
+   "id": 3,
+   "sku_id": "SKU-R2PK42",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.2,
+    "height": 0.25
+   },
+   "rotation": 0,
+   "weight": 0.75
+  },
+  {
+   "id": 16,
+   "sku_id": "SKU-F752PF",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.17,
+    "depth": 0.15,
+    "height": 0.19
+   },
+   "rotation": 0,
+   "weight": 5.19
+  },
+  {
+   "id": 18,
+   "sku_id": "SKU-F752PF",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.17,
+    "depth": 0.15,
+    "height": 0.19
+   },
+   "rotation": 0,
+   "weight": 5.19
+  },
+  {
+   "id": 30,
+   "sku_id": "SKU-F752PF",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.17,
+    "depth": 0.15,
+    "height": 0.19
+   },
+   "rotation": 0,
+   "weight": 5.19
+  },
+  {
+   "id": 31,
+   "sku_id": "SKU-F752PF",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.17,
+    "depth": 0.15,
+    "height": 0.19
+   },
+   "rotation": 0,
+   "weight": 5.19
+  },
+  {
+   "id": 32,
+   "sku_id": "SKU-F752PF",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.17,
+    "depth": 0.15,
+    "height": 0.19
+   },
+   "rotation": 0,
+   "weight": 5.19
+  },
+  {
+   "id": 37,
+   "sku_id": "SKU-PNHMX1",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.11,
+    "depth": 0.18,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 2.04
+  },
+  {
+   "id": 38,
+   "sku_id": "SKU-PNHMX1",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.11,
+    "depth": 0.18,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 2.04
+  },
+  {
+   "id": 39,
+   "sku_id": "SKU-PNHMX1",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.11,
+    "depth": 0.18,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 2.04
+  },
+  {
+   "id": 40,
+   "sku_id": "SKU-PNHMX1",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.11,
+    "depth": 0.18,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 2.04
+  },
+  {
+   "id": 41,
+   "sku_id": "SKU-PNHMX1",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.11,
+    "depth": 0.18,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 2.04
+  },
+  {
+   "id": 42,
+   "sku_id": "SKU-PNHMX1",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.11,
+    "depth": 0.18,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 2.04
+  },
+  {
+   "id": 89,
+   "sku_id": "SKU-PK4QEP",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.16,
+    "depth": 0.21,
+    "height": 0.14
+   },
+   "rotation": 0,
+   "weight": 0.71
+  },
+  {
+   "id": 96,
+   "sku_id": "SKU-JE9PSE",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.24,
+    "depth": 0.11,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 1.23
+  },
+  {
+   "id": 97,
+   "sku_id": "SKU-JE9PSE",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.24,
+    "depth": 0.11,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 1.23
+  },
+  {
+   "id": 98,
+   "sku_id": "SKU-JE9PSE",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.24,
+    "depth": 0.11,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 1.23
+  },
+  {
+   "id": 110,
+   "sku_id": "SKU-JE9PSE",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.24,
+    "depth": 0.11,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 1.23
+  },
+  {
+   "id": 111,
+   "sku_id": "SKU-JE9PSE",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.24,
+    "depth": 0.11,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 1.23
+  },
+  {
+   "id": 112,
+   "sku_id": "SKU-JE9PSE",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.24,
+    "depth": 0.11,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 1.23
+  },
+  {
+   "id": 113,
+   "sku_id": "SKU-JE9PSE",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.24,
+    "depth": 0.11,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 1.23
+  },
+  {
+   "id": 114,
+   "sku_id": "SKU-ELJ7E5",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.32,
+    "depth": 0.17,
+    "height": 0.24
+   },
+   "rotation": 0,
+   "weight": 3.96
+  },
+  {
+   "id": 115,
+   "sku_id": "SKU-ELJ7E5",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.32,
+    "depth": 0.17,
+    "height": 0.24
+   },
+   "rotation": 0,
+   "weight": 3.96
+  },
+  {
+   "id": 121,
+   "sku_id": "SKU-ELJ7E5",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.32,
+    "depth": 0.17,
+    "height": 0.24
+   },
+   "rotation": 0,
+   "weight": 3.96
+  },
+  {
+   "id": 124,
+   "sku_id": "SKU-ELJ7E5",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.32,
+    "depth": 0.17,
+    "height": 0.24
+   },
+   "rotation": 0,
+   "weight": 3.96
+  },
+  {
+   "id": 145,
+   "sku_id": "SKU-ZYPLPH",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.27,
+    "depth": 0.16,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.54
+  },
+  {
+   "id": 146,
+   "sku_id": "SKU-OG5C3N",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.13,
+    "depth": 0.23,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 3.91
+  },
+  {
+   "id": 147,
+   "sku_id": "SKU-OG5C3N",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.13,
+    "depth": 0.23,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 3.91
+  },
+  {
+   "id": 148,
+   "sku_id": "SKU-OG5C3N",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.13,
+    "depth": 0.23,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 3.91
+  },
+  {
+   "id": 149,
+   "sku_id": "SKU-OG5C3N",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.13,
+    "depth": 0.23,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 3.91
+  },
+  {
+   "id": 150,
+   "sku_id": "SKU-OG5C3N",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.13,
+    "depth": 0.23,
+    "height": 0.12
+   },
+   "rotation": 0,
+   "weight": 3.91
+  }
+ ],
+ "stats": {
+  "total": 151,
+  "placed": 118,
+  "remainder": 33,
+  "phase": "1+2",
+  "runtime_s": 12.0
+ }
+}

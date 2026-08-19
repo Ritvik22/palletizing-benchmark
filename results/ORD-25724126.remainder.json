@@ -1,1 +1,50 @@
-{"order_id": "ORD-25724126", "kind": "remainder", "container": {"width": 0.8, "depth": 1.2, "height": 2.0}, "boxes": [{"id": 23, "sku_id": "SKU-WFWUYG", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.22, "depth": 0.21, "height": 0.19}, "rotation": 0, "weight": 2.46}, {"id": 24, "sku_id": "SKU-WFWUYG", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.22, "depth": 0.21, "height": 0.19}, "rotation": 0, "weight": 2.46}, {"id": 25, "sku_id": "SKU-WFWUYG", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.22, "depth": 0.21, "height": 0.19}, "rotation": 0, "weight": 2.46}, {"id": 65, "sku_id": "SKU-4O3LN9", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.24, "depth": 0.22, "height": 0.2}, "rotation": 0, "weight": 0.3}], "stats": {"total": 76, "placed": 72, "remainder": 4, "phase": "1+2", "runtime_s": 0.59}}
+{
+ "order_id": "ORD-25724126",
+ "kind": "remainder",
+ "container": {
+  "width": 0.8,
+  "depth": 1.2,
+  "height": 2.0
+ },
+ "boxes": [
+  {
+   "id": 21,
+   "sku_id": "SKU-WFWUYG",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.21,
+    "height": 0.19
+   },
+   "rotation": 0,
+   "weight": 2.46
+  },
+  {
+   "id": 75,
+   "sku_id": "SKU-ZQEUSK",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.25,
+    "depth": 0.15,
+    "height": 0.23
+   },
+   "rotation": 0,
+   "weight": 0.3
+  }
+ ],
+ "stats": {
+  "total": 76,
+  "placed": 74,
+  "remainder": 2,
+  "phase": "1+2",
+  "runtime_s": 2.2
+ }
+}

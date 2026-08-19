@@ -1,1 +1,34 @@
-{"order_id": "ORD-92890814", "kind": "remainder", "container": {"width": 0.8, "depth": 1.2, "height": 2.0}, "boxes": [{"id": 4, "sku_id": "SKU-HLYYP9", "position": {"x": 0, "y": 0, "z": 0}, "dimensions": {"width": 0.22, "depth": 0.16, "height": 0.15}, "rotation": 0, "weight": 0.3}], "stats": {"total": 64, "placed": 63, "remainder": 1, "phase": "1+2", "runtime_s": 1.1}}
+{
+ "order_id": "ORD-92890814",
+ "kind": "remainder",
+ "container": {
+  "width": 0.8,
+  "depth": 1.2,
+  "height": 2.0
+ },
+ "boxes": [
+  {
+   "id": 4,
+   "sku_id": "SKU-HLYYP9",
+   "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.16,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 0.3
+  }
+ ],
+ "stats": {
+  "total": 64,
+  "placed": 63,
+  "remainder": 1,
+  "phase": "1+2",
+  "runtime_s": 2.8
+ }
+}
