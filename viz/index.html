@@ -76,10 +76,10 @@
       <label>Pack view</label>
       <div class="views" id="sourceList">
         <button class="view" data-src="packed" id="srcPacked" disabled><span class="vname">Phase 1+2</span><span class="vmeta" id="metaPacked">&mdash;</span></button>
-        <button class="view" data-src="ep" id="srcEp" disabled><span class="vname">Full EP <span class="vsub">(3 phases)</span></span><span class="vmeta" id="metaEp">&mdash;</span></button>
-        <button class="view" data-src="neat" id="srcNeat" disabled><span class="vname">NEAT</span><span class="vmeta" id="metaNeat">&mdash;</span></button>
-        <button class="view" data-src="rl" id="srcRl" disabled><span class="vname">RL</span><span class="vmeta" id="metaRl">&mdash;</span></button>
-        <button class="view" data-src="remainder" id="srcRemainder" disabled><span class="vname">Remainder</span><span class="vmeta" id="metaRem">&mdash;</span></button>
+        <button class="view" data-src="remainder" id="srcRemainder" disabled><span class="vname">Phase 1+2 Remainder</span><span class="vmeta" id="metaRem">&mdash;</span></button>
+        <button class="view" data-src="ep" id="srcEp" disabled><span class="vname">EP Hybrid</span><span class="vmeta" id="metaEp">&mdash;</span></button>
+        <button class="view" data-src="neat" id="srcNeat" disabled><span class="vname">NEAT Hybrid</span><span class="vmeta" id="metaNeat">&mdash;</span></button>
+        <button class="view" data-src="rl" id="srcRl" disabled><span class="vname">RL Full</span><span class="vmeta" id="metaRl">&mdash;</span></button>
         <button class="view active" data-src="schematic"><span class="vname">Schematic by SKU</span><span class="vmeta" id="metaSch">&mdash;</span></button>
       </div>
     </div>
@@ -359,8 +359,8 @@ function renderStats(){
     `<span class="lab">${it.sku_id}</span><span class="qty">×${it.quantity}</span></div>`).join("");
 }
 
-const VIEW_LABELS = {packed:"Phase 1+2", ep:"Full EP (3 phases)", neat:"NEAT",
-                     rl:"RL", remainder:"Remainder", schematic:"Schematic by SKU"};
+const VIEW_LABELS = {packed:"Phase 1+2", ep:"EP Hybrid", neat:"NEAT Hybrid",
+                     rl:"RL Full", remainder:"Phase 1+2 Remainder", schematic:"Schematic by SKU"};
 function setSourceButtons(){
   const has = curResult && curResult.available;
   const hasEp = curEp && curEp.available;
