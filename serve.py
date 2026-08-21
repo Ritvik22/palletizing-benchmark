@@ -42,6 +42,8 @@ VIZ = HERE / "viz"
 DB_PATH = str(BACKEND / "palletizer.db")
 RESULTS = HERE / "results"  # phase-1/2 outputs: <order_id>.placed.json / .remainder.json
 RESULTS_EP = HERE / "results_ep"  # full EP packs: <order_id>.packformation.json
+RESULTS_NEAT = HERE / "results_neat"  # full NEAT packs, same convention
+RESULTS_RL = HERE / "results_rl"      # full RL packs, same convention
 
 
 def _db():
@@ -108,6 +110,28 @@ def _viz_ep_result(order_id: str):
     """
     import json as _json
     p = RESULTS_EP / f"{order_id}.packformation.json"
+    if not p.exists():
+        return JSONResponse({"available": False, "order_id": order_id})
+    return JSONResponse({"available": True, "order_id": order_id,
+                         "pack": _json.loads(p.read_text())})
+
+
+@app.get("/viz-api/neat-result/{order_id}")
+def _viz_neat_result(order_id: str):
+    """The full NEAT pack for an order (same contract as /viz-api/ep-result)."""
+    import json as _json
+    p = RESULTS_NEAT / f"{order_id}.packformation.json"
+    if not p.exists():
+        return JSONResponse({"available": False, "order_id": order_id})
+    return JSONResponse({"available": True, "order_id": order_id,
+                         "pack": _json.loads(p.read_text())})
+
+
+@app.get("/viz-api/rl-result/{order_id}")
+def _viz_rl_result(order_id: str):
+    """The full RL pack for an order (same contract as /viz-api/ep-result)."""
+    import json as _json
+    p = RESULTS_RL / f"{order_id}.packformation.json"
     if not p.exists():
         return JSONResponse({"available": False, "order_id": order_id})
     return JSONResponse({"available": True, "order_id": order_id,

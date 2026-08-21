@@ -57,6 +57,8 @@
       <div class="seg" id="sourceSeg">
         <button data-src="packed" id="srcPacked" disabled style="opacity:.4">Phase 1+2 packed</button>
         <button data-src="ep" id="srcEp" disabled style="opacity:.4" title="all three phases">Full EP pack</button>
+        <button data-src="neat" id="srcNeat" disabled style="opacity:.4" title="NEAT engine pack">NEAT pack</button>
+        <button data-src="rl" id="srcRl" disabled style="opacity:.4" title="full-order RL pack">RL pack</button>
         <button data-src="remainder" id="srcRemainder" disabled style="opacity:.4">Remainder</button>
         <button data-src="schematic" class="active">Schematic by SKU</button>
       </div>
@@ -128,7 +130,7 @@ function colorOf(sku_id){
   return skuColorMap[sku_id];
 }
 let curResult = null;    // {available, placed, remainder} phase-1/2 result for curOrderId
-let curEp = null;        // {available, pack} full EP pack (phases 1+2+3) for curOrderId
+let curEp = null, curNeat=null, curRl=null;        // {available, pack} full EP pack (phases 1+2+3) for curOrderId
 let sourceMode = "schematic";  // "packed" | "remainder" | "schematic"
 
 // ---- layout builders -------------------------------------------------------
@@ -290,12 +292,16 @@ function aggItems(boxes){
 function renderCurrent(){
   const has = curResult && curResult.available;
   const hasEp = curEp && curEp.available;
+  const hasNeat = curNeat && curNeat.available;
+  const hasRl = curRl && curRl.available;
   if(sourceMode==="packed" && has){ renderPacked(curResult.placed); renderStats(); }
   else if(sourceMode==="ep" && hasEp){ renderPacked(curEp.pack); renderStats(); }
+  else if(sourceMode==="neat" && hasNeat){ renderPacked(curNeat.pack); renderStats(); }
+  else if(sourceMode==="rl" && hasRl){ renderPacked(curRl.pack); renderStats(); }
   else if(sourceMode==="remainder" && has){ render(aggItems(curResult.remainder.boxes)); renderStats(); }
   else { render(curItems); renderStats(); }
   document.getElementById("layoutWrap").style.display =
-    (sourceMode==="packed"||sourceMode==="ep") ? "none" : "block";
+    (sourceMode==="packed"||sourceMode==="ep"||sourceMode==="neat"||sourceMode==="rl") ? "none" : "block";
 }
 
 // ---- data + UI ------------------------------------------------------------
@@ -320,7 +326,14 @@ function renderStats(){
         rows.push(["Added by phase 3", `+${e.placed - p12}`]);
     }
   }
+  const hasNeatS = curNeat && curNeat.available, hasRlS = curRl && curRl.available;
+  if(hasNeatS){ const n=curNeat.pack.stats||{};
+    if(n.placed!==undefined) rows.push(["Full NEAT placed", `${n.placed} / ${n.total}`]); }
+  if(hasRlS){ const rr=curRl.pack.stats||{};
+    if(rr.placed!==undefined) rows.push(["Full RL placed", `${rr.placed} / ${rr.total}`]); }
   const shown = sourceMode==="ep" ? (hasEp ? curEp.pack : null)
+              : sourceMode==="neat" ? (hasNeatS ? curNeat.pack : null)
+              : sourceMode==="rl" ? (hasRlS ? curRl.pack : null)
               : sourceMode==="packed" ? (has ? curResult.placed : null) : null;
   if(shown && shown.boxes.length){
     const top=Math.max(0,...shown.boxes.map(b=>b.position.z+b.dimensions.height/2));
@@ -358,14 +371,24 @@ function _unusedRenderStatsAndLegend(items){
 function setSourceButtons(){
   const has = curResult && curResult.available;
   const hasEp = curEp && curEp.available;
+  const hasNeat = curNeat && curNeat.available;
+  const hasRl = curRl && curRl.available;
   const badge = document.getElementById("resultBadge");
   badge.style.display = has ? "inline-block" : "none";
-  badge.textContent = sourceMode==="ep" ? "all 3 phases" : "phase 1+2";
-  [["srcPacked",has],["srcRemainder",has],["srcEp",hasEp]].forEach(([id,on])=>{
+  badge.textContent = sourceMode==="ep" ? "all 3 phases"
+                    : sourceMode==="neat" ? "NEAT engine"
+                    : sourceMode==="rl" ? "full-order RL" : "phase 1+2";
+  [["srcPacked",has],["srcRemainder",has],["srcEp",hasEp],
+   ["srcNeat",hasNeat],["srcRl",hasRl]].forEach(([id,on])=>{
     const b=document.getElementById(id);
+    if(!b) return;
     b.disabled = !on; b.style.opacity = on ? "1" : ".4";
     if(id==="srcEp") b.title = on ? "all three phases"
       : "the full EP pack for this order has not been computed yet";
+    if(id==="srcNeat") b.title = on ? "NEAT engine pack"
+      : "the NEAT pack for this order has not been computed yet";
+    if(id==="srcRl") b.title = on ? "full-order RL pack"
+      : "the RL pack for this order has not been computed yet";
   });
   [...document.getElementById("sourceSeg").children].forEach(b=>
     b.classList.toggle("active", b.dataset.src===sourceMode));
@@ -380,9 +403,11 @@ async function loadPack(orderId){
   // Fetched together so switching between them is instant — the whole point is
   // comparing the same order under the two, and a spinner between them hides the
   // difference you are trying to see.
-  [curResult, curEp] = await Promise.all([
+  [curResult, curEp, curNeat, curRl] = await Promise.all([
     fetch(`${API}/viz-api/result/${orderId}`).then(r=>r.json()).catch(()=>null),
     fetch(`${API}/viz-api/ep-result/${orderId}`).then(r=>r.json()).catch(()=>null),
+    fetch(`${API}/viz-api/neat-result/${orderId}`).then(r=>r.json()).catch(()=>null),
+    fetch(`${API}/viz-api/rl-result/${orderId}`).then(r=>r.json()).catch(()=>null),
   ]);
   // Default to the phase 1+2 packed result when it's been computed.
   sourceMode = (curResult && curResult.available) ? "packed" : "schematic";
