@@ -91,7 +91,7 @@
     wrap.innerHTML =
       '<div style="padding:7px 12px;font:600 12px/1.3 -apple-system,Segoe UI,Roboto,sans-serif;' +
       'color:#8b94ab;border-bottom:1px solid #232b40">3D pallet — Phase 1+2, full EP pack, or schematic</div>' +
-      '<iframe title="3D pallet" data-viz3d-frame style="border:0;width:100%;height:420px;display:block" ' +
+      '<iframe title="3D pallet" data-viz3d-frame style="border:0;width:100%;height:600px;display:block" ' +
       'src="/viz?order=' + encodeURIComponent(m[0]) + '"></iframe>';
     body.insertBefore(wrap, body.firstChild);
   }

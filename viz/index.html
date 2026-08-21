@@ -8,7 +8,7 @@
   :root{--bg:#0b0e14;--panel:#121724;--panel2:#171d2e;--line:#232b40;--text:#e6eaf2;--dim:#8b94ab;--faint:#5a6379;--accent:#38bdf8;}
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;height:100vh;overflow:hidden}
-  #app{display:grid;grid-template-columns:1fr 320px;height:100vh}
+  #app{display:grid;grid-template-columns:minmax(0,1fr) 340px;height:100vh}
   #stage{position:relative;background:#0d1119}
   #stage canvas{display:block}
   .side{border-left:1px solid var(--line);background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
@@ -32,12 +32,32 @@
   #tooltip .td{color:var(--dim)}
   .hint{position:absolute;left:12px;bottom:10px;font-size:11px;color:var(--faint);pointer-events:none}
   .badge{display:inline-block;font-size:11px;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+  .views{display:flex;flex-direction:column;gap:6px}
+  .view{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 12px;color:var(--text);font-size:13px;cursor:pointer;text-align:left;width:100%;font-family:inherit}
+  .view:hover:not(:disabled){border-color:#31405f}
+  .view.active{border-color:var(--accent);background:rgba(56,189,248,.09)}
+  .view.active .vname{color:var(--accent);font-weight:650}
+  .view:disabled{opacity:.42;cursor:default}
+  .vname{font-weight:500}
+  .vname .vsub{color:var(--faint);font-weight:400}
+  .vmeta{color:var(--dim);font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .chip{position:absolute;top:12px;left:12px;background:rgba(13,17,25,.88);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12px;color:var(--dim);z-index:4;pointer-events:none}
+  .chip b{color:var(--text);font-weight:600}
+  @media(max-width:820px){
+    body{height:auto;overflow:auto}
+    #app{grid-template-columns:minmax(0,1fr);height:auto}
+    #stage{height:62vh;min-height:300px}
+    .side{border-left:none;border-top:1px solid var(--line)}
+    .legend{max-height:none}
+  }
+  body.embed h1,body.embed .sub,body.embed #pickWrap{display:none}
 </style>
 </head>
 <body>
 <div id="app">
   <div id="stage">
     <div id="tooltip"></div>
+    <div class="chip" id="viewChip" style="display:none"></div>
     <div class="hint">drag to orbit · scroll to zoom · right-drag to pan</div>
   </div>
   <div class="side">
@@ -45,7 +65,7 @@
       <h1>Pack Visualizer</h1>
       <div class="sub">Pallet layout, boxes grouped by SKU · <span id="unit">metres</span></div>
     </div>
-    <div>
+    <div id="pickWrap">
       <label>Pack (order)</label>
       <div class="row">
         <select id="packSel"></select>
@@ -53,14 +73,14 @@
       </div>
     </div>
     <div>
-      <label>View <span id="resultBadge" class="badge" style="display:none">phase 1+2</span></label>
-      <div class="seg" id="sourceSeg">
-        <button data-src="packed" id="srcPacked" disabled style="opacity:.4">Phase 1+2 packed</button>
-        <button data-src="ep" id="srcEp" disabled style="opacity:.4" title="all three phases">Full EP pack</button>
-        <button data-src="neat" id="srcNeat" disabled style="opacity:.4" title="NEAT engine pack">NEAT pack</button>
-        <button data-src="rl" id="srcRl" disabled style="opacity:.4" title="full-order RL pack">RL pack</button>
-        <button data-src="remainder" id="srcRemainder" disabled style="opacity:.4">Remainder</button>
-        <button data-src="schematic" class="active">Schematic by SKU</button>
+      <label>Pack view</label>
+      <div class="views" id="sourceList">
+        <button class="view" data-src="packed" id="srcPacked" disabled><span class="vname">Phase 1+2</span><span class="vmeta" id="metaPacked">&mdash;</span></button>
+        <button class="view" data-src="ep" id="srcEp" disabled><span class="vname">Full EP <span class="vsub">(3 phases)</span></span><span class="vmeta" id="metaEp">&mdash;</span></button>
+        <button class="view" data-src="neat" id="srcNeat" disabled><span class="vname">NEAT</span><span class="vmeta" id="metaNeat">&mdash;</span></button>
+        <button class="view" data-src="rl" id="srcRl" disabled><span class="vname">RL</span><span class="vmeta" id="metaRl">&mdash;</span></button>
+        <button class="view" data-src="remainder" id="srcRemainder" disabled><span class="vname">Remainder</span><span class="vmeta" id="metaRem">&mdash;</span></button>
+        <button class="view active" data-src="schematic"><span class="vname">Schematic by SKU</span><span class="vmeta" id="metaSch">&mdash;</span></button>
       </div>
     </div>
     <div id="layoutWrap">
@@ -309,36 +329,26 @@ function renderStats(){
   const has = curResult && curResult.available;
   const totalBoxes=curItems.reduce((a,b)=>a+b.quantity,0);
   const rows=[["Order",curOrderId||"—"],["Distinct SKUs",curItems.length],["Total boxes",totalBoxes]];
-  if(has){
-    const s=curResult.placed.stats||{};
-    rows.push(["Phase 1+2 placed", `${s.placed} / ${s.total}`]);
-    rows.push(["Remainder", `${s.remainder}`]);
-  }
-  const hasEp = curEp && curEp.available;
-  if(hasEp){
-    const e=curEp.pack.stats||{};
-    rows.push(["Full EP placed", `${e.placed} / ${e.total}`]);
-    // Phase 3 is the only difference between the two views, so name what it added
-    // rather than making the reader subtract two numbers themselves.
-    if(has){
+  const shown = sourceMode==="ep" ? (curEp && curEp.available ? curEp.pack : null)
+              : sourceMode==="neat" ? (curNeat && curNeat.available ? curNeat.pack : null)
+              : sourceMode==="rl" ? (curRl && curRl.available ? curRl.pack : null)
+              : sourceMode==="packed" ? (has ? curResult.placed : null) : null;
+  if(shown){
+    const st=shown.stats||{};
+    if(st.placed!==undefined) rows.push(["Placed", `${st.placed} / ${st.total}`]);
+    if(sourceMode==="packed" && st.remainder!==undefined) rows.push(["Remainder", `${st.remainder}`]);
+    if(sourceMode==="ep" && has){
       const p12=(curResult.placed.stats||{}).placed;
-      if(typeof p12==="number" && typeof e.placed==="number")
-        rows.push(["Added by phase 3", `+${e.placed - p12}`]);
+      if(typeof p12==="number" && typeof st.placed==="number")
+        rows.push(["Added by phase 3", `+${st.placed - p12}`]);
+    }
+    if(shown.boxes.length){
+      const top=Math.max(0,...shown.boxes.map(b=>b.position.z+b.dimensions.height/2));
+      rows.push(["Top of stack", `${top.toFixed(3)} m / ${shown.container.height}`]);
     }
   }
-  const hasNeatS = curNeat && curNeat.available, hasRlS = curRl && curRl.available;
-  if(hasNeatS){ const n=curNeat.pack.stats||{};
-    if(n.placed!==undefined) rows.push(["Full NEAT placed", `${n.placed} / ${n.total}`]); }
-  if(hasRlS){ const rr=curRl.pack.stats||{};
-    if(rr.placed!==undefined) rows.push(["Full RL placed", `${rr.placed} / ${rr.total}`]); }
-  const shown = sourceMode==="ep" ? (hasEp ? curEp.pack : null)
-              : sourceMode==="neat" ? (hasNeatS ? curNeat.pack : null)
-              : sourceMode==="rl" ? (hasRlS ? curRl.pack : null)
-              : sourceMode==="packed" ? (has ? curResult.placed : null) : null;
-  if(shown && shown.boxes.length){
-    const top=Math.max(0,...shown.boxes.map(b=>b.position.z+b.dimensions.height/2));
-    rows.push(["Top of stack", `${top.toFixed(3)} m / ${shown.container.height}`]);
-  }
+  if(sourceMode==="remainder" && has)
+    rows.push(["Remainder boxes", curResult.remainder.boxes.length]);
   document.getElementById("stats").innerHTML =
     rows.map(r=>`<span class="k">${r[0]}</span><span class="v">${r[1]}</span>`).join("");
   // legend reflects the SKUs of whatever is on screen
@@ -349,49 +359,34 @@ function renderStats(){
     `<span class="lab">${it.sku_id}</span><span class="qty">×${it.quantity}</span></div>`).join("");
 }
 
-function _unusedRenderStatsAndLegend(items){
-  const totalBoxes=items.reduce((a,b)=>a+b.quantity,0);
-  const totalWeight=items.reduce((a,b)=>a+(SKUS[b.sku_id]?SKUS[b.sku_id].weight*b.quantity:0),0);
-  const vol=items.reduce((a,b)=>{const s=SKUS[b.sku_id];return a+(s?s.length*s.width*s.height*b.quantity:0);},0);
-  document.getElementById("stats").innerHTML=
-    `<span class="k">Order</span><span class="v">${curOrderId||"—"}</span>`+
-    `<span class="k">Distinct SKUs</span><span class="v">${items.length}</span>`+
-    `<span class="k">Total boxes</span><span class="v">${totalBoxes}</span>`+
-    `<span class="k">Total weight</span><span class="v">${totalWeight.toFixed(1)} kg</span>`+
-    `<span class="k">Box volume</span><span class="v">${vol.toFixed(3)} m³</span>`;
-  document.getElementById("skuCount").textContent=items.length;
-  const leg=document.getElementById("legend");
-  leg.innerHTML=items.map((it,i)=>{
-    const s=SKUS[it.sku_id]||{};
-    return `<div class="sw" data-i="${i}"><span class="dot" style="background:${colorOf(it.sku_id)}"></span>`+
-      `<span class="lab">${it.sku_id}</span><span class="qty">×${it.quantity}</span></div>`;
-  }).join("");
-}
-
+const VIEW_LABELS = {packed:"Phase 1+2", ep:"Full EP (3 phases)", neat:"NEAT",
+                     rl:"RL", remainder:"Remainder", schematic:"Schematic by SKU"};
 function setSourceButtons(){
   const has = curResult && curResult.available;
   const hasEp = curEp && curEp.available;
   const hasNeat = curNeat && curNeat.available;
   const hasRl = curRl && curRl.available;
-  const badge = document.getElementById("resultBadge");
-  badge.style.display = has ? "inline-block" : "none";
-  badge.textContent = sourceMode==="ep" ? "all 3 phases"
-                    : sourceMode==="neat" ? "NEAT engine"
-                    : sourceMode==="rl" ? "full-order RL" : "phase 1+2";
-  [["srcPacked",has],["srcRemainder",has],["srcEp",hasEp],
-   ["srcNeat",hasNeat],["srcRl",hasRl]].forEach(([id,on])=>{
-    const b=document.getElementById(id);
-    if(!b) return;
-    b.disabled = !on; b.style.opacity = on ? "1" : ".4";
-    if(id==="srcEp") b.title = on ? "all three phases"
-      : "the full EP pack for this order has not been computed yet";
-    if(id==="srcNeat") b.title = on ? "NEAT engine pack"
-      : "the NEAT pack for this order has not been computed yet";
-    if(id==="srcRl") b.title = on ? "full-order RL pack"
-      : "the RL pack for this order has not been computed yet";
+  const totalBoxes = curItems.reduce((a,b)=>a+b.quantity,0);
+  const fmt = p => (p && p.stats && p.stats.placed!==undefined)
+      ? `${p.stats.placed} / ${p.stats.total}` : "available";
+  [["srcPacked", has,    "metaPacked", has    ? fmt(curResult.placed) : "not computed"],
+   ["srcEp",     hasEp,  "metaEp",     hasEp  ? fmt(curEp.pack)       : "not computed"],
+   ["srcNeat",   hasNeat,"metaNeat",   hasNeat? fmt(curNeat.pack)     : "not computed"],
+   ["srcRl",     hasRl,  "metaRl",     hasRl  ? fmt(curRl.pack)       : "not computed"],
+   ["srcRemainder", has, "metaRem",    has ? `${curResult.remainder.boxes.length} boxes` : "—"],
+  ].forEach(([id,on,mid,meta])=>{
+    const b=document.getElementById(id); if(!b) return;
+    b.disabled=!on;
+    document.getElementById(mid).textContent=meta;
   });
-  [...document.getElementById("sourceSeg").children].forEach(b=>
+  document.getElementById("metaSch").textContent = `${totalBoxes} boxes`;
+  [...document.getElementById("sourceList").children].forEach(b=>
     b.classList.toggle("active", b.dataset.src===sourceMode));
+  const chip=document.getElementById("viewChip");
+  if(curOrderId){
+    chip.style.display="block";
+    chip.innerHTML=`<b>${curOrderId}</b> · ${VIEW_LABELS[sourceMode]||""}`;
+  }
 }
 
 async function loadPack(orderId){
@@ -433,20 +428,18 @@ async function boot(){
     [...e.currentTarget.children].forEach(b=>b.classList.toggle("active",b===e.target));
     renderCurrent();
   });
-  document.getElementById("sourceSeg").addEventListener("click",e=>{
-    const src=e.target.dataset.src;
-    if(!src || e.target.disabled) return;
-    sourceMode=src;
-    [...e.currentTarget.children].forEach(b=>b.classList.toggle("active",b===e.target));
-    // Also refresh the badge: it names which pack is on screen, and it was only
-    // being set on load, so switching to the full EP pack left it reading
-    // "phase 1+2" over a pack that was not phase 1+2.
+  document.getElementById("sourceList").addEventListener("click",e=>{
+    const btn=e.target.closest("button.view");
+    if(!btn || btn.disabled || !btn.dataset.src) return;
+    sourceMode=btn.dataset.src;
     setSourceButtons();
     renderCurrent();
   });
   // Optional ?order=ID to preselect a specific pack (used when embedded from
   // the database site's "View" action).
-  const want = new URLSearchParams(location.search).get("order");
+  const qs = new URLSearchParams(location.search);
+  if(qs.get("order") && window.self !== window.top) document.body.classList.add("embed");
+  const want = qs.get("order");
   const known = want && orders.some(o=>o.order_id===want);
   if(want && !known){
     // Say so rather than quietly showing a different pack. This used to fall
