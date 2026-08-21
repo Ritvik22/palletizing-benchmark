@@ -30,7 +30,15 @@
   .legend .qty{color:var(--dim);font-variant-numeric:tabular-nums}
   #tooltip{position:absolute;pointer-events:none;background:rgba(13,17,25,.96);border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12px;display:none;z-index:5;max-width:220px}
   #tooltip .td{color:var(--dim)}
-  .hint{position:absolute;left:12px;bottom:10px;font-size:11px;color:var(--faint);pointer-events:none}
+  .hint{position:absolute;right:12px;bottom:10px;font-size:11px;color:var(--faint);pointer-events:none}
+  .seqbar{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;align-items:center;gap:10px;
+    background:rgba(13,17,25,.88);border:1px solid var(--line);border-radius:999px;padding:7px 14px;z-index:4;
+    width:min(520px,calc(100% - 32px))}
+  .seqbar button{background:transparent;border:none;color:var(--text);font-size:13px;cursor:pointer;padding:0 2px;line-height:1}
+  .seqbar input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--line);outline:none;padding:0;border:none}
+  .seqbar input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}
+  .seqbar input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}
+  .seqcount{font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums;white-space:nowrap}
   .badge{display:inline-block;font-size:11px;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
   .views{display:flex;flex-direction:column;gap:6px}
   .view{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 12px;color:var(--text);font-size:13px;cursor:pointer;text-align:left;width:100%;font-family:inherit}
@@ -59,6 +67,11 @@
     <div id="tooltip"></div>
     <div class="chip" id="viewChip" style="display:none"></div>
     <div class="hint">drag to orbit · scroll to zoom · right-drag to pan</div>
+    <div class="seqbar" id="seqBar" style="display:none">
+      <button id="seqPlay" title="replay the build order">&#9654;</button>
+      <input type="range" id="seqSlider" min="0" max="0" value="0" step="1">
+      <span class="seqcount" id="seqCount"></span>
+    </div>
   </div>
   <div class="side">
     <div>
@@ -257,7 +270,7 @@ function onHover(e){
   mouse.x=((e.clientX-rect.left)/rect.width)*2-1;
   mouse.y=-((e.clientY-rect.top)/rect.height)*2+1;
   raycaster.setFromCamera(mouse,camera);
-  const hit=raycaster.intersectObjects(boxMeshes)[0];
+  const hit=raycaster.intersectObjects(boxMeshes.filter(m=>m.visible))[0];
   const tt=document.getElementById("tooltip");
   if(hit){
     const d=hit.object.userData;
@@ -309,6 +322,37 @@ function aggItems(boxes){
   return Object.entries(m).map(([sku_id,quantity])=>({sku_id,quantity}));
 }
 
+let seqTimer=null;
+function stopSeq(){
+  if(seqTimer){ clearInterval(seqTimer); seqTimer=null; }
+  document.getElementById("seqPlay").innerHTML="&#9654;";
+}
+function applySeq(){
+  const v=+document.getElementById("seqSlider").value;
+  boxMeshes.forEach((m,i)=>{ m.visible = i < v; });
+  document.getElementById("seqCount").textContent=`${v} / ${boxMeshes.length}`;
+}
+function setupSeq(){
+  stopSeq();
+  const bar=document.getElementById("seqBar");
+  const isPack=["packed","ep","neat","rl"].includes(sourceMode);
+  if(!(isPack && boxMeshes.length)){ bar.style.display="none"; return; }
+  bar.style.display="flex";
+  const sl=document.getElementById("seqSlider");
+  sl.max=boxMeshes.length; sl.value=boxMeshes.length;
+  applySeq();
+}
+function toggleSeq(){
+  if(seqTimer){ stopSeq(); return; }
+  const sl=document.getElementById("seqSlider");
+  if(+sl.value>=+sl.max) sl.value=0;
+  document.getElementById("seqPlay").innerHTML="&#10074;&#10074;";
+  seqTimer=setInterval(()=>{
+    sl.value=+sl.value+1; applySeq();
+    if(+sl.value>=+sl.max) stopSeq();
+  }, 90);
+}
+
 function renderCurrent(){
   const has = curResult && curResult.available;
   const hasEp = curEp && curEp.available;
@@ -320,6 +364,7 @@ function renderCurrent(){
   else if(sourceMode==="rl" && hasRl){ renderPacked(curRl.pack); renderStats(); }
   else if(sourceMode==="remainder" && has){ render(aggItems(curResult.remainder.boxes)); renderStats(); }
   else { render(curItems); renderStats(); }
+  setupSeq();
   document.getElementById("layoutWrap").style.display =
     (sourceMode==="packed"||sourceMode==="ep"||sourceMode==="neat"||sourceMode==="rl") ? "none" : "block";
 }
@@ -428,6 +473,8 @@ async function boot(){
     [...e.currentTarget.children].forEach(b=>b.classList.toggle("active",b===e.target));
     renderCurrent();
   });
+  document.getElementById("seqPlay").addEventListener("click",toggleSeq);
+  document.getElementById("seqSlider").addEventListener("input",()=>{ stopSeq(); applySeq(); });
   document.getElementById("sourceList").addEventListener("click",e=>{
     const btn=e.target.closest("button.view");
     if(!btn || btn.disabled || !btn.dataset.src) return;
