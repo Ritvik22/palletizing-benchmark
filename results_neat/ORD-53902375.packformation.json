@@ -1,174 +1,185 @@
 {
-  "container": {
-    "width": 0.8,
-    "depth": 1.2,
-    "height": 2.0
+ "container": {
+  "width": 0.8,
+  "depth": 1.2,
+  "height": 2.0
+ },
+ "boxes": [
+  {
+   "id": 0,
+   "position": {
+    "x": 0.7,
+    "y": 0.075,
+    "z": 0.065
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
   },
-  "boxes": [
-    {
-      "id": 0,
-      "position": {
-        "x": 0.7,
-        "y": 0.075,
-        "z": 0.065
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 1,
-      "position": {
-        "x": 0.65,
-        "y": 0.115,
-        "z": 0.195
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 2,
-      "position": {
-        "x": 0.7,
-        "y": 0.075,
-        "z": 0.325
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 3,
-      "position": {
-        "x": 0.65,
-        "y": 0.115,
-        "z": 0.455
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 4,
-      "position": {
-        "x": 0.7,
-        "y": 0.075,
-        "z": 0.585
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 5,
-      "position": {
-        "x": 0.65,
-        "y": 0.115,
-        "z": 0.715
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 6,
-      "position": {
-        "x": 0.7,
-        "y": 0.075,
-        "z": 0.845
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 7,
-      "position": {
-        "x": 0.65,
-        "y": 0.115,
-        "z": 0.975
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 8,
-      "position": {
-        "x": 0.7,
-        "y": 0.075,
-        "z": 1.105
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 9,
-      "position": {
-        "x": 0.65,
-        "y": 0.075,
-        "z": 1.235
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    },
-    {
-      "id": 10,
-      "position": {
-        "x": 0.59,
-        "y": 0.075,
-        "z": 1.365
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.15,
-        "height": 0.13
-      },
-      "rotation": 0,
-      "weight": 2.49
-    }
-  ]
+  {
+   "id": 1,
+   "position": {
+    "x": 0.65,
+    "y": 0.115,
+    "z": 0.195
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  },
+  {
+   "id": 2,
+   "position": {
+    "x": 0.7,
+    "y": 0.075,
+    "z": 0.325
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  },
+  {
+   "id": 3,
+   "position": {
+    "x": 0.65,
+    "y": 0.115,
+    "z": 0.455
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  },
+  {
+   "id": 4,
+   "position": {
+    "x": 0.7,
+    "y": 0.075,
+    "z": 0.585
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  },
+  {
+   "id": 5,
+   "position": {
+    "x": 0.65,
+    "y": 0.115,
+    "z": 0.715
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  },
+  {
+   "id": 6,
+   "position": {
+    "x": 0.7,
+    "y": 0.075,
+    "z": 0.845
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  },
+  {
+   "id": 7,
+   "position": {
+    "x": 0.65,
+    "y": 0.115,
+    "z": 0.975
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  },
+  {
+   "id": 8,
+   "position": {
+    "x": 0.7,
+    "y": 0.075,
+    "z": 1.105
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  },
+  {
+   "id": 9,
+   "position": {
+    "x": 0.65,
+    "y": 0.075,
+    "z": 1.235
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  },
+  {
+   "id": 10,
+   "position": {
+    "x": 0.59,
+    "y": 0.075,
+    "z": 1.365
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.15,
+    "height": 0.13
+   },
+   "rotation": 0,
+   "weight": 2.49,
+   "sku_id": "SKU-03EDUH"
+  }
+ ]
 }

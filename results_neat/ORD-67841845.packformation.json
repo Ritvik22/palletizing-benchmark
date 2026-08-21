@@ -1,1299 +1,1385 @@
 {
-  "container": {
-    "width": 0.8,
-    "depth": 1.2,
-    "height": 2.0
+ "container": {
+  "width": 0.8,
+  "depth": 1.2,
+  "height": 2.0
+ },
+ "boxes": [
+  {
+   "id": 23,
+   "position": {
+    "x": 0.1,
+    "y": 1.005,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
   },
-  "boxes": [
-    {
-      "id": 23,
-      "position": {
-        "x": 0.1,
-        "y": 1.005,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 24,
-      "position": {
-        "x": 0.3,
-        "y": 1.005,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 25,
-      "position": {
-        "x": 0.5,
-        "y": 1.005,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 26,
-      "position": {
-        "x": 0.7,
-        "y": 1.005,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 19,
-      "position": {
-        "x": 0.1,
-        "y": 0.735,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 20,
-      "position": {
-        "x": 0.3,
-        "y": 0.735,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 21,
-      "position": {
-        "x": 0.5,
-        "y": 0.735,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 22,
-      "position": {
-        "x": 0.7,
-        "y": 0.735,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 15,
-      "position": {
-        "x": 0.1,
-        "y": 0.465,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 16,
-      "position": {
-        "x": 0.3,
-        "y": 0.465,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 17,
-      "position": {
-        "x": 0.5,
-        "y": 0.465,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 18,
-      "position": {
-        "x": 0.7,
-        "y": 0.465,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 11,
-      "position": {
-        "x": 0.1,
-        "y": 0.195,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 12,
-      "position": {
-        "x": 0.3,
-        "y": 0.195,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 13,
-      "position": {
-        "x": 0.5,
-        "y": 0.195,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 14,
-      "position": {
-        "x": 0.7,
-        "y": 0.195,
-        "z": 0.11
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.22,
-        "height": 0.22
-      },
-      "rotation": 0,
-      "weight": 1.25
-    },
-    {
-      "id": 82,
-      "position": {
-        "x": 0.1,
-        "y": 0.94,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 83,
-      "position": {
-        "x": 0.3,
-        "y": 0.94,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 84,
-      "position": {
-        "x": 0.5,
-        "y": 0.94,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 85,
-      "position": {
-        "x": 0.7,
-        "y": 0.94,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 79,
-      "position": {
-        "x": 0.1,
-        "y": 0.6,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 80,
-      "position": {
-        "x": 0.3,
-        "y": 0.6,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 81,
-      "position": {
-        "x": 0.7,
-        "y": 0.6,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 75,
-      "position": {
-        "x": 0.1,
-        "y": 0.26,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 76,
-      "position": {
-        "x": 0.3,
-        "y": 0.26,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 77,
-      "position": {
-        "x": 0.5,
-        "y": 0.26,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 78,
-      "position": {
-        "x": 0.7,
-        "y": 0.26,
-        "z": 0.295
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.29,
-        "height": 0.15
-      },
-      "rotation": 0,
-      "weight": 2.04
-    },
-    {
-      "id": 9,
-      "position": {
-        "x": 0.09,
-        "y": 0.99,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.18,
-        "depth": 0.21,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 5.17
-    },
-    {
-      "id": 10,
-      "position": {
-        "x": 0.295,
-        "y": 0.99,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.18,
-        "depth": 0.21,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 5.17
-    },
-    {
-      "id": 47,
-      "position": {
-        "x": 0.695,
-        "y": 0.909,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.16,
-        "depth": 0.17,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 4.75
-    },
-    {
-      "id": 6,
-      "position": {
-        "x": 0.09,
-        "y": 0.73,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.18,
-        "depth": 0.21,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 5.17
-    },
-    {
-      "id": 7,
-      "position": {
-        "x": 0.295,
-        "y": 0.73,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.18,
-        "depth": 0.21,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 5.17
-    },
-    {
-      "id": 46,
-      "position": {
-        "x": 0.695,
-        "y": 0.703,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.16,
-        "depth": 0.17,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 4.75
-    },
-    {
-      "id": 45,
-      "position": {
-        "x": 0.695,
-        "y": 0.497,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.16,
-        "depth": 0.17,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 4.75
-    },
-    {
-      "id": 3,
-      "position": {
-        "x": 0.09,
-        "y": 0.47,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.18,
-        "depth": 0.21,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 5.17
-    },
-    {
-      "id": 4,
-      "position": {
-        "x": 0.295,
-        "y": 0.47,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.18,
-        "depth": 0.21,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 5.17
-    },
-    {
-      "id": 44,
-      "position": {
-        "x": 0.695,
-        "y": 0.291,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.16,
-        "depth": 0.17,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 4.75
-    },
-    {
-      "id": 0,
-      "position": {
-        "x": 0.09,
-        "y": 0.21,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.18,
-        "depth": 0.21,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 5.17
-    },
-    {
-      "id": 1,
-      "position": {
-        "x": 0.295,
-        "y": 0.21,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.18,
-        "depth": 0.21,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 5.17
-    },
-    {
-      "id": 2,
-      "position": {
-        "x": 0.5,
-        "y": 0.21,
-        "z": 0.51
-      },
-      "dimensions": {
-        "width": 0.18,
-        "depth": 0.21,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 5.17
-    },
-    {
-      "id": 53,
-      "position": {
-        "x": 0.12,
-        "y": 1.04,
-        "z": 0.7
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 56,
-      "position": {
-        "x": 0.33,
-        "y": 0.95,
-        "z": 0.7
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 52,
-      "position": {
-        "x": 0.12,
-        "y": 0.92,
-        "z": 0.7
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 60,
-      "position": {
-        "x": 0.66,
-        "y": 0.89,
-        "z": 0.7
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 55,
-      "position": {
-        "x": 0.33,
-        "y": 0.68,
-        "z": 0.7
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 59,
-      "position": {
-        "x": 0.66,
-        "y": 0.68,
-        "z": 0.7
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 39,
-      "position": {
-        "x": 0.11,
-        "y": 0.6693,
-        "z": 0.735
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 36,
-      "position": {
-        "x": 0.11,
-        "y": 0.5307,
-        "z": 0.735
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 58,
-      "position": {
-        "x": 0.66,
-        "y": 0.5,
-        "z": 0.7
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 54,
-      "position": {
-        "x": 0.33,
-        "y": 0.44,
-        "z": 0.7
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 57,
-      "position": {
-        "x": 0.63,
-        "y": 0.26,
-        "z": 0.7
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 30,
-      "position": {
-        "x": 0.11,
-        "y": 0.2536,
-        "z": 0.735
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 31,
-      "position": {
-        "x": 0.4,
-        "y": 0.2536,
-        "z": 0.735
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 49,
-      "position": {
-        "x": 0.26,
-        "y": 1.025,
-        "z": 0.83
-      },
-      "dimensions": {
-        "width": 0.28,
-        "depth": 0.14,
-        "height": 0.16
-      },
-      "rotation": 0,
-      "weight": 0.58
-    },
-    {
-      "id": 40,
-      "position": {
-        "x": 0.22,
-        "y": 0.889,
-        "z": 0.835
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 50,
-      "position": {
-        "x": 0.65,
-        "y": 0.885,
-        "z": 0.83
-      },
-      "dimensions": {
-        "width": 0.28,
-        "depth": 0.14,
-        "height": 0.16
-      },
-      "rotation": 0,
-      "weight": 0.58
-    },
-    {
-      "id": 41,
-      "position": {
-        "x": 0.68,
-        "y": 0.647,
-        "z": 0.835
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 42,
-      "position": {
-        "x": 0.68,
-        "y": 0.515,
-        "z": 0.835
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 51,
-      "position": {
-        "x": 0.15,
-        "y": 0.688,
-        "z": 0.9
-      },
-      "dimensions": {
-        "width": 0.28,
-        "depth": 0.14,
-        "height": 0.16
-      },
-      "rotation": 0,
-      "weight": 0.58
-    },
-    {
-      "id": 5,
-      "position": {
-        "x": 0.105,
-        "y": 0.5143,
-        "z": 0.96
-      },
-      "dimensions": {
-        "width": 0.21,
-        "depth": 0.18,
-        "height": 0.28
-      },
-      "rotation": 90,
-      "weight": 5.17
-    },
-    {
-      "id": 70,
-      "position": {
-        "x": 0.305,
-        "y": 0.2486,
-        "z": 0.87
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 43,
-      "position": {
-        "x": 0.71,
-        "y": 0.88,
-        "z": 1.05
-      },
-      "dimensions": {
-        "width": 0.16,
-        "depth": 0.17,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 4.75
-    },
-    {
-      "id": 48,
-      "position": {
-        "x": 0.55,
-        "y": 0.869,
-        "z": 1.05
-      },
-      "dimensions": {
-        "width": 0.16,
-        "depth": 0.17,
-        "height": 0.28
-      },
-      "rotation": 0,
-      "weight": 4.75
-    },
-    {
-      "id": 72,
-      "position": {
-        "x": 0.61,
-        "y": 0.61,
-        "z": 0.97
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 71,
-      "position": {
-        "x": 0.61,
-        "y": 0.4843,
-        "z": 0.97
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 27,
-      "position": {
-        "x": 0.12,
-        "y": 0.68,
-        "z": 1.065
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 73,
-      "position": {
-        "x": 0.57,
-        "y": 0.642,
-        "z": 1.07
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 74,
-      "position": {
-        "x": 0.55,
-        "y": 0.52,
-        "z": 1.07
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 8,
-      "position": {
-        "x": 0.105,
-        "y": 0.5143,
-        "z": 1.24
-      },
-      "dimensions": {
-        "width": 0.21,
-        "depth": 0.18,
-        "height": 0.28
-      },
-      "rotation": 90,
-      "weight": 5.17
-    },
-    {
-      "id": 28,
-      "position": {
-        "x": 0.12,
-        "y": 0.68,
-        "z": 1.235
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 62,
-      "position": {
-        "x": 0.69,
-        "y": 0.818,
-        "z": 1.24
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 63,
-      "position": {
-        "x": 0.63,
-        "y": 0.7943,
-        "z": 1.34
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 29,
-      "position": {
-        "x": 0.12,
-        "y": 0.68,
-        "z": 1.405
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 32,
-      "position": {
-        "x": 0.12,
-        "y": 0.55,
-        "z": 1.465
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 64,
-      "position": {
-        "x": 0.57,
-        "y": 0.772,
-        "z": 1.44
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 65,
-      "position": {
-        "x": 0.61,
-        "y": 0.805,
-        "z": 1.54
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 33,
-      "position": {
-        "x": 0.12,
-        "y": 0.683,
-        "z": 1.575
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 34,
-      "position": {
-        "x": 0.12,
-        "y": 0.55,
-        "z": 1.635
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 66,
-      "position": {
-        "x": 0.67,
-        "y": 0.785,
-        "z": 1.64
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 35,
-      "position": {
-        "x": 0.12,
-        "y": 0.683,
-        "z": 1.745
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 67,
-      "position": {
-        "x": 0.69,
-        "y": 0.808,
-        "z": 1.74
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 38,
-      "position": {
-        "x": 0.18,
-        "y": 0.52,
-        "z": 1.805
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 68,
-      "position": {
-        "x": 0.63,
-        "y": 0.83,
-        "z": 1.84
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 37,
-      "position": {
-        "x": 0.18,
-        "y": 0.705,
-        "z": 1.915
-      },
-      "dimensions": {
-        "width": 0.22,
-        "depth": 0.13,
-        "height": 0.17
-      },
-      "rotation": 0,
-      "weight": 3.17
-    },
-    {
-      "id": 69,
-      "position": {
-        "x": 0.675,
-        "y": 0.855,
-        "z": 1.94
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    },
-    {
-      "id": 61,
-      "position": {
-        "x": 0.23,
-        "y": 0.555,
-        "z": 1.94
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.12,
-        "height": 0.1
-      },
-      "rotation": 0,
-      "weight": 0.3
-    }
-  ]
+  {
+   "id": 24,
+   "position": {
+    "x": 0.3,
+    "y": 1.005,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 25,
+   "position": {
+    "x": 0.5,
+    "y": 1.005,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 26,
+   "position": {
+    "x": 0.7,
+    "y": 1.005,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 19,
+   "position": {
+    "x": 0.1,
+    "y": 0.735,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 20,
+   "position": {
+    "x": 0.3,
+    "y": 0.735,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 21,
+   "position": {
+    "x": 0.5,
+    "y": 0.735,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 22,
+   "position": {
+    "x": 0.7,
+    "y": 0.735,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 15,
+   "position": {
+    "x": 0.1,
+    "y": 0.465,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 16,
+   "position": {
+    "x": 0.3,
+    "y": 0.465,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 17,
+   "position": {
+    "x": 0.5,
+    "y": 0.465,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 18,
+   "position": {
+    "x": 0.7,
+    "y": 0.465,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 11,
+   "position": {
+    "x": 0.1,
+    "y": 0.195,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 12,
+   "position": {
+    "x": 0.3,
+    "y": 0.195,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 13,
+   "position": {
+    "x": 0.5,
+    "y": 0.195,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 14,
+   "position": {
+    "x": 0.7,
+    "y": 0.195,
+    "z": 0.11
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.22,
+    "height": 0.22
+   },
+   "rotation": 0,
+   "weight": 1.25,
+   "sku_id": "SKU-KZBP8E"
+  },
+  {
+   "id": 82,
+   "position": {
+    "x": 0.1,
+    "y": 0.94,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 83,
+   "position": {
+    "x": 0.3,
+    "y": 0.94,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 84,
+   "position": {
+    "x": 0.5,
+    "y": 0.94,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 85,
+   "position": {
+    "x": 0.7,
+    "y": 0.94,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 79,
+   "position": {
+    "x": 0.1,
+    "y": 0.6,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 80,
+   "position": {
+    "x": 0.3,
+    "y": 0.6,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 81,
+   "position": {
+    "x": 0.7,
+    "y": 0.6,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 75,
+   "position": {
+    "x": 0.1,
+    "y": 0.26,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 76,
+   "position": {
+    "x": 0.3,
+    "y": 0.26,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 77,
+   "position": {
+    "x": 0.5,
+    "y": 0.26,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 78,
+   "position": {
+    "x": 0.7,
+    "y": 0.26,
+    "z": 0.295
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.29,
+    "height": 0.15
+   },
+   "rotation": 0,
+   "weight": 2.04,
+   "sku_id": "SKU-K4VMVB"
+  },
+  {
+   "id": 9,
+   "position": {
+    "x": 0.09,
+    "y": 0.99,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.21,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 10,
+   "position": {
+    "x": 0.295,
+    "y": 0.99,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.21,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 47,
+   "position": {
+    "x": 0.695,
+    "y": 0.909,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.16,
+    "depth": 0.17,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 4.75,
+   "sku_id": "SKU-SS9627"
+  },
+  {
+   "id": 6,
+   "position": {
+    "x": 0.09,
+    "y": 0.73,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.21,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 7,
+   "position": {
+    "x": 0.295,
+    "y": 0.73,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.21,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 46,
+   "position": {
+    "x": 0.695,
+    "y": 0.703,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.16,
+    "depth": 0.17,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 4.75,
+   "sku_id": "SKU-SS9627"
+  },
+  {
+   "id": 45,
+   "position": {
+    "x": 0.695,
+    "y": 0.497,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.16,
+    "depth": 0.17,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 4.75,
+   "sku_id": "SKU-SS9627"
+  },
+  {
+   "id": 3,
+   "position": {
+    "x": 0.09,
+    "y": 0.47,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.21,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 4,
+   "position": {
+    "x": 0.295,
+    "y": 0.47,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.21,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 44,
+   "position": {
+    "x": 0.695,
+    "y": 0.291,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.16,
+    "depth": 0.17,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 4.75,
+   "sku_id": "SKU-SS9627"
+  },
+  {
+   "id": 0,
+   "position": {
+    "x": 0.09,
+    "y": 0.21,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.21,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 1,
+   "position": {
+    "x": 0.295,
+    "y": 0.21,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.21,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 2,
+   "position": {
+    "x": 0.5,
+    "y": 0.21,
+    "z": 0.51
+   },
+   "dimensions": {
+    "width": 0.18,
+    "depth": 0.21,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 53,
+   "position": {
+    "x": 0.12,
+    "y": 1.04,
+    "z": 0.7
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 56,
+   "position": {
+    "x": 0.33,
+    "y": 0.95,
+    "z": 0.7
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 52,
+   "position": {
+    "x": 0.12,
+    "y": 0.92,
+    "z": 0.7
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 60,
+   "position": {
+    "x": 0.66,
+    "y": 0.89,
+    "z": 0.7
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 55,
+   "position": {
+    "x": 0.33,
+    "y": 0.68,
+    "z": 0.7
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 59,
+   "position": {
+    "x": 0.66,
+    "y": 0.68,
+    "z": 0.7
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 39,
+   "position": {
+    "x": 0.11,
+    "y": 0.6693,
+    "z": 0.735
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 36,
+   "position": {
+    "x": 0.11,
+    "y": 0.5307,
+    "z": 0.735
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 58,
+   "position": {
+    "x": 0.66,
+    "y": 0.5,
+    "z": 0.7
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 54,
+   "position": {
+    "x": 0.33,
+    "y": 0.44,
+    "z": 0.7
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 57,
+   "position": {
+    "x": 0.63,
+    "y": 0.26,
+    "z": 0.7
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 30,
+   "position": {
+    "x": 0.11,
+    "y": 0.2536,
+    "z": 0.735
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 31,
+   "position": {
+    "x": 0.4,
+    "y": 0.2536,
+    "z": 0.735
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 49,
+   "position": {
+    "x": 0.26,
+    "y": 1.025,
+    "z": 0.83
+   },
+   "dimensions": {
+    "width": 0.28,
+    "depth": 0.14,
+    "height": 0.16
+   },
+   "rotation": 0,
+   "weight": 0.58,
+   "sku_id": "SKU-PJ1CE6"
+  },
+  {
+   "id": 40,
+   "position": {
+    "x": 0.22,
+    "y": 0.889,
+    "z": 0.835
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 50,
+   "position": {
+    "x": 0.65,
+    "y": 0.885,
+    "z": 0.83
+   },
+   "dimensions": {
+    "width": 0.28,
+    "depth": 0.14,
+    "height": 0.16
+   },
+   "rotation": 0,
+   "weight": 0.58,
+   "sku_id": "SKU-PJ1CE6"
+  },
+  {
+   "id": 41,
+   "position": {
+    "x": 0.68,
+    "y": 0.647,
+    "z": 0.835
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 42,
+   "position": {
+    "x": 0.68,
+    "y": 0.515,
+    "z": 0.835
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 51,
+   "position": {
+    "x": 0.15,
+    "y": 0.688,
+    "z": 0.9
+   },
+   "dimensions": {
+    "width": 0.28,
+    "depth": 0.14,
+    "height": 0.16
+   },
+   "rotation": 0,
+   "weight": 0.58,
+   "sku_id": "SKU-PJ1CE6"
+  },
+  {
+   "id": 5,
+   "position": {
+    "x": 0.105,
+    "y": 0.5143,
+    "z": 0.96
+   },
+   "dimensions": {
+    "width": 0.21,
+    "depth": 0.18,
+    "height": 0.28
+   },
+   "rotation": 90,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 70,
+   "position": {
+    "x": 0.305,
+    "y": 0.2486,
+    "z": 0.87
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 43,
+   "position": {
+    "x": 0.71,
+    "y": 0.88,
+    "z": 1.05
+   },
+   "dimensions": {
+    "width": 0.16,
+    "depth": 0.17,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 4.75,
+   "sku_id": "SKU-SS9627"
+  },
+  {
+   "id": 48,
+   "position": {
+    "x": 0.55,
+    "y": 0.869,
+    "z": 1.05
+   },
+   "dimensions": {
+    "width": 0.16,
+    "depth": 0.17,
+    "height": 0.28
+   },
+   "rotation": 0,
+   "weight": 4.75,
+   "sku_id": "SKU-SS9627"
+  },
+  {
+   "id": 72,
+   "position": {
+    "x": 0.61,
+    "y": 0.61,
+    "z": 0.97
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 71,
+   "position": {
+    "x": 0.61,
+    "y": 0.4843,
+    "z": 0.97
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 27,
+   "position": {
+    "x": 0.12,
+    "y": 0.68,
+    "z": 1.065
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 73,
+   "position": {
+    "x": 0.57,
+    "y": 0.642,
+    "z": 1.07
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 74,
+   "position": {
+    "x": 0.55,
+    "y": 0.52,
+    "z": 1.07
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 8,
+   "position": {
+    "x": 0.105,
+    "y": 0.5143,
+    "z": 1.24
+   },
+   "dimensions": {
+    "width": 0.21,
+    "depth": 0.18,
+    "height": 0.28
+   },
+   "rotation": 90,
+   "weight": 5.17,
+   "sku_id": "SKU-2P9ESL"
+  },
+  {
+   "id": 28,
+   "position": {
+    "x": 0.12,
+    "y": 0.68,
+    "z": 1.235
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 62,
+   "position": {
+    "x": 0.69,
+    "y": 0.818,
+    "z": 1.24
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 63,
+   "position": {
+    "x": 0.63,
+    "y": 0.7943,
+    "z": 1.34
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 29,
+   "position": {
+    "x": 0.12,
+    "y": 0.68,
+    "z": 1.405
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 32,
+   "position": {
+    "x": 0.12,
+    "y": 0.55,
+    "z": 1.465
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 64,
+   "position": {
+    "x": 0.57,
+    "y": 0.772,
+    "z": 1.44
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 65,
+   "position": {
+    "x": 0.61,
+    "y": 0.805,
+    "z": 1.54
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 33,
+   "position": {
+    "x": 0.12,
+    "y": 0.683,
+    "z": 1.575
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 34,
+   "position": {
+    "x": 0.12,
+    "y": 0.55,
+    "z": 1.635
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 66,
+   "position": {
+    "x": 0.67,
+    "y": 0.785,
+    "z": 1.64
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 35,
+   "position": {
+    "x": 0.12,
+    "y": 0.683,
+    "z": 1.745
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 67,
+   "position": {
+    "x": 0.69,
+    "y": 0.808,
+    "z": 1.74
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 38,
+   "position": {
+    "x": 0.18,
+    "y": 0.52,
+    "z": 1.805
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 68,
+   "position": {
+    "x": 0.63,
+    "y": 0.83,
+    "z": 1.84
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 37,
+   "position": {
+    "x": 0.18,
+    "y": 0.705,
+    "z": 1.915
+   },
+   "dimensions": {
+    "width": 0.22,
+    "depth": 0.13,
+    "height": 0.17
+   },
+   "rotation": 0,
+   "weight": 3.17,
+   "sku_id": "SKU-GBG3QM"
+  },
+  {
+   "id": 69,
+   "position": {
+    "x": 0.675,
+    "y": 0.855,
+    "z": 1.94
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  },
+  {
+   "id": 61,
+   "position": {
+    "x": 0.23,
+    "y": 0.555,
+    "z": 1.94
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.12,
+    "height": 0.1
+   },
+   "rotation": 0,
+   "weight": 0.3,
+   "sku_id": "SKU-UQQ329"
+  }
+ ]
 }

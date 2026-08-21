@@ -1,69 +1,73 @@
 {
-  "container": {
-    "width": 0.8,
-    "depth": 1.2,
-    "height": 2.0
+ "container": {
+  "width": 0.8,
+  "depth": 1.2,
+  "height": 2.0
+ },
+ "boxes": [
+  {
+   "id": 0,
+   "position": {
+    "x": 0.7,
+    "y": 0.055,
+    "z": 0.12
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.11,
+    "height": 0.24
+   },
+   "rotation": 0,
+   "weight": 3.5,
+   "sku_id": "SKU-EV04EK"
   },
-  "boxes": [
-    {
-      "id": 0,
-      "position": {
-        "x": 0.7,
-        "y": 0.055,
-        "z": 0.12
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.11,
-        "height": 0.24
-      },
-      "rotation": 0,
-      "weight": 3.5
-    },
-    {
-      "id": 1,
-      "position": {
-        "x": 0.7,
-        "y": 0.055,
-        "z": 0.36
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.11,
-        "height": 0.24
-      },
-      "rotation": 0,
-      "weight": 3.5
-    },
-    {
-      "id": 2,
-      "position": {
-        "x": 0.64,
-        "y": 0.055,
-        "z": 0.6
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.11,
-        "height": 0.24
-      },
-      "rotation": 0,
-      "weight": 3.5
-    },
-    {
-      "id": 3,
-      "position": {
-        "x": 0.7,
-        "y": 0.055,
-        "z": 0.84
-      },
-      "dimensions": {
-        "width": 0.2,
-        "depth": 0.11,
-        "height": 0.24
-      },
-      "rotation": 0,
-      "weight": 3.5
-    }
-  ]
+  {
+   "id": 1,
+   "position": {
+    "x": 0.7,
+    "y": 0.055,
+    "z": 0.36
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.11,
+    "height": 0.24
+   },
+   "rotation": 0,
+   "weight": 3.5,
+   "sku_id": "SKU-EV04EK"
+  },
+  {
+   "id": 2,
+   "position": {
+    "x": 0.64,
+    "y": 0.055,
+    "z": 0.6
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.11,
+    "height": 0.24
+   },
+   "rotation": 0,
+   "weight": 3.5,
+   "sku_id": "SKU-EV04EK"
+  },
+  {
+   "id": 3,
+   "position": {
+    "x": 0.7,
+    "y": 0.055,
+    "z": 0.84
+   },
+   "dimensions": {
+    "width": 0.2,
+    "depth": 0.11,
+    "height": 0.24
+   },
+   "rotation": 0,
+   "weight": 3.5,
+   "sku_id": "SKU-EV04EK"
+  }
+ ]
 }
