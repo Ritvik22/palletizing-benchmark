@@ -46,6 +46,40 @@ RESULTS_NEAT = HERE / "results_neat"  # full NEAT packs, same convention
 RESULTS_RL = HERE / "results_rl"      # full RL packs, same convention
 
 
+#: When each published pack was added and last changed, derived from git history
+#: by build_pack_provenance.py. Git is the honest source: a pack appeared on the
+#: site when its commit was pushed. File mtimes cannot answer this -- Render
+#: builds a fresh checkout per deploy, so every pack would claim the deploy time.
+#: Loaded once at startup; absent file degrades to "unknown" rather than failing.
+PROVENANCE = {}
+_PROV_PATH = HERE / "pack_provenance.json"
+if _PROV_PATH.exists():
+    import json as _pj
+    try:
+        PROVENANCE = _pj.loads(_PROV_PATH.read_text())
+    except Exception:                                          # noqa: BLE001
+        PROVENANCE = {}
+
+
+def _prov(source: str, order_id: str):
+    """{added, updated, commit, subject, changed} for one pack, or None.
+
+    `changed` says whether this pack was rewritten after it first appeared,
+    which is the distinction worth surfacing: "added 21 Aug" and "added 21 Aug,
+    updated 4 Sep" are different facts about the same pack.
+    """
+    src = (PROVENANCE.get("sources") or {}).get(source)
+    if not src:
+        return None
+    a, u = src.get("overrides", {}).get(order_id) or src.get("default") or (None, None)
+    commits = PROVENANCE.get("commits") or []
+    if a is None or a >= len(commits) or u >= len(commits):
+        return None
+    return {"added": commits[a]["date"], "updated": commits[u]["date"],
+            "added_commit": commits[a]["sha"], "commit": commits[u]["sha"],
+            "subject": commits[u]["subject"], "changed": u != a}
+
+
 def _db():
     con = sqlite3.connect(DB_PATH)
     con.row_factory = sqlite3.Row
@@ -97,6 +131,7 @@ def _viz_result(order_id: str):
         "order_id": order_id,
         "placed": _json.loads(placed_p.read_text()),
         "remainder": _json.loads(remainder_p.read_text()),
+        "provenance": _prov("phase12", order_id),
     })
 
 
@@ -113,7 +148,8 @@ def _viz_ep_result(order_id: str):
     if not p.exists():
         return JSONResponse({"available": False, "order_id": order_id})
     return JSONResponse({"available": True, "order_id": order_id,
-                         "pack": _json.loads(p.read_text())})
+                         "pack": _json.loads(p.read_text()),
+                         "provenance": _prov("ep", order_id)})
 
 
 @app.get("/viz-api/neat-result/{order_id}")
@@ -124,7 +160,8 @@ def _viz_neat_result(order_id: str):
     if not p.exists():
         return JSONResponse({"available": False, "order_id": order_id})
     return JSONResponse({"available": True, "order_id": order_id,
-                         "pack": _json.loads(p.read_text())})
+                         "pack": _json.loads(p.read_text()),
+                         "provenance": _prov("neat", order_id)})
 
 
 @app.get("/viz-api/rl-result/{order_id}")
@@ -135,7 +172,33 @@ def _viz_rl_result(order_id: str):
     if not p.exists():
         return JSONResponse({"available": False, "order_id": order_id})
     return JSONResponse({"available": True, "order_id": order_id,
-                         "pack": _json.loads(p.read_text())})
+                         "pack": _json.loads(p.read_text()),
+                         "provenance": _prov("rl", order_id)})
+
+
+@app.get("/viz-api/pack-provenance")
+def _viz_pack_provenance():
+    """When each pack SET was published, and by what commit.
+
+    Per-order detail rides along with each pack response; this is the dataset-
+    level view, for a reader who wants to know how current the site is without
+    opening an order.
+    """
+    srcs = (PROVENANCE.get("sources") or {})
+    commits = PROVENANCE.get("commits") or []
+    out = {}
+    for key, src in srcs.items():
+        i = src.get("latest_commit")
+        if i is None or i >= len(commits):
+            continue
+        c = commits[i]
+        a = src.get("default", [None])[0]
+        out[key] = {"count": src.get("count"),
+                    "first_published": commits[a]["date"] if a is not None else None,
+                    "last_updated": c["date"], "commit": c["sha"],
+                    "subject": c["subject"],
+                    "orders_with_own_history": len(src.get("overrides", {}))}
+    return JSONResponse(out)
 
 
 @app.get("/viz-api/results-index")

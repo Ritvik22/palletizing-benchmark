@@ -373,6 +373,22 @@ function renderCurrent(){
 function renderStats(){
   const has = curResult && curResult.available;
   const totalBoxes=curItems.reduce((a,b)=>a+b.quantity,0);
+  // When this pack reached the site. Comes from the deploy repo's git history
+  // (see build_pack_provenance.py) -- the commit that introduced the file, and
+  // the commit that last rewrote it. "Added" and "Updated" are shown separately
+  // only when they differ, because for most packs they are the same push.
+  const provOf = m =>
+      m==="ep"        ? (curEp && curEp.provenance) :
+      m==="neat"      ? (curNeat && curNeat.provenance) :
+      m==="rl"        ? (curRl && curRl.provenance) :
+      (m==="packed"||m==="remainder") ? (curResult && curResult.provenance) : null;
+  const fmtDate = iso => {
+    if(!iso) return null;
+    const d = new Date(iso);
+    if(isNaN(d)) return null;
+    return d.toLocaleString(undefined,
+      {year:"numeric",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+  };
   const rows=[["Order",curOrderId||"—"],["Distinct SKUs",curItems.length],["Total boxes",totalBoxes]];
   const shown = sourceMode==="ep" ? (curEp && curEp.available ? curEp.pack : null)
               : sourceMode==="neat" ? (curNeat && curNeat.available ? curNeat.pack : null)
@@ -394,6 +410,13 @@ function renderStats(){
   }
   if(sourceMode==="remainder" && has)
     rows.push(["Remainder boxes", curResult.remainder.boxes.length]);
+  const pv = provOf(sourceMode);
+  if(pv){
+    const added = fmtDate(pv.added), updated = fmtDate(pv.updated);
+    if(added) rows.push(["Added", added]);
+    if(pv.changed && updated) rows.push(["Updated", updated]);
+    if(pv.commit) rows.push(["Published by", pv.commit]);
+  }
   document.getElementById("stats").innerHTML =
     rows.map(r=>`<span class="k">${r[0]}</span><span class="v">${r[1]}</span>`).join("");
   // legend reflects the SKUs of whatever is on screen
