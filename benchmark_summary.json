@@ -1,0 +1,87 @@
+{
+ "generated": "2026-09-04T15:12:17+00:00",
+ "orders_in_db": 1000,
+ "boxes_in_db": 155904,
+ "container": {
+  "width": 0.8,
+  "depth": 1.2,
+  "height": 2.0
+ },
+ "lve_note": "bounding volume / box volume; lower is better. Computed only over orders the method packed completely, since a smaller pack scores a flattering LVE and comparing across completion rates would reward giving up early.",
+ "methods": [
+  {
+   "packs": 999,
+   "orders_complete": 999,
+   "boxes_placed": 155734,
+   "boxes_expected": 155734,
+   "placed_frac": 1.0,
+   "complete_frac": 1.0,
+   "lve_mean": 1.6362242577705186,
+   "lve_n": 999,
+   "height_mean": 1.6598498498498546,
+   "key": "ep",
+   "label": "EP Hybrid",
+   "description": "Extreme-point heuristic completing the shared Phase 1+2 prefix."
+  },
+  {
+   "packs": 1000,
+   "orders_complete": 994,
+   "boxes_placed": 155892,
+   "boxes_expected": 155904,
+   "placed_frac": 0.9999230295566502,
+   "complete_frac": 0.994,
+   "lve_mean": 1.7603664037770588,
+   "lve_n": 994,
+   "height_mean": 1.7669500000000082,
+   "key": "rl",
+   "label": "RL Full",
+   "description": "Candidate-ranking PPO policy, trained on whole orders with a hard centre-of-mass stability gate."
+  },
+  {
+   "packs": 998,
+   "orders_complete": 549,
+   "boxes_placed": 151912,
+   "boxes_expected": 155569,
+   "placed_frac": 0.9764927459840971,
+   "complete_frac": 0.5501002004008017,
+   "lve_mean": 2.474962421990496,
+   "lve_n": 549,
+   "height_mean": 1.8552505010020124,
+   "key": "neat",
+   "label": "NEAT Hybrid",
+   "description": "Evolved (NEAT) scorer over the same candidate placements."
+  }
+ ],
+ "baseline": {
+  "packs": 1000,
+  "orders_complete": 13,
+  "boxes_placed": 96046,
+  "boxes_expected": 155904,
+  "placed_frac": 0.6160586001642037,
+  "complete_frac": 0.013,
+  "lve_mean": 1.692298856368095,
+  "lve_n": 13,
+  "height_mean": 1.2105402650782109,
+  "key": "phase12",
+  "label": "Phase 1+2",
+  "description": "The deterministic pattern-planning prefix every engine starts from. It stops before the remainder-filling phase by design, so it is the shared starting point rather than a competing method."
+ },
+ "matched": {
+  "orders": 549,
+  "lve": {
+   "rl": 1.8669843755042672,
+   "neat": 2.474962421990495,
+   "ep": 1.662098438594945
+  },
+  "vs_rl": {
+   "neat": {
+    "tighter_than_rl": 162,
+    "of": 549
+   },
+   "ep": {
+    "tighter_than_rl": 441,
+    "of": 549
+   }
+  }
+ }
+}

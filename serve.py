@@ -176,6 +176,25 @@ def _viz_rl_result(order_id: str):
                          "provenance": _prov("rl", order_id)})
 
 
+@app.get("/viz-api/benchmark-summary")
+def _viz_benchmark_summary():
+    """Dataset-wide comparison of the packing engines.
+
+    Computed by build_benchmark_summary.py from the packs this site serves, so
+    a visitor can open any order and check the figures against it.
+    """
+    p = HERE / "benchmark_summary.json"
+    if not p.exists():
+        return JSONResponse({"available": False})
+    import json as _j
+    try:
+        d = _j.loads(p.read_text())
+    except Exception:                                          # noqa: BLE001
+        return JSONResponse({"available": False})
+    d["available"] = True
+    return JSONResponse(d)
+
+
 @app.get("/viz-api/pack-provenance")
 def _viz_pack_provenance():
     """When each pack SET was published, and by what commit.
