@@ -30,6 +30,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(HERE, "backend", "palletizer.db")
 
 METHODS = [
+    ("reranker", "RL + ReRanker", "results_rl_reranker", ".packformation.json",
+     "The same PPO policy as RL Full, but a learned re-ranker (CNN over the "
+     "height map, the support-dependency graph and the remaining order) scores "
+     "the full ~8,100-placement enumeration and hands the policy its best 256 "
+     "-- where RL Full gets 256 drawn at random from a smaller enumeration. "
+     "The policy itself is unchanged and was never retrained for this."),
     ("rl",      "RL Full",       "results_rl",   ".packformation.json",
      "Candidate-ranking PPO policy, trained on whole orders with a hard "
      "centre-of-mass stability gate."),

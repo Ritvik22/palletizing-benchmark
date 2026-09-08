@@ -44,6 +44,7 @@ RESULTS = HERE / "results"  # phase-1/2 outputs: <order_id>.placed.json / .remai
 RESULTS_EP = HERE / "results_ep"  # full EP packs: <order_id>.packformation.json
 RESULTS_NEAT = HERE / "results_neat"  # full NEAT packs, same convention
 RESULTS_RL = HERE / "results_rl"      # full RL packs, same convention
+RESULTS_RR = HERE / "results_rl_reranker"  # RL + learned candidate re-ranker
 
 
 #: When each published pack was added and last changed, derived from git history
@@ -174,6 +175,24 @@ def _viz_rl_result(order_id: str):
     return JSONResponse({"available": True, "order_id": order_id,
                          "pack": _json.loads(p.read_text()),
                          "provenance": _prov("rl", order_id)})
+
+
+@app.get("/viz-api/rr-result/{order_id}")
+def _viz_rr_result(order_id: str):
+    """The RL + re-ranker pack for an order (same contract as /viz-api/rl-result).
+
+    Same policy as the RL view; what differs is candidate SELECTION. A learned
+    re-ranker scores the full ~8,100-placement enumeration and hands the policy
+    the best 256, where the plain RL view gets 256 drawn at random from a
+    smaller enumeration.
+    """
+    import json as _json
+    p = RESULTS_RR / f"{order_id}.packformation.json"
+    if not p.exists():
+        return JSONResponse({"available": False, "order_id": order_id})
+    return JSONResponse({"available": True, "order_id": order_id,
+                         "pack": _json.loads(p.read_text()),
+                         "provenance": _prov("reranker", order_id)})
 
 
 @app.get("/viz-api/benchmark-summary")

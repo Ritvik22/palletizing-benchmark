@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-04T15:12:17+00:00",
+ "generated": "2026-09-08T14:59:28+00:00",
  "orders_in_db": 1000,
  "boxes_in_db": 155904,
  "container": {
@@ -16,12 +16,26 @@
    "boxes_expected": 155734,
    "placed_frac": 1.0,
    "complete_frac": 1.0,
-   "lve_mean": 1.6362242577705186,
+   "lve_mean": 1.6362242577705182,
    "lve_n": 999,
-   "height_mean": 1.6598498498498546,
+   "height_mean": 1.65984984984985,
    "key": "ep",
    "label": "EP Hybrid",
    "description": "Extreme-point heuristic completing the shared Phase 1+2 prefix."
+  },
+  {
+   "packs": 1000,
+   "orders_complete": 1000,
+   "boxes_placed": 155904,
+   "boxes_expected": 155904,
+   "placed_frac": 1.0,
+   "complete_frac": 1.0,
+   "lve_mean": 1.672187581449513,
+   "lve_n": 1000,
+   "height_mean": 1.69392,
+   "key": "reranker",
+   "label": "RL + ReRanker",
+   "description": "The same PPO policy as RL Full, but a learned re-ranker (CNN over the height map, the support-dependency graph and the remaining order) scores the full ~8,100-placement enumeration and hands the policy its best 256 -- where RL Full gets 256 drawn at random from a smaller enumeration. The policy itself is unchanged and was never retrained for this."
   },
   {
    "packs": 1000,
@@ -30,9 +44,9 @@
    "boxes_expected": 155904,
    "placed_frac": 0.9999230295566502,
    "complete_frac": 0.994,
-   "lve_mean": 1.7603664037770588,
+   "lve_mean": 1.760366403777058,
    "lve_n": 994,
-   "height_mean": 1.7669500000000082,
+   "height_mean": 1.76695,
    "key": "rl",
    "label": "RL Full",
    "description": "Candidate-ranking PPO policy, trained on whole orders with a hard centre-of-mass stability gate."
@@ -44,9 +58,9 @@
    "boxes_expected": 155569,
    "placed_frac": 0.9764927459840971,
    "complete_frac": 0.5501002004008017,
-   "lve_mean": 2.474962421990496,
+   "lve_mean": 2.4749624219904964,
    "lve_n": 549,
-   "height_mean": 1.8552505010020124,
+   "height_mean": 1.855250501002004,
    "key": "neat",
    "label": "NEAT Hybrid",
    "description": "Evolved (NEAT) scorer over the same candidate placements."
@@ -59,9 +73,9 @@
   "boxes_expected": 155904,
   "placed_frac": 0.6160586001642037,
   "complete_frac": 0.013,
-  "lve_mean": 1.692298856368095,
+  "lve_mean": 1.6922988563680943,
   "lve_n": 13,
-  "height_mean": 1.2105402650782109,
+  "height_mean": 1.2105402650782093,
   "key": "phase12",
   "label": "Phase 1+2",
   "description": "The deterministic pattern-planning prefix every engine starts from. It stops before the remainder-filling phase by design, so it is the shared starting point rather than a competing method."
@@ -69,17 +83,22 @@
  "matched": {
   "orders": 549,
   "lve": {
-   "rl": 1.8669843755042672,
-   "neat": 2.474962421990495,
-   "ep": 1.662098438594945
+   "reranker": 1.737023689881291,
+   "rl": 1.8669843755042659,
+   "neat": 2.4749624219904964,
+   "ep": 1.6620984385949462
   },
   "vs_rl": {
+   "reranker": {
+    "tighter_than_rl": 383,
+    "of": 549
+   },
    "neat": {
-    "tighter_than_rl": 162,
+    "tighter_than_rl": 139,
     "of": 549
    },
    "ep": {
-    "tighter_than_rl": 441,
+    "tighter_than_rl": 437,
     "of": 549
    }
   }
