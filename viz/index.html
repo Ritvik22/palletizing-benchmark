@@ -9,7 +9,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;height:100vh;overflow:hidden}
   #app{display:grid;grid-template-columns:minmax(0,1fr) 340px;height:100vh}
-  #stage{position:relative;background:#0d1119}
+  #stage{position:relative;background:#fff;--line:#cbd8e0;--text:#18303b;--dim:#506473;--faint:#516875}
   #stage canvas{display:block}
   .side{border-left:1px solid var(--line);background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
   h1{font-size:16px;font-weight:750;letter-spacing:-.01em}
@@ -42,11 +42,11 @@
   .legend .dot{width:12px;height:12px;border-radius:3px;flex:none}
   .legend .lab{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .legend .qty{color:var(--dim);font-variant-numeric:tabular-nums}
-  #tooltip{position:absolute;pointer-events:none;background:rgba(13,17,25,.96);border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12px;display:none;z-index:5;max-width:220px}
+  #tooltip{position:absolute;pointer-events:none;background:rgba(255,255,255,.97);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12px;display:none;z-index:5;max-width:220px}
   #tooltip .td{color:var(--dim)}
   .hint{position:absolute;right:12px;bottom:10px;font-size:11px;color:var(--faint);pointer-events:none}
   .seqbar{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;align-items:center;gap:10px;
-    background:rgba(13,17,25,.88);border:1px solid var(--line);border-radius:999px;padding:7px 14px;z-index:4;
+    background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:999px;padding:7px 14px;z-index:4;
     width:min(520px,calc(100% - 32px))}
   .seqbar button{background:transparent;border:none;color:var(--text);font-size:13px;cursor:pointer;padding:0 2px;line-height:1}
   .seqbar input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--line);outline:none;padding:0;border:none}
@@ -63,7 +63,7 @@
   .vname{font-weight:500}
   .vname .vsub{color:var(--faint);font-weight:400}
   .vmeta{color:var(--dim);font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .chip{position:absolute;top:12px;left:12px;background:rgba(13,17,25,.88);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12px;color:var(--dim);z-index:4;pointer-events:none}
+  .chip{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12px;color:var(--dim);z-index:4;pointer-events:none}
   .chip b{color:var(--text);font-weight:600}
   @media(max-width:820px){
     body{height:auto;overflow:auto}
@@ -73,9 +73,18 @@
     .legend{max-height:none}
   }
   body.embed h1,body.embed .sub,body.embed #pickWrap{display:none}
+  /* The parent order dialog owns scrolling and all strategy controls. */
+  body.embed{height:100vh;overflow:hidden}
+  body.embed #app{display:block;height:100vh}
+  body.embed #stage{height:100vh;min-height:0;width:100%}
+  body.embed .side{display:none}
+  body.embed .hint{bottom:57px;color:#516875;font-size:12px}
+  .seqbar input:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+  .seqbar button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 </style>
 </head>
 <body>
+<script>if(new URLSearchParams(location.search).get('embed')==='1') document.body.classList.add('embed');</script>
 <div id="app">
   <div id="stage">
     <div id="tooltip"></div>
@@ -83,7 +92,7 @@
     <div class="hint">drag to orbit · scroll to zoom · right-drag to pan</div>
     <div class="seqbar" id="seqBar" style="display:none">
       <button id="seqPlay" title="replay the build order">&#9654;</button>
-      <input type="range" id="seqSlider" min="0" max="0" value="0" step="1">
+      <input type="range" id="seqSlider" min="0" max="0" value="0" step="1" aria-label="Boxes shown in build sequence">
       <span class="seqcount" id="seqCount"></span>
     </div>
   </div>
@@ -135,6 +144,7 @@
 
 <script src="/viz-static/three.min.js"></script>
 <script src="/viz-static/OrbitControls.min.js"></script>
+<script src="/viz-static/order-panel.js?v=2"></script>
 <script>
 const API = "";  // same origin
 const PALETTE = ["#38bdf8","#a78bfa","#34d399","#fbbf24","#f87171","#f472b6","#22d3ee","#a3e635","#fb923c","#818cf8",
@@ -150,7 +160,7 @@ let layoutMode = "stack";
 function initThree(){
   const stage = document.getElementById("stage");
   scene = new THREE.Scene();
-  scene.background = new THREE.Color("#0d1119");
+  scene.background = new THREE.Color("#ffffff");
   camera = new THREE.PerspectiveCamera(45, stage.clientWidth/stage.clientHeight, 0.01, 200);
   renderer = new THREE.WebGLRenderer({antialias:true});
   renderer.setSize(stage.clientWidth, stage.clientHeight);
@@ -231,11 +241,23 @@ async function loadBenchmark(){
   document.getElementById("bench").innerHTML = h;
   document.getElementById("benchWrap").style.display = "block";
 }
-loadBenchmark();
+if(!document.body.classList.contains('embed')) loadBenchmark();
 
 let curResult = null;    // {available, placed, remainder} phase-1/2 result for curOrderId
 let curEp = null, curNeat=null, curRl=null, curRr=null;        // {available, pack} full EP pack (phases 1+2+3) for curOrderId
 let sourceMode = "schematic";  // "packed" | "remainder" | "schematic"
+let requestedView = new URLSearchParams(location.search).get('view');
+let loadVersion = 0, packReady = false;
+function notifyParent(error=false){
+  if(window.parent!==window) window.parent.postMessage(
+    {type:'pallet-view-ready',orderId:curOrderId,view:sourceMode,error},location.origin);
+}
+window.addEventListener('message',e=>{
+  if(e.origin!==location.origin || e.source!==window.parent || e.data?.type!=='pallet-select-view' ||
+      e.data.orderId!==(curOrderId || new URLSearchParams(location.search).get('order')) || !PalletOrderModel.METHODS.some(m=>m.key===e.data.view)) return;
+  requestedView=e.data.view;
+  if(packReady){sourceMode=requestedView;setSourceButtons();renderCurrent();}
+});
 
 // ---- layout builders -------------------------------------------------------
 // Each returns {meshesData:[{sku_id,color,pos:[x,y,z],dim:[l,w,h],name}], footprint:[X,Z], top:Y}
@@ -346,8 +368,10 @@ function onHover(e){
   if(hit){
     const d=hit.object.userData;
     tt.style.display="block"; tt.style.left=(e.clientX-rect.left+14)+"px"; tt.style.top=(e.clientY-rect.top+12)+"px";
-    tt.innerHTML=`<b>${d.sku_id}</b><br><span class="td">${d.name||""}</span><br>`+
-      `<span class="td">${(d.dim[0]).toFixed(3)} × ${(d.dim[1]).toFixed(3)} × ${(d.dim[2]).toFixed(3)} m</span>`;
+    const title=document.createElement('b');title.textContent=d.sku_id;
+    const name=document.createElement('span');name.className='td';name.textContent=d.name||'';
+    const dims=document.createElement('span');dims.className='td';dims.textContent=d.dim.map(v=>v.toFixed(3)).join(' × ')+' m';
+    tt.replaceChildren(title,document.createElement('br'),name,document.createElement('br'),dims);
   } else tt.style.display="none";
 }
 
@@ -430,6 +454,13 @@ function renderCurrent(){
   const hasNeat = curNeat && curNeat.available;
   const hasRl = curRl && curRl.available;
   const hasRr = curRr && curRr.available;
+  const available={packed:has,remainder:has,ep:hasEp,neat:hasNeat,rl:hasRl,rr:hasRr,schematic:true};
+  if(!available[sourceMode]){
+    if(packGroup){scene.remove(packGroup);packGroup=null;boxMeshes=[];}
+    stopSeq(); document.getElementById('seqBar').style.display='none';
+    document.getElementById('stats').textContent='No artifact is available for the selected strategy.';
+    notifyParent(true);return;
+  }
   if(sourceMode==="packed" && has){ renderPacked(curResult.placed); renderStats(); }
   else if(sourceMode==="ep" && hasEp){ renderPacked(curEp.pack); renderStats(); }
   else if(sourceMode==="neat" && hasNeat){ renderPacked(curNeat.pack); renderStats(); }
@@ -440,12 +471,12 @@ function renderCurrent(){
   setupSeq();
   document.getElementById("layoutWrap").style.display =
     (sourceMode==="packed"||sourceMode==="ep"||sourceMode==="neat"||sourceMode==="rl"||sourceMode==="rr") ? "none" : "block";
+  notifyParent();
 }
 
 // ---- data + UI ------------------------------------------------------------
 function renderStats(){
   const has = curResult && curResult.available;
-  const totalBoxes=curItems.reduce((a,b)=>a+b.quantity,0);
   // When this pack reached the site. Comes from the deploy repo's git history
   // (see build_pack_provenance.py) -- the commit that introduced the file, and
   // the commit that last rewrote it. "Added" and "Updated" are shown separately
@@ -463,25 +494,21 @@ function renderStats(){
     return d.toLocaleString(undefined,
       {year:"numeric",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
   };
-  const rows=[["Order",curOrderId||"—"],["Distinct SKUs",curItems.length],["Total boxes",totalBoxes]];
+  const order = PalletOrderModel.orderSummary(curItems,Object.values(SKUS));
+  const num = (v,d=3) => typeof v==='number' && Number.isFinite(v) ? v.toLocaleString(undefined,{maximumFractionDigits:d}) : 'Not available';
+  const rows=[["Order",curOrderId||"—"],["Order SKUs",order.skus],["Order items",order.items],
+    ["Order weight (kg)",num(order.weight,2)],["Order item volume (m³)",num(order.volume,4)]];
   const shown = sourceMode==="ep" ? (curEp && curEp.available ? curEp.pack : null)
               : sourceMode==="neat" ? (curNeat && curNeat.available ? curNeat.pack : null)
               : sourceMode==="rl" ? (curRl && curRl.available ? curRl.pack : null)
               : sourceMode==="rr" ? (curRr && curRr.available ? curRr.pack : null)
               : sourceMode==="packed" ? (has ? curResult.placed : null) : null;
   if(shown){
-    const st=shown.stats||{};
-    if(st.placed!==undefined) rows.push(["Placed", `${st.placed} / ${st.total}`]);
-    if(sourceMode==="packed" && st.remainder!==undefined) rows.push(["Remainder", `${st.remainder}`]);
-    if(sourceMode==="ep" && has){
-      const p12=(curResult.placed.stats||{}).placed;
-      if(typeof p12==="number" && typeof st.placed==="number")
-        rows.push(["Added by phase 3", `+${st.placed - p12}`]);
-    }
-    if(shown.boxes.length){
-      const top=Math.max(0,...shown.boxes.map(b=>b.position.z+b.dimensions.height/2));
-      rows.push(["Top of stack", `${top.toFixed(3)} m / ${shown.container.height}`]);
-    }
+    const st=PalletOrderModel.packStats(shown,order);
+    rows.push(['Placed',`${st.placed} / ${order.items}`],['Remaining',st.remaining],
+      ['Stack height (m)',num(st.top)],['Placed volume (m³)',num(st.volume,4)],
+      ['LVE · lower is tighter',num(st.lve)]);
+    st.warnings.forEach(w=>rows.push(['Check artifact',w]));
   }
   if(sourceMode==="remainder" && has)
     rows.push(["Remainder boxes", curResult.remainder.boxes.length]);
@@ -492,18 +519,23 @@ function renderStats(){
     if(pv.changed && updated) rows.push(["Updated", updated]);
     if(pv.commit) rows.push(["Published by", pv.commit]);
   }
-  document.getElementById("stats").innerHTML =
-    rows.map(r=>`<span class="k">${r[0]}</span><span class="v">${r[1]}</span>`).join("");
+  document.getElementById("stats").replaceChildren(...rows.flatMap(r=>r.map((text,i)=>{
+    const s=document.createElement('span');s.className=i?'v':'k';s.textContent=String(text);return s;
+  })));
   // legend reflects the SKUs of whatever is on screen
-  const items = (sourceMode==="remainder" && has) ? aggItems(curResult.remainder.boxes) : curItems;
+  const items = shown ? aggItems(shown.boxes) : (sourceMode==="remainder" && has) ? aggItems(curResult.remainder.boxes) : curItems;
   document.getElementById("skuCount").textContent=items.length;
-  document.getElementById("legend").innerHTML=items.map(it=>
-    `<div class="sw"><span class="dot" style="background:${colorOf(it.sku_id)}"></span>`+
-    `<span class="lab">${it.sku_id}</span><span class="qty">×${it.quantity}</span></div>`).join("");
+  document.getElementById("legend").replaceChildren(...items.map(it=>{
+    const row=document.createElement('div');row.className='sw';
+    const dot=document.createElement('span');dot.className='dot';dot.style.background=colorOf(it.sku_id);
+    const name=document.createElement('span');name.className='lab';name.textContent=it.sku_id;
+    const qty=document.createElement('span');qty.className='qty';qty.textContent='×'+it.quantity;
+    row.append(dot,name,qty);return row;
+  }));
 }
 
 const VIEW_LABELS = {packed:"Phase 1+2", ep:"EP Hybrid", neat:"NEAT Hybrid",
-                     rl:"RL Full", remainder:"Phase 1+2 Remainder", schematic:"Schematic by SKU"};
+                     rl:"RL Full", rr:"RL + ReRanker", remainder:"Phase 1+2 Remainder", schematic:"Schematic by SKU"};
 function setSourceButtons(){
   const has = curResult && curResult.available;
   const hasEp = curEp && curEp.available;
@@ -511,8 +543,7 @@ function setSourceButtons(){
   const hasRl = curRl && curRl.available;
   const hasRr = curRr && curRr.available;
   const totalBoxes = curItems.reduce((a,b)=>a+b.quantity,0);
-  const fmt = p => (p && p.stats && p.stats.placed!==undefined)
-      ? `${p.stats.placed} / ${p.stats.total}` : "available";
+  const fmt = p => Array.isArray(p?.boxes) ? `${p.boxes.length} / ${totalBoxes}` : 'Invalid artifact';
   [["srcPacked", has,    "metaPacked", has    ? fmt(curResult.placed) : "not computed"],
    ["srcEp",     hasEp,  "metaEp",     hasEp  ? fmt(curEp.pack)       : "not computed"],
    ["srcNeat",   hasNeat,"metaNeat",   hasNeat? fmt(curNeat.pack)     : "not computed"],
@@ -530,28 +561,35 @@ function setSourceButtons(){
   const chip=document.getElementById("viewChip");
   if(curOrderId){
     chip.style.display="block";
-    chip.innerHTML=`<b>${curOrderId}</b> · ${VIEW_LABELS[sourceMode]||""}`;
+    const title=document.createElement('b');title.textContent=curOrderId;
+    chip.replaceChildren(title,document.createTextNode(' · '+(VIEW_LABELS[sourceMode]||'')));
   }
 }
 
 async function loadPack(orderId){
+  const version=++loadVersion;packReady=false;
   curOrderId=orderId; skuColorMap={};
   const data = await (await fetch(`${API}/viz-api/orders/${orderId}`)).json();
+  if(version!==loadVersion) return;
   curItems = data.items||[];
   curItems.forEach(it=>colorOf(it.sku_id));   // assign stable colors in item order
   // Both packs for this order: phase 1+2, and the full EP pack when it exists.
   // Fetched together so switching between them is instant — the whole point is
   // comparing the same order under the two, and a spinner between them hides the
   // difference you are trying to see.
-  [curResult, curEp, curNeat, curRl, curRr] = await Promise.all([
+  const packs = await Promise.all([
     fetch(`${API}/viz-api/result/${orderId}`).then(r=>r.json()).catch(()=>null),
     fetch(`${API}/viz-api/ep-result/${orderId}`).then(r=>r.json()).catch(()=>null),
     fetch(`${API}/viz-api/neat-result/${orderId}`).then(r=>r.json()).catch(()=>null),
     fetch(`${API}/viz-api/rl-result/${orderId}`).then(r=>r.json()).catch(()=>null),
   
     fetch(`${API}/viz-api/rr-result/${orderId}`).then(r=>r.json()).catch(()=>null)]);
+  if(version!==loadVersion) return;
+  [curResult, curEp, curNeat, curRl, curRr]=packs;
+  packReady=true;
   // Default to the phase 1+2 packed result when it's been computed.
   sourceMode = (curResult && curResult.available) ? "packed" : "schematic";
+  if(PalletOrderModel.METHODS.some(m=>m.key===requestedView)) sourceMode=requestedView;
   setSourceButtons();
   renderCurrent();
 }
@@ -562,7 +600,10 @@ async function boot(){
   skus.forEach(s=>SKUS[s.sku_id]=s);
   const orders=await (await fetch(`${API}/viz-api/orders`)).json();
   const sel=document.getElementById("packSel");
-  sel.innerHTML=orders.map(o=>`<option value="${o.order_id}">${o.order_id} — ${o.sku_count} SKUs, ${o.total_boxes} boxes</option>`).join("");
+  sel.replaceChildren(...orders.map(o=>{
+    const option=document.createElement('option');option.value=o.order_id;
+    option.textContent=o.order_id+' — '+o.sku_count+' SKUs, '+o.total_boxes+' boxes';return option;
+  }));
   sel.addEventListener("change",()=>loadPack(sel.value));
   document.getElementById("randBtn").addEventListener("click",()=>{
     const o=orders[Math.floor(Math.random()*orders.length)];
@@ -601,9 +642,9 @@ async function boot(){
     console.warn("[viz] no such order:", want);
   }
   const start = known ? want : (orders.length ? orders[0].order_id : null);
-  if(start && !(want && !known)){ sel.value=start; loadPack(start); }
+  if(start && !(want && !known)){ sel.value=start; await loadPack(start); }
 }
-boot();
+boot().catch(e=>{notifyParent(true);document.getElementById('stats').textContent='The selected order could not load.';console.error(e);});
 </script>
 </body>
 </html>

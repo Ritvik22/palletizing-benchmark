@@ -13,6 +13,16 @@
 (function () {
   "use strict";
   const DN = Math.sqrt(3) / 2, TR = 0.5;
+  const assetBase = new URL('.', document.currentScript.src);
+  const panelReady = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = new URL('order-panel.js?v=2', assetBase);
+    script.onload = resolve; script.onerror = reject;
+    document.head.appendChild(script);
+    const css = document.createElement('link');
+    css.rel = 'stylesheet'; css.href = new URL('order-panel.css?v=2', assetBase);
+    document.head.appendChild(css);
+  });
 
   // ---- (2) mini isometric box thumbnails ---------------------------------
   function pts(str) {
@@ -71,29 +81,11 @@
     const id = (mono && mono.textContent.trim())
             || ((modal.textContent || "").match(/ORD-[0-9]+/) || [])[0];
     if (!id || !/^ORD-[0-9]+$/.test(id)) return;
-    const m = [id];
-    // Key the guard on the ORDER, not on "have I run yet". React reuses the same
-    // modal node for the next order you open, so a boolean flag left the iframe
-    // pointing at whichever pack you viewed first: every subsequent View showed
-    // the wrong pack, silently and convincingly.
-    if (body.dataset.viz3d === m[0]) return;
-    if (body.dataset.viz3d) {
-      const f = body.querySelector("iframe[data-viz3d-frame]");
-      if (f) {
-        body.dataset.viz3d = m[0];
-        f.src = "/viz?order=" + encodeURIComponent(m[0]);
-        return;
-      }
-    }
-    body.dataset.viz3d = m[0];
-    const wrap = document.createElement("div");
-    wrap.style.cssText = "margin:0 0 16px;border:1px solid #232b40;border-radius:10px;overflow:hidden;background:#0b0e14";
-    wrap.innerHTML =
-      '<div style="padding:7px 12px;font:600 12px/1.3 -apple-system,Segoe UI,Roboto,sans-serif;' +
-      'color:#8b94ab;border-bottom:1px solid #232b40">3D pallet — Phase 1+2, full EP pack, or schematic</div>' +
-      '<iframe title="3D pallet" data-viz3d-frame style="border:0;width:100%;height:600px;display:block" ' +
-      'src="/viz?order=' + encodeURIComponent(m[0]) + '"></iframe>';
-    body.insertBefore(wrap, body.firstChild);
+    if (body.dataset.viz3d === id && body.querySelector('.op-panel')) return;
+    body.dataset.viz3d = id;
+    panelReady.then(() => {
+      if (body.isConnected && body.dataset.viz3d === id) window.PalletOrderPanel.attach(modal, id);
+    }).catch(() => { body.dataset.viz3d = ''; });
   }
 
   function scan() {

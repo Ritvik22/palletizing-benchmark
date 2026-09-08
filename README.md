@@ -1,5 +1,15 @@
 # Palletizing Benchmark — SKU & Order Database
 
+## New competition portal (research preview)
+
+The source-owned competition portal lives in [`competition/`](competition/README.md).
+It adds versioned packing submissions, researcher Google/email sign-in, a
+fixed-benchmark leaderboard and an MCP connector. It runs separately from the
+legacy application described below; use its setup guide for the new public
+competition. Google/email credentials, dataset terms and production hosting
+still require operator configuration. New competition code is MIT licensed to
+Brandon Coats; this does not relicense the bundled dataset or third-party assets.
+
 A self-contained web app for managing and visualizing a synthetic **palletizing
 benchmark dataset**: a master of box SKUs and the "packs" (orders) built from
 them, plus a 3D pallet viewer. FastAPI backend + prebuilt React frontend over a
