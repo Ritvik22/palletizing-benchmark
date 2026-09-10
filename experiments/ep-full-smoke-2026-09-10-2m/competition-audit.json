@@ -1,0 +1,44 @@
+{
+  "publication": "experimental audit only; not submitted or published",
+  "evaluator_source_sha256": {
+    "evaluator.py": "d41b996f7de44f41851f87263f33e0ba6f10db6ab6008761a3cf7a32b04d61c1",
+    "models.py": "da2d881aedd42b2c32ae99c7ec054b60fd572d384fd22c476f84cb2bb5a259cd",
+    "audit_ep_experiment.py": "4affc315032c60fc8d0212d27ac3357053998f5732b6d8082c972e3c9896c1a8"
+  },
+  "model": "Exact-contact rigid-body static gravity equilibrium, 1 micrometre tolerance; no wrap, friction, settling or robot reach model.",
+  "stacking_rule": null,
+  "input_sha256": "5235fcaa8b14f9d756658c5e7528e50c086b817ed525f7ba6a217861e5f8ba3a",
+  "totals": {
+    "orders_expected": 1,
+    "orders_submitted": 1,
+    "orders_missing": 0,
+    "orders_invalid": 0,
+    "orders_complete": 1,
+    "completion_fraction": 1.0,
+    "boxes_expected": 42,
+    "boxes_accepted": 42,
+    "lve_complete_mean": 1.6270852312280324,
+    "lve_n": 1,
+    "evaluator_version": "rigid-static-v1.0.0"
+  },
+  "orders": {
+    "ORD-59488997": {
+      "evaluator_version": "rigid-static-v1.0.0",
+      "valid": true,
+      "complete": true,
+      "expected": 42,
+      "submitted": 42,
+      "accepted_boxes": 42,
+      "remaining": 0,
+      "height_m": 0.6600000059604645,
+      "volume_m3": 0.38940800000000014,
+      "weight_kg": 142.40000000000003,
+      "lve": 1.6270852312280324,
+      "static_equilibrium": "balanced",
+      "errors": [],
+      "artifact_sha256": "54d9d2adbd9a82a7f3e1acd138645b5aefaf6661da652ca4e5e97de42214db64",
+      "support_contact_count": 88,
+      "source_pack_sha256": "5153fa7be01755ebda518428be70ef4bea16824d423cef5e2849fe4cafab8e74"
+    }
+  }
+}

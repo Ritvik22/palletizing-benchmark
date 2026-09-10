@@ -1,0 +1,220 @@
+{
+  "totals": {
+    "orders_expected": 10,
+    "orders_finished": 10,
+    "orders_valid": 0,
+    "orders_complete": 0,
+    "orders_failed": 9,
+    "boxes_expected": 1569,
+    "boxes_raw": 199,
+    "boxes_in_valid_packs": 0
+  },
+  "orders": [
+    {
+      "order_id": "ORD-00178905",
+      "research_valid": false,
+      "runtime_s": 160.9128058999995,
+      "error": "worker_failed"
+    },
+    {
+      "order_id": "ORD-10280100",
+      "research_valid": false,
+      "runtime_s": 4.4926470999998855,
+      "error": "worker_failed"
+    },
+    {
+      "order_id": "ORD-20505897",
+      "research_valid": false,
+      "runtime_s": 49.054727300000195,
+      "error": "worker_failed"
+    },
+    {
+      "order_id": "ORD-29845118",
+      "research_valid": false,
+      "runtime_s": 7.467916600000535,
+      "error": "worker_failed"
+    },
+    {
+      "order_id": "ORD-40115712",
+      "total": 204,
+      "placed": 199,
+      "runtime_s": 31.99604460000046,
+      "research_valid": false,
+      "audit_reason": "cumulative_build_step:16",
+      "identity_errors": [],
+      "metrics": {
+        "n": 199,
+        "min_support": 0.25905797101449235,
+        "single": 67,
+        "chains": 24,
+        "max_depth": 6,
+        "interlock": 0.6035502958579881,
+        "seam": 0.3727810650887574,
+        "top": 1.8600000953674316,
+        "com_ok": true,
+        "cum_fails": 2,
+        "iso_single": 5,
+        "deep_iso": 0,
+        "legacy_cum_fails": 2,
+        "legacy_com_ok": true,
+        "minimum_margin_m": -0.013063333253816214,
+        "cumulative_tolerance_m": 1e-07,
+        "support_model": {
+          "version": "ep-near-level-support-v1",
+          "coordinate_model": "axis-aligned; settling assumed",
+          "support_plane_tol_m": 0.01,
+          "floor_and_anchor_tol_m": 0.001,
+          "flat_area_height_tol_m": 0.01,
+          "outward_tilt_penalty_m": 0.005,
+          "physical_tilt_simulated": false
+        },
+        "assumed_uneven_support_boxes": 6,
+        "tilt_proxy_inward": 0,
+        "tilt_proxy_outward": 6
+      },
+      "packed_volume_m3": 1.2004080000000001,
+      "top_m": 1.8600000953674316,
+      "packed_prism_utilization": 0.6722714709070949,
+      "container_volume_utilization": 0.6668933333333334,
+      "pack_sha256": "66edabef43e8120edef2499f5d5a9424a087bb477e3b848fbd18b49c51fb2423",
+      "void_repair": {
+        "version": "ep-void-repair-v2-near-level",
+        "config": {
+          "budget_s": 20.0,
+          "grid_m": 0.01,
+          "max_attempts": 24,
+          "max_rewind": 96,
+          "max_targets": 96,
+          "max_probes": 30000,
+          "max_validate": 600,
+          "min_support": 0.5
+        },
+        "attempts": 0,
+        "accepted": 0,
+        "probes": 0,
+        "targets": 0,
+        "protected_count": 158,
+        "events": [],
+        "before": {
+          "n": 199,
+          "min_support": 0.25905797101449235,
+          "single": 67,
+          "chains": 24,
+          "max_depth": 6,
+          "interlock": 0.6035502958579881,
+          "seam": 0.3727810650887574,
+          "top": 1.8600000953674316,
+          "com_ok": true,
+          "cum_fails": 2,
+          "iso_single": 5,
+          "deep_iso": 0,
+          "legacy_cum_fails": 2,
+          "legacy_com_ok": true,
+          "minimum_margin_m": -0.013063333253816214,
+          "cumulative_tolerance_m": 1e-07,
+          "support_model": {
+            "version": "ep-near-level-support-v1",
+            "coordinate_model": "axis-aligned; settling assumed",
+            "support_plane_tol_m": 0.01,
+            "floor_and_anchor_tol_m": 0.001,
+            "flat_area_height_tol_m": 0.01,
+            "outward_tilt_penalty_m": 0.005,
+            "physical_tilt_simulated": false
+          },
+          "assumed_uneven_support_boxes": 6,
+          "tilt_proxy_inward": 0,
+          "tilt_proxy_outward": 6
+        },
+        "stop_reason": "invalid_protected_foundation:cumulative_build_step:16",
+        "after": {
+          "n": 199,
+          "min_support": 0.25905797101449235,
+          "single": 67,
+          "chains": 24,
+          "max_depth": 6,
+          "interlock": 0.6035502958579881,
+          "seam": 0.3727810650887574,
+          "top": 1.8600000953674316,
+          "com_ok": true,
+          "cum_fails": 2,
+          "iso_single": 5,
+          "deep_iso": 0,
+          "legacy_cum_fails": 2,
+          "legacy_com_ok": true,
+          "minimum_margin_m": -0.013063333253816214,
+          "cumulative_tolerance_m": 1e-07,
+          "support_model": {
+            "version": "ep-near-level-support-v1",
+            "coordinate_model": "axis-aligned; settling assumed",
+            "support_plane_tol_m": 0.01,
+            "floor_and_anchor_tol_m": 0.001,
+            "flat_area_height_tol_m": 0.01,
+            "outward_tilt_penalty_m": 0.005,
+            "physical_tilt_simulated": false
+          },
+          "assumed_uneven_support_boxes": 6,
+          "tilt_proxy_inward": 0,
+          "tilt_proxy_outward": 6
+        },
+        "elapsed_s": 0.7435882999998285
+      },
+      "completion": {
+        "version": "ep-completion-v2",
+        "config": {
+          "budget_s": 20.0,
+          "max_validate": 1800,
+          "grid_m": 0.01,
+          "min_support": 0.5,
+          "orders": 4
+        },
+        "attempts": 0,
+        "accepted": 0,
+        "events": [],
+        "rejections": {},
+        "stop_reason": "invalid_incumbent:cumulative_build_step:16",
+        "elapsed_s": 0.620386999999937,
+        "variants": [
+          {
+            "tilt_weight": 0.005,
+            "count": 199,
+            "attempts": 0,
+            "accepted": 0,
+            "elapsed_s": 0.620287400000052,
+            "stop_reason": "invalid_incumbent:cumulative_build_step:16",
+            "rejections": {}
+          }
+        ]
+      }
+    },
+    {
+      "order_id": "ORD-49930827",
+      "research_valid": false,
+      "runtime_s": 31.59915920000003,
+      "error": "worker_failed"
+    },
+    {
+      "order_id": "ORD-59488997",
+      "research_valid": false,
+      "runtime_s": 0.573079200000393,
+      "error": "worker_failed"
+    },
+    {
+      "order_id": "ORD-69979346",
+      "research_valid": false,
+      "runtime_s": 60.18355059999976,
+      "error": "worker_failed"
+    },
+    {
+      "order_id": "ORD-79714691",
+      "research_valid": false,
+      "runtime_s": 12.877956600000289,
+      "error": "worker_failed"
+    },
+    {
+      "order_id": "ORD-90403151",
+      "research_valid": false,
+      "runtime_s": 79.2291967000001,
+      "error": "worker_failed"
+    }
+  ]
+}

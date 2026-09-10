@@ -1,0 +1,1546 @@
+
+======================================================================
+PATTERN PLACEMENT COMPLETE: 100 boxes
+======================================================================
+
+======================================================================
+FLAT-SPACE GROUP PLACEMENT FOR 97 REMAINDER BOXES
+======================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 1 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 97
+✅ Total placed so far: 0 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.200×0.300m: 8 boxes, volume=0.096m³
+      2. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      3. Group 0.200×0.200×0.200m: 16 boxes, volume=0.141m³
+      4. Group 0.100×0.100×0.200m: 7 boxes, volume=0.020m³
+      5. Group 0.300×0.100×0.200m: 31 boxes, volume=0.231m³
+      6. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      7. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      8. Group 0.100×0.200×0.100m: 6 boxes, volume=0.013m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.300×0.100×0.200m (31 boxes, 0.230854m³) ← Will process 1st
+         Box IDs: [7, 8, 9, 10, 11]...
+      2. 0.200×0.200×0.200m (16 boxes, 0.140888m³) ← Will process 2nd
+         Box IDs: [39, 40, 41, 42, 43]...
+      3. 0.200×0.200×0.300m (8 boxes, 0.095760m³) ← Will process 3rd
+         Box IDs: [162, 163, 164, 165, 166]...
+      4. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 4th
+      5. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 5th
+      6. 0.100×0.100×0.200m (7 boxes, 0.020328m³) ← Will process 6th
+      7. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 7th
+      8. 0.100×0.200×0.100m (6 boxes, 0.012540m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.230854m³) >= Group 2 (0.140888m³)
+      ✓ Group 2 (0.140888m³) >= Group 3 (0.095760m³)
+      ✓ Group 3 (0.095760m³) >= Group 4 (0.078093m³)
+      ✓ Group 4 (0.078093m³) >= Group 5 (0.059202m³)
+      ✓ Group 5 (0.059202m³) >= Group 6 (0.020328m³)
+      ✓ Group 6 (0.020328m³) >= Group 7 (0.016560m³)
+      ✓ Group 7 (0.016560m³) >= Group 8 (0.012540m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.800×0.950m (0.760m²) at height 0.750m
+      🔍 Evaluating group 0.300×0.100×0.200m (31 boxes, 0.230854m³)...
+         ✅ Can place 17/31 boxes, placed volume: 0.131482m³
+      🔍 Evaluating group 0.200×0.200×0.200m (16 boxes, 0.140888m³)...
+         ✅ Can place 11/16 boxes, placed volume: 0.099000m³
+      🔍 Evaluating group 0.200×0.200×0.300m (8 boxes, 0.095760m³)...
+         ✅ Can place 8/8 boxes, placed volume: 0.095760m³
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ✅ Can place 12/16 boxes, placed volume: 0.049113m³
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ✅ Can place 9/9 boxes, placed volume: 0.059202m³
+      🔍 Evaluating group 0.100×0.100×0.200m (7 boxes, 0.020328m³)...
+         ✅ Can place 5/7 boxes, placed volume: 0.014520m³
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ✅ Can place 3/3 boxes, placed volume: 0.016560m³
+      🔍 Evaluating group 0.100×0.200×0.100m (6 boxes, 0.012540m³)...
+         ✅ Can place 4/6 boxes, placed volume: 0.008360m³
+
+   🏆 SELECTED GROUP: 0.300×0.100×0.200m
+      Placed volume: 0.131482m³
+      Placed boxes: 17/31
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 17/31 boxes
+     • Flat space used: 0.800×0.950m (0.760m²)
+     • Position: (0.000, 0.000) → (0.800, 0.950)
+     • Height: 0.750m
+     • ⚠️  Remaining from group: 14 boxes (will retry later)
+     • Sample placed box: ID=7, pos=(0.130, 0.065, 0.865)
+     • 📝 Note: 14 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 17 boxes placed total in this iteration
+     • 📊 Total groups placed: 1
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 1 Summary:
+   • Boxes placed this iteration: 17
+   • Total boxes placed: 17
+   • Remaining boxes: 80
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 2 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 80
+✅ Total placed so far: 17 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.200×0.300m: 8 boxes, volume=0.096m³
+      2. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      3. Group 0.200×0.200×0.200m: 16 boxes, volume=0.141m³
+      4. Group 0.100×0.100×0.200m: 7 boxes, volume=0.020m³
+      5. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      6. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      7. Group 0.100×0.200×0.100m: 6 boxes, volume=0.013m³
+      8. Group 0.300×0.100×0.200m: 14 boxes, volume=0.099m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.200×0.200m (16 boxes, 0.140888m³) ← Will process 1st
+         Box IDs: [39, 40, 41, 42, 43]...
+      2. 0.300×0.100×0.200m (14 boxes, 0.099372m³) ← Will process 2nd
+         Box IDs: [24, 25, 26, 27, 28]...
+      3. 0.200×0.200×0.300m (8 boxes, 0.095760m³) ← Will process 3rd
+         Box IDs: [162, 163, 164, 165, 166]...
+      4. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 4th
+      5. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 5th
+      6. 0.100×0.100×0.200m (7 boxes, 0.020328m³) ← Will process 6th
+      7. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 7th
+      8. 0.100×0.200×0.100m (6 boxes, 0.012540m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.140888m³) >= Group 2 (0.099372m³)
+      ✓ Group 2 (0.099372m³) >= Group 3 (0.095760m³)
+      ✓ Group 3 (0.095760m³) >= Group 4 (0.078093m³)
+      ✓ Group 4 (0.078093m³) >= Group 5 (0.059202m³)
+      ✓ Group 5 (0.059202m³) >= Group 6 (0.020328m³)
+      ✓ Group 6 (0.020328m³) >= Group 7 (0.016560m³)
+      ✓ Group 7 (0.016560m³) >= Group 8 (0.012540m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.800×0.900m (0.720m²) at height 0.980m
+      🔍 Evaluating group 0.200×0.200×0.200m (16 boxes, 0.140888m³)...
+         ✅ Can place 12/16 boxes, placed volume: 0.108000m³
+      🔍 Evaluating group 0.300×0.100×0.200m (14 boxes, 0.099372m³)...
+         ✅ Can place 13/14 boxes, placed volume: 0.092274m³
+      🔍 Evaluating group 0.200×0.200×0.300m (8 boxes, 0.095760m³)...
+         ✅ Can place 8/8 boxes, placed volume: 0.095760m³
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ✅ Can place 12/16 boxes, placed volume: 0.049113m³
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ✅ Can place 9/9 boxes, placed volume: 0.059202m³
+      🔍 Evaluating group 0.100×0.100×0.200m (7 boxes, 0.020328m³)...
+         ✅ Can place 7/7 boxes, placed volume: 0.020328m³
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ✅ Can place 3/3 boxes, placed volume: 0.016560m³
+      🔍 Evaluating group 0.100×0.200×0.100m (6 boxes, 0.012540m³)...
+         ✅ Can place 6/6 boxes, placed volume: 0.012540m³
+
+   🏆 SELECTED GROUP: 0.200×0.200×0.200m
+      Placed volume: 0.108000m³
+      Placed boxes: 12/16
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 12/16 boxes
+     • Flat space used: 0.800×0.900m (0.720m²)
+     • Position: (0.000, 0.000) → (0.800, 0.900)
+     • Height: 0.980m
+     • ⚠️  Remaining from group: 4 boxes (will retry later)
+     • Sample placed box: ID=39, pos=(0.090, 0.100, 1.105)
+     • 📝 Note: 4 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 29 boxes placed total in this iteration
+     • 📊 Total groups placed: 2
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 2 Summary:
+   • Boxes placed this iteration: 12
+   • Total boxes placed: 29
+   • Remaining boxes: 68
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 3 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 68
+✅ Total placed so far: 29 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.200×0.300m: 8 boxes, volume=0.096m³
+      2. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      3. Group 0.100×0.100×0.200m: 7 boxes, volume=0.020m³
+      4. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      5. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      6. Group 0.100×0.200×0.100m: 6 boxes, volume=0.013m³
+      7. Group 0.300×0.100×0.200m: 14 boxes, volume=0.099m³
+      8. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.300×0.100×0.200m (14 boxes, 0.099372m³) ← Will process 1st
+         Box IDs: [24, 25, 26, 27, 28]...
+      2. 0.200×0.200×0.300m (8 boxes, 0.095760m³) ← Will process 2nd
+         Box IDs: [162, 163, 164, 165, 166]...
+      3. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 3rd
+         Box IDs: [38, 199, 200, 201, 202]...
+      4. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 4th
+      5. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 5th
+      6. 0.100×0.100×0.200m (7 boxes, 0.020328m³) ← Will process 6th
+      7. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 7th
+      8. 0.100×0.200×0.100m (6 boxes, 0.012540m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.099372m³) >= Group 2 (0.095760m³)
+      ✓ Group 2 (0.095760m³) >= Group 3 (0.078093m³)
+      ✓ Group 3 (0.078093m³) >= Group 4 (0.059202m³)
+      ✓ Group 4 (0.059202m³) >= Group 5 (0.032888m³)
+      ✓ Group 5 (0.032888m³) >= Group 6 (0.020328m³)
+      ✓ Group 6 (0.020328m³) >= Group 7 (0.016560m³)
+      ✓ Group 7 (0.016560m³) >= Group 8 (0.012540m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.800×0.750m (0.600m²) at height 1.230m
+      🔍 Evaluating group 0.300×0.100×0.200m (14 boxes, 0.099372m³)...
+         ✅ Can place 9/14 boxes, placed volume: 0.063882m³
+      🔍 Evaluating group 0.200×0.200×0.300m (8 boxes, 0.095760m³)...
+         ✅ Can place 6/8 boxes, placed volume: 0.071820m³
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ✅ Can place 11/16 boxes, placed volume: 0.041868m³
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ✅ Can place 6/9 boxes, placed volume: 0.039468m³
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ✅ Can place 3/4 boxes, placed volume: 0.027000m³
+      🔍 Evaluating group 0.100×0.100×0.200m (7 boxes, 0.020328m³)...
+         ✅ Can place 7/7 boxes, placed volume: 0.020328m³
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ✅ Can place 3/3 boxes, placed volume: 0.016560m³
+      🔍 Evaluating group 0.100×0.200×0.100m (6 boxes, 0.012540m³)...
+         ✅ Can place 6/6 boxes, placed volume: 0.012540m³
+
+   🏆 SELECTED GROUP: 0.200×0.200×0.300m
+      Placed volume: 0.071820m³
+      Placed boxes: 6/8
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 6/8 boxes
+     • Flat space used: 0.800×0.750m (0.600m²)
+     • Position: (0.000, 0.000) → (0.800, 0.750)
+     • Height: 1.230m
+     • ⚠️  Remaining from group: 2 boxes (will retry later)
+     • Sample placed box: ID=162, pos=(0.105, 0.095, 1.380)
+     • 📝 Note: 2 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 35 boxes placed total in this iteration
+     • 📊 Total groups placed: 3
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 3 Summary:
+   • Boxes placed this iteration: 6
+   • Total boxes placed: 35
+   • Remaining boxes: 62
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 4 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 62
+✅ Total placed so far: 35 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.100×0.100×0.200m: 7 boxes, volume=0.020m³
+      3. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      4. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      5. Group 0.100×0.200×0.100m: 6 boxes, volume=0.013m³
+      6. Group 0.300×0.100×0.200m: 14 boxes, volume=0.099m³
+      7. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      8. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.300×0.100×0.200m (14 boxes, 0.099372m³) ← Will process 1st
+         Box IDs: [24, 25, 26, 27, 28]...
+      2. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 2nd
+         Box IDs: [38, 199, 200, 201, 202]...
+      3. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 3rd
+         Box IDs: [190, 191, 192, 193, 194]...
+      4. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 4th
+      5. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 5th
+      6. 0.100×0.100×0.200m (7 boxes, 0.020328m³) ← Will process 6th
+      7. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 7th
+      8. 0.100×0.200×0.100m (6 boxes, 0.012540m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.099372m³) >= Group 2 (0.078093m³)
+      ✓ Group 2 (0.078093m³) >= Group 3 (0.059202m³)
+      ✓ Group 3 (0.059202m³) >= Group 4 (0.032888m³)
+      ✓ Group 4 (0.032888m³) >= Group 5 (0.023940m³)
+      ✓ Group 5 (0.023940m³) >= Group 6 (0.020328m³)
+      ✓ Group 6 (0.020328m³) >= Group 7 (0.016560m³)
+      ✓ Group 7 (0.016560m³) >= Group 8 (0.012540m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.800×0.250m (0.200m²) at height 1.230m
+      🔍 Evaluating group 0.300×0.100×0.200m (14 boxes, 0.099372m³)...
+         ✅ Can place 3/14 boxes, placed volume: 0.021294m³
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ✅ Can place 2/4 boxes, placed volume: 0.018000m³
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.100×0.200m (7 boxes, 0.020328m³)...
+         ✅ Can place 7/7 boxes, placed volume: 0.020328m³
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (6 boxes, 0.012540m³)...
+         ✅ Can place 3/6 boxes, placed volume: 0.006270m³
+
+   🏆 SELECTED GROUP: 0.300×0.100×0.200m
+      Placed volume: 0.021294m³
+      Placed boxes: 3/14
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 3/14 boxes
+     • Flat space used: 0.800×0.250m (0.200m²)
+     • Position: (0.000, 0.500) → (0.800, 0.750)
+     • Height: 1.230m
+     • ⚠️  Remaining from group: 11 boxes (will retry later)
+     • Sample placed box: ID=24, pos=(0.130, 0.625, 1.335)
+     • 📝 Note: 11 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 38 boxes placed total in this iteration
+     • 📊 Total groups placed: 4
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 4 Summary:
+   • Boxes placed this iteration: 3
+   • Total boxes placed: 38
+   • Remaining boxes: 59
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 5 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 59
+✅ Total placed so far: 38 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.100×0.100×0.200m: 7 boxes, volume=0.020m³
+      3. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      4. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      5. Group 0.100×0.200×0.100m: 6 boxes, volume=0.013m³
+      6. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      7. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      8. Group 0.300×0.100×0.200m: 11 boxes, volume=0.078m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.300×0.100×0.200m (11 boxes, 0.078078m³) ← Will process 2nd
+         Box IDs: [27, 28, 29, 30, 31]...
+      3. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 3rd
+         Box IDs: [190, 191, 192, 193, 194]...
+      4. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 4th
+      5. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 5th
+      6. 0.100×0.100×0.200m (7 boxes, 0.020328m³) ← Will process 6th
+      7. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 7th
+      8. 0.100×0.200×0.100m (6 boxes, 0.012540m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.078078m³)
+      ✓ Group 2 (0.078078m³) >= Group 3 (0.059202m³)
+      ✓ Group 3 (0.059202m³) >= Group 4 (0.032888m³)
+      ✓ Group 4 (0.032888m³) >= Group 5 (0.023940m³)
+      ✓ Group 5 (0.023940m³) >= Group 6 (0.020328m³)
+      ✓ Group 6 (0.020328m³) >= Group 7 (0.016560m³)
+      ✓ Group 7 (0.016560m³) >= Group 8 (0.012540m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.400×0.150m (0.060m²) at height 0.410m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.300×0.100×0.200m (11 boxes, 0.078078m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.200m: Dimensions don't fit - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.100×0.200m (7 boxes, 0.020328m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (6 boxes, 0.012540m³)...
+         ✅ Can place 2/6 boxes, placed volume: 0.004180m³
+
+   🏆 SELECTED GROUP: 0.100×0.200×0.100m
+      Placed volume: 0.004180m³
+      Placed boxes: 2/6
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 2/6 boxes
+     • Flat space used: 0.400×0.150m (0.060m²)
+     • Position: (0.200, 1.050) → (0.600, 1.200)
+     • Height: 0.410m
+     • ⚠️  Remaining from group: 4 boxes (will retry later)
+     • Sample placed box: ID=1, pos=(0.295, 1.125, 0.460)
+     • 📝 Note: 4 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 40 boxes placed total in this iteration
+     • 📊 Total groups placed: 5
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 5 Summary:
+   • Boxes placed this iteration: 2
+   • Total boxes placed: 40
+   • Remaining boxes: 57
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 6 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 57
+✅ Total placed so far: 40 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.100×0.100×0.200m: 7 boxes, volume=0.020m³
+      3. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      4. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      5. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      6. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      7. Group 0.300×0.100×0.200m: 11 boxes, volume=0.078m³
+      8. Group 0.100×0.200×0.100m: 4 boxes, volume=0.008m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.300×0.100×0.200m (11 boxes, 0.078078m³) ← Will process 2nd
+         Box IDs: [27, 28, 29, 30, 31]...
+      3. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 3rd
+         Box IDs: [190, 191, 192, 193, 194]...
+      4. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 4th
+      5. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 5th
+      6. 0.100×0.100×0.200m (7 boxes, 0.020328m³) ← Will process 6th
+      7. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 7th
+      8. 0.100×0.200×0.100m (4 boxes, 0.008360m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.078078m³)
+      ✓ Group 2 (0.078078m³) >= Group 3 (0.059202m³)
+      ✓ Group 3 (0.059202m³) >= Group 4 (0.032888m³)
+      ✓ Group 4 (0.032888m³) >= Group 5 (0.023940m³)
+      ✓ Group 5 (0.023940m³) >= Group 6 (0.020328m³)
+      ✓ Group 6 (0.020328m³) >= Group 7 (0.016560m³)
+      ✓ Group 7 (0.016560m³) >= Group 8 (0.008360m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.400×0.150m (0.060m²) at height 0.510m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.300×0.100×0.200m (11 boxes, 0.078078m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.200m: Dimensions don't fit - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.100×0.200m (7 boxes, 0.020328m³)...
+         ✅ Can place 3/7 boxes, placed volume: 0.008712m³
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ✅ Can place 2/4 boxes, placed volume: 0.004180m³
+
+   🏆 SELECTED GROUP: 0.100×0.100×0.200m
+      Placed volume: 0.008712m³
+      Placed boxes: 3/7
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 3/7 boxes
+     • Flat space used: 0.400×0.150m (0.060m²)
+     • Position: (0.200, 1.050) → (0.600, 1.200)
+     • Height: 0.510m
+     • ⚠️  Remaining from group: 4 boxes (will retry later)
+     • Sample placed box: ID=72, pos=(0.255, 1.125, 0.630)
+     • 📝 Note: 4 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 43 boxes placed total in this iteration
+     • 📊 Total groups placed: 6
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 6 Summary:
+   • Boxes placed this iteration: 3
+   • Total boxes placed: 43
+   • Remaining boxes: 54
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 7 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 54
+✅ Total placed so far: 43 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      3. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      4. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      5. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      6. Group 0.300×0.100×0.200m: 11 boxes, volume=0.078m³
+      7. Group 0.100×0.200×0.100m: 4 boxes, volume=0.008m³
+      8. Group 0.100×0.100×0.200m: 4 boxes, volume=0.012m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.300×0.100×0.200m (11 boxes, 0.078078m³) ← Will process 2nd
+         Box IDs: [27, 28, 29, 30, 31]...
+      3. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 3rd
+         Box IDs: [190, 191, 192, 193, 194]...
+      4. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 4th
+      5. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 5th
+      6. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 6th
+      7. 0.100×0.100×0.200m (4 boxes, 0.011616m³) ← Will process 7th
+      8. 0.100×0.200×0.100m (4 boxes, 0.008360m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.078078m³)
+      ✓ Group 2 (0.078078m³) >= Group 3 (0.059202m³)
+      ✓ Group 3 (0.059202m³) >= Group 4 (0.032888m³)
+      ✓ Group 4 (0.032888m³) >= Group 5 (0.023940m³)
+      ✓ Group 5 (0.023940m³) >= Group 6 (0.016560m³)
+      ✓ Group 6 (0.016560m³) >= Group 7 (0.011616m³)
+      ✓ Group 7 (0.011616m³) >= Group 8 (0.008360m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.150×0.300m (0.045m²) at height 0.620m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.300×0.100×0.200m (11 boxes, 0.078078m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.200m: Dimensions don't fit - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Dimensions don't fit - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.100×0.200m (4 boxes, 0.011616m³)...
+         ✅ Can place 2/4 boxes, placed volume: 0.005808m³
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+
+   🏆 SELECTED GROUP: 0.100×0.100×0.200m
+      Placed volume: 0.005808m³
+      Placed boxes: 2/4
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 2/4 boxes
+     • Flat space used: 0.150×0.300m (0.045m²)
+     • Position: (0.000, 0.900) → (0.150, 1.200)
+     • Height: 0.620m
+     • ⚠️  Remaining from group: 2 boxes (will retry later)
+     • Sample placed box: ID=75, pos=(0.075, 0.955, 0.740)
+     • 📝 Note: 2 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 45 boxes placed total in this iteration
+     • 📊 Total groups placed: 7
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 7 Summary:
+   • Boxes placed this iteration: 2
+   • Total boxes placed: 45
+   • Remaining boxes: 52
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 8 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 52
+✅ Total placed so far: 45 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      3. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      4. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      5. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      6. Group 0.300×0.100×0.200m: 11 boxes, volume=0.078m³
+      7. Group 0.100×0.200×0.100m: 4 boxes, volume=0.008m³
+      8. Group 0.100×0.100×0.200m: 2 boxes, volume=0.006m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.300×0.100×0.200m (11 boxes, 0.078078m³) ← Will process 2nd
+         Box IDs: [27, 28, 29, 30, 31]...
+      3. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 3rd
+         Box IDs: [190, 191, 192, 193, 194]...
+      4. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 4th
+      5. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 5th
+      6. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 6th
+      7. 0.100×0.200×0.100m (4 boxes, 0.008360m³) ← Will process 7th
+      8. 0.100×0.100×0.200m (2 boxes, 0.005808m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.078078m³)
+      ✓ Group 2 (0.078078m³) >= Group 3 (0.059202m³)
+      ✓ Group 3 (0.059202m³) >= Group 4 (0.032888m³)
+      ✓ Group 4 (0.032888m³) >= Group 5 (0.023940m³)
+      ✓ Group 5 (0.023940m³) >= Group 6 (0.016560m³)
+      ✓ Group 6 (0.016560m³) >= Group 7 (0.008360m³)
+      ✓ Group 7 (0.008360m³) >= Group 8 (0.005808m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.800×0.550m (0.440m²) at height 1.530m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ✅ Can place 3/16 boxes, placed volume: 0.012492m³
+      🔍 Evaluating group 0.300×0.100×0.200m (11 boxes, 0.078078m³)...
+         ✅ Can place 6/11 boxes, placed volume: 0.042588m³
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ✅ Can place 3/9 boxes, placed volume: 0.019734m³
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ✅ Can place 2/2 boxes, placed volume: 0.023940m³
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ✅ Can place 3/4 boxes, placed volume: 0.006270m³
+      🔍 Evaluating group 0.100×0.100×0.200m (2 boxes, 0.005808m³)...
+         ✅ Can place 2/2 boxes, placed volume: 0.005808m³
+
+   🏆 SELECTED GROUP: 0.300×0.100×0.200m
+      Placed volume: 0.042588m³
+      Placed boxes: 6/11
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 6/11 boxes
+     • Flat space used: 0.800×0.550m (0.440m²)
+     • Position: (0.000, 0.000) → (0.800, 0.550)
+     • Height: 1.530m
+     • ⚠️  Remaining from group: 5 boxes (will retry later)
+     • Sample placed box: ID=27, pos=(0.130, 0.065, 1.635)
+     • 📝 Note: 5 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 51 boxes placed total in this iteration
+     • 📊 Total groups placed: 8
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 8 Summary:
+   • Boxes placed this iteration: 6
+   • Total boxes placed: 51
+   • Remaining boxes: 46
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 9 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 46
+✅ Total placed so far: 51 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      3. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      4. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      5. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      6. Group 0.100×0.200×0.100m: 4 boxes, volume=0.008m³
+      7. Group 0.100×0.100×0.200m: 2 boxes, volume=0.006m³
+      8. Group 0.300×0.100×0.200m: 5 boxes, volume=0.035m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 2nd
+         Box IDs: [190, 191, 192, 193, 194]...
+      3. 0.300×0.100×0.200m (5 boxes, 0.035490m³) ← Will process 3rd
+         Box IDs: [30, 31, 32, 36, 37]
+      4. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 4th
+      5. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 5th
+      6. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 6th
+      7. 0.100×0.200×0.100m (4 boxes, 0.008360m³) ← Will process 7th
+      8. 0.100×0.100×0.200m (2 boxes, 0.005808m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.059202m³)
+      ✓ Group 2 (0.059202m³) >= Group 3 (0.035490m³)
+      ✓ Group 3 (0.035490m³) >= Group 4 (0.032888m³)
+      ✓ Group 4 (0.032888m³) >= Group 5 (0.023940m³)
+      ✓ Group 5 (0.023940m³) >= Group 6 (0.016560m³)
+      ✓ Group 6 (0.016560m³) >= Group 7 (0.008360m³)
+      ✓ Group 7 (0.008360m³) >= Group 8 (0.005808m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.800×0.500m (0.400m²) at height 1.740m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.300×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.100×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Nothing fits in flat space 1 — trying the next one
+
+   🎯 Evaluating all 8 groups against flat space 2:
+      Flat space #2 flat space: 0.800×0.250m (0.200m²) at height 1.440m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.300×0.100×0.200m (5 boxes, 0.035490m³)...
+         ✅ Can place 3/5 boxes, placed volume: 0.021294m³
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.100×0.200m (2 boxes, 0.005808m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+
+   🏆 SELECTED GROUP: 0.300×0.100×0.200m
+      Placed volume: 0.021294m³
+      Placed boxes: 3/5
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 3/5 boxes
+     • Flat space used: 0.800×0.250m (0.200m²)
+     • Position: (0.000, 0.500) → (0.800, 0.750)
+     • Height: 1.440m
+     • ⚠️  Remaining from group: 2 boxes (will retry later)
+     • Sample placed box: ID=30, pos=(0.130, 0.625, 1.545)
+     • 📝 Note: 2 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 54 boxes placed total in this iteration
+     • 📊 Total groups placed: 9
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 9 Summary:
+   • Boxes placed this iteration: 3
+   • Total boxes placed: 54
+   • Remaining boxes: 43
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 10 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 43
+✅ Total placed so far: 54 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 8 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      3. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      4. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      5. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      6. Group 0.100×0.200×0.100m: 4 boxes, volume=0.008m³
+      7. Group 0.100×0.100×0.200m: 2 boxes, volume=0.006m³
+      8. Group 0.300×0.100×0.200m: 2 boxes, volume=0.014m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 2nd
+         Box IDs: [190, 191, 192, 193, 194]...
+      3. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 3rd
+         Box IDs: [51, 52, 53, 170]
+      4. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 4th
+      5. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 5th
+      6. 0.300×0.100×0.200m (2 boxes, 0.014196m³) ← Will process 6th
+      7. 0.100×0.200×0.100m (4 boxes, 0.008360m³) ← Will process 7th
+      8. 0.100×0.100×0.200m (2 boxes, 0.005808m³) ← Will process 8th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.059202m³)
+      ✓ Group 2 (0.059202m³) >= Group 3 (0.032888m³)
+      ✓ Group 3 (0.032888m³) >= Group 4 (0.023940m³)
+      ✓ Group 4 (0.023940m³) >= Group 5 (0.016560m³)
+      ✓ Group 5 (0.016560m³) >= Group 6 (0.014196m³)
+      ✓ Group 6 (0.014196m³) >= Group 7 (0.008360m³)
+      ✓ Group 7 (0.008360m³) >= Group 8 (0.005808m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 8 groups against flat space 1:
+      Largest flat space: 0.800×0.500m (0.400m²) at height 1.740m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.300×0.100×0.200m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.100×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Nothing fits in flat space 1 — trying the next one
+
+   🎯 Evaluating all 8 groups against flat space 2:
+      Flat space #2 flat space: 0.800×0.250m (0.200m²) at height 1.650m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.300×0.100×0.200m (2 boxes, 0.014196m³)...
+         ✅ Can place 2/2 boxes, placed volume: 0.014196m³
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.100×0.100×0.200m: Height limit exceeded - skipping evaluation
+
+   🏆 SELECTED GROUP: 0.300×0.100×0.200m
+      Placed volume: 0.014196m³
+      Placed boxes: 2/2
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 2/2 boxes
+     • Flat space used: 0.800×0.250m (0.200m²)
+     • Position: (0.000, 0.500) → (0.800, 0.750)
+     • Height: 1.650m
+     • Sample placed box: ID=36, pos=(0.130, 0.625, 1.755)
+     • 📊 Progress: 56 boxes placed total in this iteration
+     • 📊 Total groups placed: 10
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 10 Summary:
+   • Boxes placed this iteration: 2
+   • Total boxes placed: 56
+   • Remaining boxes: 41
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 11 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 41
+✅ Total placed so far: 56 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 7 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      3. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      4. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      5. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      6. Group 0.100×0.200×0.100m: 4 boxes, volume=0.008m³
+      7. Group 0.100×0.100×0.200m: 2 boxes, volume=0.006m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 2nd
+         Box IDs: [190, 191, 192, 193, 194]...
+      3. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 3rd
+         Box IDs: [51, 52, 53, 170]
+      4. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 4th
+      5. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 5th
+      6. 0.100×0.200×0.100m (4 boxes, 0.008360m³) ← Will process 6th
+      7. 0.100×0.100×0.200m (2 boxes, 0.005808m³) ← Will process 7th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.059202m³)
+      ✓ Group 2 (0.059202m³) >= Group 3 (0.032888m³)
+      ✓ Group 3 (0.032888m³) >= Group 4 (0.023940m³)
+      ✓ Group 4 (0.023940m³) >= Group 5 (0.016560m³)
+      ✓ Group 5 (0.016560m³) >= Group 6 (0.008360m³)
+      ✓ Group 6 (0.008360m³) >= Group 7 (0.005808m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 7 groups against flat space 1:
+      Largest flat space: 0.800×0.500m (0.400m²) at height 1.740m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.100×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Nothing fits in flat space 1 — trying the next one
+
+   🎯 Evaluating all 7 groups against flat space 2:
+      Flat space #2 flat space: 0.600×0.250m (0.150m²) at height 1.860m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.100m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.100×0.200×0.100m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.100×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Nothing fits in flat space 2 — trying the next one
+
+   🎯 Evaluating all 7 groups against flat space 3:
+      Flat space #3 flat space: 0.250×0.500m (0.125m²) at height 0.620m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.100×0.200m (2 boxes, 0.005808m³)...
+         ✅ Can place 2/2 boxes, placed volume: 0.005808m³
+
+   🏆 SELECTED GROUP: 0.100×0.100×0.200m
+      Placed volume: 0.005808m³
+      Placed boxes: 2/2
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 2/2 boxes
+     • Flat space used: 0.250×0.500m (0.125m²)
+     • Position: (0.550, 0.700) → (0.800, 1.200)
+     • Height: 0.620m
+     • Sample placed box: ID=77, pos=(0.605, 0.755, 0.740)
+     • 📊 Progress: 58 boxes placed total in this iteration
+     • 📊 Total groups placed: 11
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 11 Summary:
+   • Boxes placed this iteration: 2
+   • Total boxes placed: 58
+   • Remaining boxes: 39
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 12 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 39
+✅ Total placed so far: 58 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 6 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      3. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      4. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      5. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      6. Group 0.100×0.200×0.100m: 4 boxes, volume=0.008m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 2nd
+         Box IDs: [190, 191, 192, 193, 194]...
+      3. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 3rd
+         Box IDs: [51, 52, 53, 170]
+      4. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 4th
+      5. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 5th
+      6. 0.100×0.200×0.100m (4 boxes, 0.008360m³) ← Will process 6th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.059202m³)
+      ✓ Group 2 (0.059202m³) >= Group 3 (0.032888m³)
+      ✓ Group 3 (0.032888m³) >= Group 4 (0.023940m³)
+      ✓ Group 4 (0.023940m³) >= Group 5 (0.016560m³)
+      ✓ Group 5 (0.016560m³) >= Group 6 (0.008360m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 6 groups against flat space 1:
+      Largest flat space: 0.800×0.500m (0.400m²) at height 1.740m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 1 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 2:
+      Flat space #2 flat space: 0.600×0.250m (0.150m²) at height 1.860m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.100m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.100×0.200×0.100m: Height limit exceeded - skipping evaluation
+      ⚠️  Nothing fits in flat space 2 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 3:
+      Flat space #3 flat space: 0.500×0.200m (0.100m²) at height 0.750m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 3 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 4:
+      Flat space #4 flat space: 0.250×0.350m (0.087m²) at height 0.620m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 4 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 5:
+      Flat space #5 flat space: 0.350×0.200m (0.070m²) at height 0.980m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 5 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 6:
+      Flat space #6 flat space: 0.250×0.250m (0.062m²) at height 1.650m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 6 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 7:
+      Flat space #7 flat space: 0.300×0.200m (0.060m²) at height 0.960m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 7 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 8:
+      Flat space #8 flat space: 0.250×0.200m (0.050m²) at height 0.860m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 8 — trying the next one
+
+   ⚠️  No groups can place ≥2 boxes in any of the 8 flat space(s) tried
+   🔄 Will try to form new groups on the next iteration...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 13 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 39
+✅ Total placed so far: 58 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 6 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      3. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      4. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      5. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      6. Group 0.100×0.200×0.100m: 4 boxes, volume=0.008m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 2nd
+         Box IDs: [190, 191, 192, 193, 194]...
+      3. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 3rd
+         Box IDs: [51, 52, 53, 170]
+      4. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 4th
+      5. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 5th
+      6. 0.100×0.200×0.100m (4 boxes, 0.008360m³) ← Will process 6th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.059202m³)
+      ✓ Group 2 (0.059202m³) >= Group 3 (0.032888m³)
+      ✓ Group 3 (0.032888m³) >= Group 4 (0.023940m³)
+      ✓ Group 4 (0.023940m³) >= Group 5 (0.016560m³)
+      ✓ Group 5 (0.016560m³) >= Group 6 (0.008360m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 6 groups against flat space 1:
+      Largest flat space: 0.800×0.500m (0.400m²) at height 1.740m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 1 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 2:
+      Flat space #2 flat space: 0.600×0.250m (0.150m²) at height 1.860m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.100m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.100×0.200×0.100m: Height limit exceeded - skipping evaluation
+      ⚠️  Nothing fits in flat space 2 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 3:
+      Flat space #3 flat space: 0.500×0.200m (0.100m²) at height 0.750m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 3 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 4:
+      Flat space #4 flat space: 0.250×0.350m (0.087m²) at height 0.620m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 4 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 5:
+      Flat space #5 flat space: 0.350×0.200m (0.070m²) at height 0.980m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 5 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 6:
+      Flat space #6 flat space: 0.250×0.250m (0.062m²) at height 1.650m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 6 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 7:
+      Flat space #7 flat space: 0.300×0.200m (0.060m²) at height 0.960m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 7 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 8:
+      Flat space #8 flat space: 0.250×0.200m (0.050m²) at height 0.860m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 8 — trying the next one
+
+   ⚠️  No groups can place ≥2 boxes in any of the 8 flat space(s) tried
+   🔄 Will try to form new groups on the next iteration...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 14 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 39
+✅ Total placed so far: 58 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   📋 Found 1 single boxes (cannot form groups - will use greedy placement later)
+   ✅ Formed 6 dimension-based groups:
+      1. Group 0.200×0.100×0.300m: 9 boxes, volume=0.059m³
+      2. Group 0.200×0.100×0.200m: 16 boxes, volume=0.078m³
+      3. Group 0.200×0.200×0.100m: 3 boxes, volume=0.017m³
+      4. Group 0.200×0.200×0.200m: 4 boxes, volume=0.033m³
+      5. Group 0.200×0.200×0.300m: 2 boxes, volume=0.024m³
+      6. Group 0.100×0.200×0.100m: 4 boxes, volume=0.008m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.200×0.100×0.200m (16 boxes, 0.078093m³) ← Will process 1st
+         Box IDs: [38, 199, 200, 201, 202]...
+      2. 0.200×0.100×0.300m (9 boxes, 0.059202m³) ← Will process 2nd
+         Box IDs: [190, 191, 192, 193, 194]...
+      3. 0.200×0.200×0.200m (4 boxes, 0.032888m³) ← Will process 3rd
+         Box IDs: [51, 52, 53, 170]
+      4. 0.200×0.200×0.300m (2 boxes, 0.023940m³) ← Will process 4th
+      5. 0.200×0.200×0.100m (3 boxes, 0.016560m³) ← Will process 5th
+      6. 0.100×0.200×0.100m (4 boxes, 0.008360m³) ← Will process 6th
+   ✅ Sorting verification:
+      ✓ Group 1 (0.078093m³) >= Group 2 (0.059202m³)
+      ✓ Group 2 (0.059202m³) >= Group 3 (0.032888m³)
+      ✓ Group 3 (0.032888m³) >= Group 4 (0.023940m³)
+      ✓ Group 4 (0.023940m³) >= Group 5 (0.016560m³)
+      ✓ Group 5 (0.016560m³) >= Group 6 (0.008360m³)
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 6 groups against flat space 1:
+      Largest flat space: 0.800×0.500m (0.400m²) at height 1.740m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 1 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 2:
+      Flat space #2 flat space: 0.600×0.250m (0.150m²) at height 1.860m
+      ⚠️  Group 0.200×0.100×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.100m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.100×0.200×0.100m: Height limit exceeded - skipping evaluation
+      ⚠️  Nothing fits in flat space 2 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 3:
+      Flat space #3 flat space: 0.500×0.200m (0.100m²) at height 0.750m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 3 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 4:
+      Flat space #4 flat space: 0.250×0.350m (0.087m²) at height 0.620m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 4 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 5:
+      Flat space #5 flat space: 0.350×0.200m (0.070m²) at height 0.980m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 5 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 6:
+      Flat space #6 flat space: 0.250×0.250m (0.062m²) at height 1.650m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.100×0.300m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.200m: Height limit exceeded - skipping evaluation
+      ⚠️  Group 0.200×0.200×0.300m: Height limit exceeded - skipping evaluation
+      🔍 Evaluating group 0.200×0.200×0.100m (3 boxes, 0.016560m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 6 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 7:
+      Flat space #7 flat space: 0.300×0.200m (0.060m²) at height 0.960m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 7 — trying the next one
+
+   🎯 Evaluating all 6 groups against flat space 8:
+      Flat space #8 flat space: 0.250×0.200m (0.050m²) at height 0.860m
+      🔍 Evaluating group 0.200×0.100×0.200m (16 boxes, 0.078093m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.100×0.300m (9 boxes, 0.059202m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.200m (4 boxes, 0.032888m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      🔍 Evaluating group 0.200×0.200×0.300m (2 boxes, 0.023940m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Group 0.200×0.200×0.100m: Dimensions don't fit - skipping evaluation
+      🔍 Evaluating group 0.100×0.200×0.100m (4 boxes, 0.008360m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 8 — trying the next one
+
+   ⚠️  No groups can place ≥2 boxes in any of the 8 flat space(s) tried
+   🔄 Will try to form new groups on the next iteration...
+
+   No progress for 3 consecutive iterations - exiting group placement
+
+======================================================================
+✅ FLAT-SPACE GROUP PLACEMENT COMPLETE
+======================================================================
+   • Total boxes placed: 58
+   • Total groups placed: 11
+   • Remaining boxes: 39
+   • Iterations used: 14
+   • Reason for exit: All boxes placed
+
+======================================================================
+PHASE 3: NEAT PLACEMENT (using trained model)
+======================================================================
+📦 Remaining boxes to place: 39
+⚠️  No trained NEAT network found — Phase 3 skipped.
+
+======================================================================
+PHASE 3b: EXTREME-POINT PACKER — 46 boxes remaining
+======================================================================
+   ✅ Extreme-point packer placed 34/46 (CoM-stable, interlocking-aware)
+
+======================================================================
+PHASE 3d: GRID SWEEP — 12 box(es) EP could not place
+======================================================================
+   ✅ Grid sweep placed 7/12 (same CoM gate as Phase 3b)
+
+PHASE 3c/3e/3f skipped (PALLETIZER_COUNT_ONLY=1) — they relocate boxes but cannot change how many are placed.
+======================================================================
+PHASE 3h: VOID REPAIR — 0 accepted / 0 attempts; invalid_protected_foundation:cumulative_build_step:16
+PHASE 3i: INCUMBENT COMPLETION — 0 additional boxes; invalid_incumbent:cumulative_build_step:16
+
+======================================================================
+📊 FINAL SUMMARY
+======================================================================
+   Total boxes: 204
+   ✅ Placed: 199 (97%)
+   ❌ Unplaced: 5 (2%)
+
+   Breakdown by phase:
+     1. Pattern boxes: 100 boxes
+     2. Flat-space groups: 58 boxes
+     3. Hybrid NEAT+greedy: 0 placed, 0 failed
+     3b. Extreme-point packer: 34 placed
+     3d. Grid sweep fallback: 7 placed
+     3f. Support-gated retry: 0 placed
+     3h. Void repair: 0 additional boxes
+     3i. Incumbent completion: 0 additional boxes
+
+   ✅ Placed Box IDs (199 boxes):
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+      10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+      20, 21, 22, 23, 24, 25, 26, 27, 28, 29
+      30, 31, 32, 33, 34, 35, 36, 37, 38, 39
+      40, 41, 42, 43, 44, 45, 46, 47, 48, 49
+      50, 51, 52, 53, 54, 55, 56, 57, 58, 59
+      60, 61, 62, 63, 64, 65, 66, 67, 68, 69
+      70, 71, 72, 73, 74, 75, 76, 77, 78, 79
+      80, 81, 82, 83, 84, 85, 86, 87, 88, 89
+      90, 91, 92, 93, 94, 95, 96, 97, 98, 99
+      100, 101, 102, 103, 104, 105, 106, 107, 108, 109
+      110, 111, 112, 113, 114, 115, 116, 117, 118, 119
+      120, 121, 122, 123, 124, 125, 126, 127, 128, 129
+      130, 131, 132, 133, 134, 135, 136, 137, 138, 139
+      140, 141, 142, 143, 144, 145, 146, 147, 148, 149
+      150, 151, 152, 153, 154, 155, 156, 157, 158, 159
+      160, 161, 162, 163, 164, 165, 166, 167, 168, 169
+      170, 171, 172, 173, 174, 175, 176, 177, 178, 179
+      180, 181, 182, 183, 184, 185, 186, 187, 188, 189
+      190, 191, 192, 193, 199, 200, 201, 202, 203
+
+   ❌ Unplaced Box IDs (5 boxes):
+      194, 195, 196, 197, 198
+======================================================================
+
+📦 Unplaced boxes JSON saved to: C:\Palletizing\02_EP_176_canonical_1.875m\unplaced_boxes.packformation.json
+   Total unplaced boxes: 5
+   Total unplaced volume: 0.0329 m³ (1.83% of container)
+
+   Unplaced box distribution:
+      0.230×0.110×0.260m: 5 box(es)
