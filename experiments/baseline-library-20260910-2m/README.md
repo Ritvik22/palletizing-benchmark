@@ -3,6 +3,22 @@
 Finished September 11, 2026, at 06:25:31 UTC. **Research archive only: not an
 official leaderboard submission, published strategy replacement, or training-data approval.**
 
+## Visual inspection
+
+Open `/viz?dataset=baseline-library-20260910-2m&view=ep` on this website, or
+use **Browse Sep 10 results** from the order database. Select any of the 1,000
+orders, then switch between EP, the certified P1+2 teacher and its schematic
+remainder. The teacher audit is **not the EP run's foundation**; do not subtract
+its count from EP and call that a Phase 3 improvement. The published strategy
+library remains separate and unchanged.
+
+The viewer uses the frozen teacher inventory for dimensions, weights and order
+quantities, not the mutable website database. `teacher/orders-audited.jsonl.gz`
+is now byte-copied from the pinned suite archive for portable visualization;
+`viewer.json` records its SHA-256 and source revision. It is an audit artifact,
+not approval to train. No local admin accounts, preview databases or laptop
+paths are needed to display these results.
+
 ## Results
 
 - Fixed dataset: 1,000 orders / 155,904 boxes; 0.8 x 1.2 x **2.0 m hard ceiling**.
@@ -59,10 +75,12 @@ branch `final-palletizing-suite-bwc`.
 - `recorded-competition-audit.json`: original per-order verdicts, which agree
   with the fresh audit. Do not aggregate missing counts from original single-order
   audit runs; use the fresh all-order totals.
-- `teacher/`: all-order coverage and the exact replay contract, not training data.
+- `teacher/`: all-order coverage, replay contract and compressed audited teacher
+  records for visualization, not approved training data.
 - `suite-export-verification.json`: copied verification index for the **full
-  suite archive**. Frozen source, raw evidence and compressed teacher orders
-  referenced there intentionally live in the pinned suite archive, not here.
+  suite archive**. Frozen source and raw evidence referenced there intentionally
+  live in the pinned suite archive, not here. The later viewer addition also
+  copies the compressed teacher orders, verified separately by `viewer.json`.
 - `final-progress.json`: original completed outcome with I/O-only recovery metadata.
   The full suite preserves that recovery and all 224 pre-recovery completed results.
 - `suite-revision.json`: explicit linkage to the code and full evidence.

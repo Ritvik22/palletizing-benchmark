@@ -14,13 +14,16 @@
   .side{border-left:1px solid var(--line);background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
   h1{font-size:16px;font-weight:750;letter-spacing:-.01em}
   .sub{font-size:12px;color:var(--faint);margin-top:2px}
+  .dataset-link{display:block;color:var(--accent);font-size:13px;margin-top:10px}
+  .dataset-note{color:#ffe3a1;background:#332c1c;border:1px solid #6e5b2f;border-radius:8px;padding:10px;font-size:12px;line-height:1.5}
+  .stats .v{overflow-wrap:anywhere;min-width:0}
   label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);font-weight:650;display:block;margin-bottom:6px}
   select,input{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:8px;font-size:13px}
   .row{display:flex;gap:8px}
   .seg{display:flex;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:3px;gap:3px}
   .seg button{flex:1;background:transparent;border:none;color:var(--dim);font-size:12px;padding:7px 4px;border-radius:6px;cursor:pointer}
   .seg button.active{background:var(--line);color:var(--text);font-weight:600}
-  .stats{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:13px}
+  .stats{display:grid;grid-template-columns:minmax(105px,.9fr) minmax(0,1.1fr);gap:4px 12px;font-size:13px}
   /* benchmark table: dataset-wide engine comparison */
   #bench table{width:100%;border-collapse:collapse;font-size:12px}
   #bench th{color:var(--faint);font-weight:600;text-align:right;padding:0 0 5px;
@@ -100,7 +103,9 @@
     <div>
       <h1>Pack Visualizer</h1>
       <div class="sub">Pallet layout, boxes grouped by SKU · <span id="unit">metres</span></div>
+      <a id="datasetLink" class="dataset-link" href="/viz?dataset=baseline-library-20260910-2m&amp;view=ep">Browse Sep 10 experimental results</a>
     </div>
+    <div id="datasetNote" class="dataset-note" hidden>Sep 10 research archive: the certified P1+2 teacher and EP are separate runs, not a shared foundation and completion. Remainders are schematic, not placement plans. Not a leaderboard result or approval for training. Historical NEAT/RL results are available in the published library.</div>
     <div id="pickWrap">
       <label>Pack (order)</label>
       <div class="row">
@@ -145,8 +150,10 @@
 <script src="/viz-static/three.min.js"></script>
 <script src="/viz-static/OrbitControls.min.js"></script>
 <script src="/viz-static/order-panel.js?v=2"></script>
+<script src="/viz-static/result-dataset.js?v=1"></script>
 <script>
 const API = "";  // same origin
+const DATASET = PalletResultDataset.fromSearch(location.search);
 const PALETTE = ["#38bdf8","#a78bfa","#34d399","#fbbf24","#f87171","#f472b6","#22d3ee","#a3e635","#fb923c","#818cf8",
                  "#2dd4bf","#e879f9","#facc15","#60a5fa","#4ade80","#fca5a5","#c084fc","#5eead4","#fde047","#93c5fd"];
 
@@ -241,7 +248,7 @@ async function loadBenchmark(){
   document.getElementById("bench").innerHTML = h;
   document.getElementById("benchWrap").style.display = "block";
 }
-if(!document.body.classList.contains('embed')) loadBenchmark();
+if(DATASET.valid && !DATASET.experimental && !document.body.classList.contains('embed')) loadBenchmark();
 
 let curResult = null;    // {available, placed, remainder} phase-1/2 result for curOrderId
 let curEp = null, curNeat=null, curRl=null, curRr=null;        // {available, pack} full EP pack (phases 1+2+3) for curOrderId
@@ -518,6 +525,8 @@ function renderStats(){
     if(added) rows.push(["Added", added]);
     if(pv.changed && updated) rows.push(["Updated", updated]);
     if(pv.commit) rows.push(["Published by", pv.commit]);
+    if(pv.code_commit) rows.push(["Suite code revision", pv.code_commit]);
+    if(pv.subject) rows.push(["Revision notes", pv.subject]);
   }
   document.getElementById("stats").replaceChildren(...rows.flatMap(r=>r.map((text,i)=>{
     const s=document.createElement('span');s.className=i?'v':'k';s.textContent=String(text);return s;
@@ -534,8 +543,7 @@ function renderStats(){
   }));
 }
 
-const VIEW_LABELS = {packed:"Phase 1+2", ep:"EP Hybrid", neat:"NEAT Hybrid",
-                     rl:"RL Full", rr:"RL + ReRanker", remainder:"Phase 1+2 Remainder", schematic:"Schematic by SKU"};
+const VIEW_LABELS = DATASET.labels;
 function setSourceButtons(){
   const has = curResult && curResult.available;
   const hasEp = curEp && curEp.available;
@@ -569,7 +577,8 @@ function setSourceButtons(){
 async function loadPack(orderId){
   const version=++loadVersion;packReady=false;
   curOrderId=orderId; skuColorMap={};
-  const data = await (await fetch(`${API}/viz-api/orders/${orderId}`)).json();
+  document.getElementById('datasetLink').href = DATASET.switchUrl(orderId);
+  const data = await (await fetch(`${DATASET.api}/orders/${encodeURIComponent(orderId)}`)).json();
   if(version!==loadVersion) return;
   curItems = data.items||[];
   curItems.forEach(it=>colorOf(it.sku_id));   // assign stable colors in item order
@@ -577,13 +586,10 @@ async function loadPack(orderId){
   // Fetched together so switching between them is instant — the whole point is
   // comparing the same order under the two, and a spinner between them hides the
   // difference you are trying to see.
-  const packs = await Promise.all([
-    fetch(`${API}/viz-api/result/${orderId}`).then(r=>r.json()).catch(()=>null),
-    fetch(`${API}/viz-api/ep-result/${orderId}`).then(r=>r.json()).catch(()=>null),
-    fetch(`${API}/viz-api/neat-result/${orderId}`).then(r=>r.json()).catch(()=>null),
-    fetch(`${API}/viz-api/rl-result/${orderId}`).then(r=>r.json()).catch(()=>null),
-  
-    fetch(`${API}/viz-api/rr-result/${orderId}`).then(r=>r.json()).catch(()=>null)]);
+  const packs = await Promise.all(['packed','ep','neat','rl','rr'].map(method=>{
+    const url = DATASET.resultUrl(method, orderId);
+    return url ? fetch(url).then(r=>r.ok ? r.json() : null).catch(()=>null) : null;
+  }));
   if(version!==loadVersion) return;
   [curResult, curEp, curNeat, curRl, curRr]=packs;
   packReady=true;
@@ -595,10 +601,19 @@ async function loadPack(orderId){
 }
 
 async function boot(){
+  if(!DATASET.valid) throw new Error('Unknown result dataset');
+  document.getElementById('datasetNote').hidden = !DATASET.experimental;
+  document.getElementById('datasetLink').textContent = DATASET.experimental
+    ? 'Browse published strategy results' : 'Browse Sep 10 experimental results';
+  document.querySelectorAll('#sourceList .view').forEach(button=>{
+    button.querySelector('.vname').textContent = VIEW_LABELS[button.dataset.src];
+    button.hidden = DATASET.experimental && ['neat','rl','rr'].includes(button.dataset.src);
+    if(button.hidden) button.style.display='none';
+  });
   initThree();
-  const skus=await (await fetch(`${API}/viz-api/skus`)).json();
+  const skus=await (await fetch(`${DATASET.api}/skus`)).json();
   skus.forEach(s=>SKUS[s.sku_id]=s);
-  const orders=await (await fetch(`${API}/viz-api/orders`)).json();
+  const orders=await (await fetch(`${DATASET.api}/orders`)).json();
   const sel=document.getElementById("packSel");
   sel.replaceChildren(...orders.map(o=>{
     const option=document.createElement('option');option.value=o.order_id;

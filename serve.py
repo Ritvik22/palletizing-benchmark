@@ -254,6 +254,12 @@ def _viz_index():
     return FileResponse(str(VIZ / "index.html"))
 
 
+# Experimental archives have their own frozen catalogue, orders and endpoints.
+# They do not replace any published strategy files or leaderboard measurements.
+from experiment_results import DATASET, result_router  # noqa: E402
+app.include_router(result_router(HERE / "experiments" / DATASET))
+
+
 app.mount("/viz-static", StaticFiles(directory=str(VIZ)), name="viz")
 
 # Hashed assets, then an SPA fallback for client-side routes (/admin, /login, ...).
@@ -268,6 +274,11 @@ def _spa_html():
         ver = int((VIZ / "inject.js").stat().st_mtime)  # cache-bust on edits
         tag = f'<script src="/viz-static/inject.js?v={ver}"></script>\n</body>'
         html = html.replace("</body>", tag, 1)
+    link = (f'<a href="/viz?dataset={DATASET}&amp;view=ep" '
+            'style="position:fixed;bottom:16px;right:16px;z-index:999;padding:12px 16px;'
+            'background:#126069;color:white;border-radius:10px;font:600 14px system-ui;'
+            'box-shadow:0 3px 12px #0003">Browse Sep 10 results &middot; 1,000 orders</a>')
+    html = html.replace("</body>", link + "</body>", 1)
     return HTMLResponse(html)
 
 
