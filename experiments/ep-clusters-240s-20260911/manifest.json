@@ -1,0 +1,15 @@
+{
+  "version": "ep-cluster-batch-v1",
+  "dataset": "ep-clusters-240s-20260911",
+  "created_at": "2026-09-11T16:01:54.419954+00:00",
+  "algorithm_commit": "c12271c2ef1b8fdaee3fcdbc718fd60cac440d39",
+  "input_sha256": "b2b96a9d68903dba463bb5e282e0c2dcfbd0691ce796bd81eae5ef4d52c088aa",
+  "container": {
+    "width": 0.8,
+    "depth": 1.2,
+    "height": 2.0
+  },
+  "plan_budget_s": 240,
+  "clusters": true,
+  "publication": "Experimental, not a leaderboard revision or PPO teacher"
+}

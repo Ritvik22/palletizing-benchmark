@@ -62,4 +62,30 @@ class ClusterResultTests(unittest.TestCase):
         self.assertEqual([r['id'] for r in revisions],['published'])
 
 
+class PublishedClusterArchiveTests(unittest.TestCase):
+    def test_committed_six_order_archive_when_present(self):
+        archive=Path(__file__).resolve().parents[1]/'experiments'/CLUSTER_DATASET
+        if not (archive/'viewer.json').is_file():
+            self.skipTest('Results are committed separately after generation and audit')
+        library=ClusterExperimentResults(archive)
+        summary=json.loads((archive/'summary.json').read_text())
+        audit=json.loads((archive/'competition-audit.json').read_text())
+        manifest=json.loads((archive/'manifest.json').read_text())
+        self.assertEqual(len(library.orders()),6)
+        self.assertEqual(sum(r['total_boxes'] for r in library.orders()),1076)
+        self.assertEqual(library.metadata['suite_commit'],manifest['algorithm_commit'])
+        for row in summary['orders']:
+            oid=row['order_id'];pack=library.ep_result(oid)['pack']
+            self.assertEqual(len(pack['boxes']),row['placed'])
+            self.assertEqual(len({b['id'] for b in pack['boxes']}),row['placed'])
+            self.assertEqual(row['placed'],audit['orders'][oid]['accepted_boxes'])
+            self.assertTrue(audit['orders'][oid]['valid'])
+            self.assertEqual(audit['orders'][oid]['complete'],row['placed']==row['total'])
+            self.assertFalse(library.teacher_result(oid)['available'])
+            top=max((b['position']['z']+b['dimensions']['height']/2 for b in pack['boxes']),default=0)
+            self.assertAlmostEqual(top,row['top_m'])
+            self.assertLessEqual(top,2.+1e-9)
+        self.assertEqual(sum(r['placed'] for r in summary['orders']),summary['boxes_placed'])
+
+
 if __name__=='__main__': unittest.main()
