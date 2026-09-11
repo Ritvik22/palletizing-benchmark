@@ -5,10 +5,14 @@ official leaderboard submission, published strategy replacement, or training-dat
 
 ## Visual inspection
 
-Open `/viz?dataset=baseline-library-20260910-2m&view=ep` on this website, or
-use **Browse Sep 10 results** from the order database. Select any of the 1,000
-orders, then switch between EP, the certified P1+2 teacher and its schematic
-remainder. The teacher audit is **not the EP run's foundation**; do not subtract
+Filter the order database normally and open an order's **View** pop-up. Its
+**Result date** selector lists that order's available result collections, newest
+first by default. Switch dates and strategies within the same pop-up; the 3D
+pack, order snapshot, statistics and provenance change together. A method not
+included in the selected run is marked unavailable, not replaced with an older
+result. The existing direct `/viz?dataset=baseline-library-20260910-2m&view=ep`
+link remains supported for embeds and bookmarks, but there is no separate
+results-browsing button. The teacher audit is **not the EP run's foundation**; do not subtract
 its count from EP and call that a Phase 3 improvement. The published strategy
 library remains separate and unchanged.
 

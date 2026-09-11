@@ -9,7 +9,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from experiment_results import DATASET, ExperimentResults, result_router
+from experiment_results import DATASET, ExperimentResults, order_revisions, result_router
 
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE = ROOT / "experiments" / DATASET
@@ -87,6 +87,39 @@ class ExperimentResultTests(unittest.TestCase):
                     self.assertEqual(client.get(prefix + "/" + endpoint + "/" + invalid).status_code, 400)
             self.assertEqual(client.get(prefix + "/orders/ORD-00000000").status_code, 404)
             self.assertEqual(client.get(prefix + "/neat-result/ORD-08511033").status_code, 404)
+
+    def test_order_revision_list_is_newest_first_and_order_specific(self):
+        with tempfile.TemporaryDirectory() as temp:
+            website = Path(temp)
+            (website / 'results_ep').mkdir()
+            (website / 'results_ep' / 'ORD-08511033.packformation.json').write_text('{}')
+            provenance = lambda source, oid: {'updated':'2026-09-04T18:00:00+00:00'}
+            revisions = order_revisions('ORD-08511033', self.library, website, provenance)
+            self.assertEqual([r['id'] for r in revisions], [DATASET, 'published'])
+            self.assertEqual(revisions[0]['date_kind'], 'run_completed')
+            self.assertEqual(revisions[1]['date_kind'], 'last_published')
+            # The prior artifact belongs to another order, not to every order.
+            revisions = order_revisions('ORD-19412545', self.library, website, provenance)
+            self.assertEqual([r['id'] for r in revisions], [DATASET])
+            # A future published revision must not be sorted behind this run.
+            newer = lambda source, oid: {'updated':'2026-09-12T00:00:00Z'}
+            self.assertEqual(order_revisions('ORD-08511033', self.library, website, newer)[0]['id'], 'published')
+            # Choose the actual latest strategy timestamp, not the largest ISO string.
+            (website / 'results_neat').mkdir()
+            (website / 'results_neat' / 'ORD-08511033.packformation.json').write_text('{}')
+            dates = {'ep':'2026-09-12T00:30:00+02:00', 'neat':'2026-09-11T23:00:00Z'}
+            revisions = order_revisions('ORD-08511033', self.library, website,
+                                        lambda source, oid: {'updated':dates[source]})
+            self.assertEqual(revisions[0]['date'], dates['neat'])
+
+    def test_new_provenance_uses_actual_run_dates_and_source_files(self):
+        teacher = self.library.teacher_result('ORD-08511033')['provenance']
+        ep = self.library.ep_result('ORD-08511033')['provenance']
+        self.assertEqual(teacher['run_completed_at'], json.loads((ARCHIVE/'final-progress.json').read_text())['updated_at'])
+        self.assertEqual(teacher['run_started_at'], json.loads((ARCHIVE/'manifest.json').read_text())['created_at'])
+        self.assertTrue(teacher['source_file'].endswith('teacher/orders-audited.jsonl.gz'))
+        self.assertTrue(ep['source_file'].endswith('packs/ORD-08511033.packformation.json'))
+        self.assertEqual(teacher['source_record'], 'ORD-08511033')
 
     def test_teacher_integrity_fails_closed(self):
         with tempfile.TemporaryDirectory() as temp:

@@ -2,7 +2,16 @@ const {test} = require('node:test');
 const assert = require('node:assert/strict');
 const {readFileSync} = require('node:fs');
 const {join} = require('node:path');
-const {EXPERIMENT, fromSearch} = require('../viz/result-dataset.js');
+const {EXPERIMENT, CLUSTER_EXPERIMENT, fromSearch} = require('../viz/result-dataset.js');
+
+test('cluster revision only exposes its own EP data, never a borrowed teacher', () => {
+  const d=fromSearch('?dataset='+CLUSTER_EXPERIMENT);
+  assert.equal(d.epOnly,true); assert.equal(d.valid,true);
+  assert.equal(d.resultUrl('ep','ORD-08511033'),`/viz-api/experiments/${CLUSTER_EXPERIMENT}/ep-result/ORD-08511033`);
+  for(const method of ['packed','remainder','neat','rl','rr']) assert.equal(d.resultUrl(method,'ORD-08511033'),null);
+  const M=require('../viz/order-panel.js');
+  assert.deepEqual(M.revisionMethods({dataset:CLUSTER_EXPERIMENT}).map(m=>m.key),['ep','schematic']);
+});
 
 test('published views keep their existing endpoints and labels', () => {
   const d = fromSearch('?order=ORD-08511033');
@@ -34,13 +43,14 @@ test('switching libraries preserves the selected order and uses same-origin URLs
   assert.equal(new URL(exp.switchUrl('ORD-08511033'), 'https://test').searchParams.get('dataset'), null);
   assert.ok(pub.resultUrl('ep', '../inputs').endsWith('..%2Finputs'));
 });
-test('viewer separates benchmark summaries and exposes a persistent results entry point', () => {
+test('viewer keeps datasets separate without adding a second browsing workflow', () => {
   const html = readFileSync(join(__dirname,'../viz/index.html'),'utf8');
   assert.ok(html.includes('DATASET.valid && !DATASET.experimental'));
   assert.ok(html.includes('DATASET.resultUrl(method, orderId)'));
   assert.ok(html.includes('Suite code revision'));
   assert.ok(html.includes('not a shared foundation and completion'));
-  assert.ok(readFileSync(join(__dirname,'../serve.py'),'utf8').includes('Browse Sep 10 results'));
+  assert.ok(!readFileSync(join(__dirname,'../serve.py'),'utf8').includes('Browse Sep 10 results'));
+  assert.ok(!html.includes('id="datasetLink"'));
   // Parse every inline script, including the viewer, without needing WebGL.
   for (const match of html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)) new Function(match[1]);
 });

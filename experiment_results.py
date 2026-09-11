@@ -8,15 +8,18 @@ import hashlib
 import json
 import re
 from collections import Counter
+from datetime import datetime
 from functools import cached_property
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException
 
 DATASET = "baseline-library-20260910-2m"
+CLUSTER_DATASET = "ep-clusters-240s-20260911"
 
 
 class ExperimentResults:
+    dataset = DATASET
     def __init__(self, root: Path):
         self.root = root.resolve()
 
@@ -68,10 +71,13 @@ class ExperimentResults:
         return dict(order_id=order_id, items=[dict(sku_id=sku, quantity=n)
                                             for sku, n in sorted(counts.items())])
 
-    def _provenance(self, subject):
+    def _provenance(self, subject, source_file, order_id):
         return dict(code_commit=self.metadata["suite_commit"],
                     code_repository=self.metadata["suite_repository"], subject=subject,
-                    experiment=DATASET, training_approved=False, leaderboard=False)
+                    source_file=source_file, source_record=order_id,
+                    run_started_at=self.metadata["run_started_at"],
+                    run_completed_at=self.metadata["run_completed_at"],
+                    experiment=self.dataset, training_approved=False, leaderboard=False)
 
     def teacher_result(self, order_id: str):
         self._check_id(order_id)
@@ -108,7 +114,8 @@ class ExperimentResults:
                     teacher_empty=not placed,
                     provenance=self._provenance(
                         "Certified P1+2 teacher audit; 4096 global / 1 local candidate. "
-                        "Not the EP run foundation or training approval."))
+                        "Not the EP run foundation or training approval.",
+                        f"experiments/{DATASET}/teacher/orders-audited.jsonl.gz", order_id))
 
     def ep_result(self, order_id: str):
         self._check_id(order_id)
@@ -117,15 +124,78 @@ class ExperimentResults:
             raise HTTPException(status_code=400, detail="Invalid pack path")
         if not path.is_file():
             return dict(available=False, order_id=order_id)
+        expected = self.metadata.get('pack_sha256', {}).get(order_id)
+        if self.metadata.get('kind') == 'ep-only' and (expected is None or hashlib.sha256(path.read_bytes()).hexdigest() != expected):
+            raise ValueError('Pack does not match its recorded revision')
         return dict(available=True, order_id=order_id,
                     pack=json.loads(path.read_text(encoding="utf-8")),
                     provenance=self._provenance(
-                        "Experimental validated grid EP; not a leaderboard replacement."))
+                        self.metadata.get('ep_subject', "Experimental validated grid EP; not a leaderboard replacement."),
+                        f"experiments/{self.dataset}/packs/{order_id}.packformation.json", order_id))
 
 
-def result_router(root: Path):
-    library = ExperimentResults(root)
-    router = APIRouter(prefix="/viz-api/experiments/" + DATASET)
+class ClusterExperimentResults(ExperimentResults):
+    """EP-only revision: its own frozen inventory, never borrowed BC labels."""
+    dataset = CLUSTER_DATASET
+
+    @cached_property
+    def teachers(self):
+        # The inherited catalogue methods use this inventory shape. Empty expert
+        # arrays are internal only; teacher_result never exposes them as a demo.
+        path = self.root / 'inputs.json'
+        if hashlib.sha256(path.read_bytes()).hexdigest() != self.metadata['inputs_file_sha256']:
+            raise ValueError('Inputs do not match their recorded revision')
+        inputs = json.loads(path.read_text(encoding='utf-8'))
+        result = {}
+        for oid, specs in inputs.items():
+            self._check_id(oid)
+            result[oid] = dict(container=[.8,1.2,2.], expert=[], boxes=[
+                [i,s['sku_id'],s['width'],s['depth'],s['height'],s['weight']]
+                for i,s in enumerate(specs)])
+        return result
+
+    def teacher_result(self, order_id):
+        self._check_id(order_id)
+        return dict(available=False, order_id=order_id)
+
+
+def order_revisions(order_id, library, website, provenance, extra_libraries=()):
+    """Only revisions with actual artifacts for this order; no cross-run fallback."""
+    library._check_id(order_id)
+    def timestamp(value):
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).timestamp() if value else float("-inf")
+    revisions = []
+    for extra in extra_libraries:
+        if order_id in extra.teachers and extra.ep_result(order_id)['available']:
+            revisions.append(dict(id=extra.dataset, dataset=extra.dataset,
+                label=extra.metadata['label'], date=extra.metadata['run_completed_at'],
+                date_kind='run_completed', note=extra.metadata['ep_subject']))
+    if order_id in library.teachers:
+        revisions.append(dict(id=DATASET, dataset=DATASET,
+            label="Sep 10–11, 2026 · EP and P1+2 teacher audit",
+            date=library.metadata["run_completed_at"], date_kind="run_completed",
+            note="Research run. P1+2 is a teacher audit, not the EP pack's foundation. "
+                 "Layer remainder belongs to that teacher audit. Not a leaderboard or training approval."))
+    available = []
+    if all((website/"results"/(order_id+suffix)).is_file() for suffix in (".placed.json", ".remainder.json")):
+        available.append("phase12")
+    for source, folder in (("ep", "results_ep"), ("neat", "results_neat"),
+                           ("rl", "results_rl"), ("reranker", "results_rl_reranker")):
+        if (website/folder/(order_id+".packformation.json")).is_file():
+            available.append(source)
+    if available or not revisions:
+        dates = [(provenance(source, order_id) or {}).get("updated") for source in available]
+        revisions.append(dict(id="published", dataset=None, label="Published strategy results",
+            date=max((d for d in dates if d), key=timestamp, default=None), date_kind="last_published",
+            note="Earlier published collection. Each strategy's own publication date is shown in its revision details."))
+    # Dates in source provenance are ISO-8601; use timestamps rather than string
+    # ordering because explicit timezone offsets can differ between archives.
+    return sorted(revisions, key=lambda revision: timestamp(revision.get("date")), reverse=True)
+
+
+def result_router(root: Path, library=None):
+    library = library or ExperimentResults(root)
+    router = APIRouter(prefix="/viz-api/experiments/" + library.dataset)
     for path, handler in (("/skus", library.skus), ("/orders", library.orders),
                           ("/orders/{order_id}", library.order),
                           ("/result/{order_id}", library.teacher_result),

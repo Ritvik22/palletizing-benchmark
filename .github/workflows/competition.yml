@@ -17,5 +17,5 @@ jobs:
       - run: python -m pip install --no-deps -e .
       - run: python -m pytest competition/tests -q
       - run: python -m unittest discover -s tests -p 'test_*.py'
-      - run: node --test tests/order-panel.test.cjs tests/portal.test.cjs tests/result-dataset.test.cjs
+      - run: node --test tests/order-panel.test.cjs tests/portal.test.cjs tests/result-dataset.test.cjs tests/order-revisions.test.cjs
       - run: node --check competition/static/portal.js

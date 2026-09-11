@@ -14,7 +14,6 @@
   .side{border-left:1px solid var(--line);background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
   h1{font-size:16px;font-weight:750;letter-spacing:-.01em}
   .sub{font-size:12px;color:var(--faint);margin-top:2px}
-  .dataset-link{display:block;color:var(--accent);font-size:13px;margin-top:10px}
   .dataset-note{color:#ffe3a1;background:#332c1c;border:1px solid #6e5b2f;border-radius:8px;padding:10px;font-size:12px;line-height:1.5}
   .stats .v{overflow-wrap:anywhere;min-width:0}
   label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);font-weight:650;display:block;margin-bottom:6px}
@@ -103,7 +102,6 @@
     <div>
       <h1>Pack Visualizer</h1>
       <div class="sub">Pallet layout, boxes grouped by SKU · <span id="unit">metres</span></div>
-      <a id="datasetLink" class="dataset-link" href="/viz?dataset=baseline-library-20260910-2m&amp;view=ep">Browse Sep 10 experimental results</a>
     </div>
     <div id="datasetNote" class="dataset-note" hidden>Sep 10 research archive: the certified P1+2 teacher and EP are separate runs, not a shared foundation and completion. Remainders are schematic, not placement plans. Not a leaderboard result or approval for training. Historical NEAT/RL results are available in the published library.</div>
     <div id="pickWrap">
@@ -149,8 +147,8 @@
 
 <script src="/viz-static/three.min.js"></script>
 <script src="/viz-static/OrbitControls.min.js"></script>
-<script src="/viz-static/order-panel.js?v=2"></script>
-<script src="/viz-static/result-dataset.js?v=1"></script>
+<script src="/viz-static/result-dataset.js?v=2"></script>
+<script src="/viz-static/order-panel.js?v=3"></script>
 <script>
 const API = "";  // same origin
 const DATASET = PalletResultDataset.fromSearch(location.search);
@@ -577,7 +575,6 @@ function setSourceButtons(){
 async function loadPack(orderId){
   const version=++loadVersion;packReady=false;
   curOrderId=orderId; skuColorMap={};
-  document.getElementById('datasetLink').href = DATASET.switchUrl(orderId);
   const data = await (await fetch(`${DATASET.api}/orders/${encodeURIComponent(orderId)}`)).json();
   if(version!==loadVersion) return;
   curItems = data.items||[];
@@ -594,8 +591,8 @@ async function loadPack(orderId){
   [curResult, curEp, curNeat, curRl, curRr]=packs;
   packReady=true;
   // Default to the phase 1+2 packed result when it's been computed.
-  sourceMode = (curResult && curResult.available) ? "packed" : "schematic";
-  if(PalletOrderModel.METHODS.some(m=>m.key===requestedView)) sourceMode=requestedView;
+  sourceMode = DATASET.epOnly && curEp?.available ? 'ep' : (curResult && curResult.available) ? "packed" : "schematic";
+  if(PalletOrderModel.METHODS.some(m=>m.key===requestedView) && (!DATASET.epOnly || ['ep','schematic'].includes(requestedView))) sourceMode=requestedView;
   setSourceButtons();
   renderCurrent();
 }
@@ -603,11 +600,10 @@ async function loadPack(orderId){
 async function boot(){
   if(!DATASET.valid) throw new Error('Unknown result dataset');
   document.getElementById('datasetNote').hidden = !DATASET.experimental;
-  document.getElementById('datasetLink').textContent = DATASET.experimental
-    ? 'Browse published strategy results' : 'Browse Sep 10 experimental results';
+  if(DATASET.epOnly) document.getElementById('datasetNote').textContent = 'EP clusters · 240-second research run. No PPO teacher or leaderboard submission.';
   document.querySelectorAll('#sourceList .view').forEach(button=>{
     button.querySelector('.vname').textContent = VIEW_LABELS[button.dataset.src];
-    button.hidden = DATASET.experimental && ['neat','rl','rr'].includes(button.dataset.src);
+    button.hidden = DATASET.epOnly ? !['ep','schematic'].includes(button.dataset.src) : DATASET.experimental && ['neat','rl','rr'].includes(button.dataset.src);
     if(button.hidden) button.style.display='none';
   });
   initThree();

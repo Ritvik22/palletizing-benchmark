@@ -256,8 +256,26 @@ def _viz_index():
 
 # Experimental archives have their own frozen catalogue, orders and endpoints.
 # They do not replace any published strategy files or leaderboard measurements.
-from experiment_results import DATASET, result_router  # noqa: E402
-app.include_router(result_router(HERE / "experiments" / DATASET))
+from experiment_results import DATASET, CLUSTER_DATASET, ExperimentResults, ClusterExperimentResults, order_revisions, result_router  # noqa: E402
+EXPERIMENT_LIBRARY = ExperimentResults(HERE / "experiments" / DATASET)
+app.include_router(result_router(HERE / "experiments" / DATASET, EXPERIMENT_LIBRARY))
+EXTRA_EXPERIMENTS = []
+cluster_root = HERE / 'experiments' / CLUSTER_DATASET
+if (cluster_root / 'viewer.json').is_file():
+    cluster_library = ClusterExperimentResults(cluster_root)
+    EXTRA_EXPERIMENTS.append(cluster_library)
+    app.include_router(result_router(cluster_root, cluster_library))
+
+
+@app.get("/viz-api/result-revisions/{order_id}")
+def _viz_result_revisions(order_id: str):
+    EXPERIMENT_LIBRARY._check_id(order_id)
+    with _db() as con:
+        exists = con.execute("SELECT 1 FROM orders WHERE order_id = ?", (order_id,)).fetchone()
+    if not exists:
+        return JSONResponse({"detail": "Order not found"}, status_code=404)
+    return JSONResponse({"order_id": order_id,
+                         "revisions": order_revisions(order_id, EXPERIMENT_LIBRARY, HERE, _prov, EXTRA_EXPERIMENTS)})
 
 
 app.mount("/viz-static", StaticFiles(directory=str(VIZ)), name="viz")
@@ -274,11 +292,6 @@ def _spa_html():
         ver = int((VIZ / "inject.js").stat().st_mtime)  # cache-bust on edits
         tag = f'<script src="/viz-static/inject.js?v={ver}"></script>\n</body>'
         html = html.replace("</body>", tag, 1)
-    link = (f'<a href="/viz?dataset={DATASET}&amp;view=ep" '
-            'style="position:fixed;bottom:16px;right:16px;z-index:999;padding:12px 16px;'
-            'background:#126069;color:white;border-radius:10px;font:600 14px system-ui;'
-            'box-shadow:0 3px 12px #0003">Browse Sep 10 results &middot; 1,000 orders</a>')
-    html = html.replace("</body>", link + "</body>", 1)
     return HTMLResponse(html)
 
 

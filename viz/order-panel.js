@@ -2,6 +2,8 @@
    The exported pure functions are shared with the viewer and Node regression tests. */
 (function () {
   'use strict';
+  const datasets = typeof module !== 'undefined' && module.exports
+    ? require('./result-dataset.js') : window.PalletResultDataset;
   const finite = v => typeof v === 'number' && Number.isFinite(v);
   const positive = v => finite(v) && v > 0;
   const nonnegative = v => finite(v) && v >= 0;
@@ -71,7 +73,37 @@
     {key:'remainder', label:'Layer remainder', description:'Unplaced items after Phase 1 + 2, arranged schematically. This is not a valid placement plan.'},
     {key:'schematic', label:'SKU schematic', description:'All order items arranged by SKU for inspection. No packing, efficiency or stability claim.'}
   ];
-  const model = {orderSummary, packStats, METHODS};
+  function revisionsNewestFirst(revisions) {
+    if (!Array.isArray(revisions) || !revisions.length) throw new Error('No result revisions available.');
+    const stamp = r => Number.isFinite(Date.parse(r.date)) ? Date.parse(r.date) : -Infinity;
+    return [...revisions].sort((a,b) => stamp(b)-stamp(a));
+  }
+  function revisionDataset(revision) {
+    const qs = new URLSearchParams();
+    if (revision.dataset) qs.set('dataset', revision.dataset);
+    const config = datasets.fromSearch(qs.toString());
+    if (!config.valid) throw new Error('Unknown result revision.');
+    return config;
+  }
+  function revisionMethods(revision) {
+    if (!revisionDataset(revision).experimental) return METHODS;
+    if (revisionDataset(revision).epOnly) return METHODS.filter(m=>['ep','schematic'].includes(m.key)).map(m=>m.key==='ep'
+      ? {...m,label:'EP clusters · 240 s',description:'Interleaved Phase 2 clusters and individual EP placements. This run does not contain PPO teacher demonstrations.'} : m);
+    const descriptions = {
+      packed:'Certified P1+2 teacher placements from this audit. This is not the EP run\'s foundation.',
+      ep:'Full EP result from the selected research run. It is not a leaderboard replacement.',
+      remainder:'Items remaining after this P1+2 teacher audit, arranged schematically. Not an EP remainder or a placement plan.'
+    };
+    const labels = {packed:'P1+2 teacher audit', ep:'EP experiment', remainder:'Teacher remainder'};
+    return METHODS.map(m => ({...m, label:labels[m.key] || m.label, description:descriptions[m.key] || m.description}));
+  }
+  function viewerUrl(revision, orderId, method) {
+    revisionDataset(revision); // Fail closed rather than mixing unknown revisions.
+    const qs = new URLSearchParams({embed:'1', order:orderId, view:method});
+    if (revision.dataset) qs.set('dataset', revision.dataset);
+    return '/viz?' + qs.toString();
+  }
+  const model = {orderSummary, packStats, METHODS, revisionsNewestFirst, revisionDataset, revisionMethods, viewerUrl};
   if (typeof module !== 'undefined' && module.exports) module.exports = model;
   if (typeof window === 'undefined') return;
   window.PalletOrderModel = model;
@@ -110,19 +142,18 @@
     modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true');
     if (title) { title.id = 'order-title-' + orderId; modal.setAttribute('aria-labelledby', title.id); }
     const root = el('section','op-panel'), controller = new AbortController();
-    const state = {orderId, root, controller, selected:'packed', loaded:false};
+    const state = {orderId, root, controller, selected:'packed', loaded:false, loadVersion:0};
     states.set(modal, state); body.prepend(root);
     root.append(el('p','op-muted','Loading order totals and packing strategies…'));
     const signal = controller.signal;
-    const sources = Promise.all(METHODS.filter(m => m.endpoint).map(async m => {
-      try { return [m.key, await json('/viz-api/' + m.endpoint + '/' + encodeURIComponent(orderId), signal)]; }
-      catch (e) { if (signal.aborted) throw e; return [m.key, {error:true}]; }
-    }));
-    Promise.all([json('/viz-api/orders/' + encodeURIComponent(orderId), signal), json('/viz-api/skus', signal), sources])
-      .then(([order, catalog, entries]) => {
+    signal.addEventListener('abort', () => state.revisionController?.abort(), {once:true});
+    return json('/viz-api/result-revisions/' + encodeURIComponent(orderId), signal)
+      .then(data => {
         if (signal.aborted || !root.isConnected) return;
-        state.order = orderSummary(order.items, catalog); state.sources = Object.fromEntries(entries);
-        state.loaded = true; render(state); body.scrollTop = 0;
+        if(data.order_id !== orderId) throw new Error('Order revision mismatch');
+        state.revisions = revisionsNewestFirst(data.revisions);
+        body.scrollTop = 0;
+        return loadRevision(state, state.revisions[0].id);
       }).catch(e => {
         if (signal.aborted || !root.isConnected) return;
         root.replaceChildren(el('p','op-error','Order data could not be verified. Please retry; no zero totals have been substituted.'));
@@ -130,6 +161,60 @@
         retry.onclick = () => { states.delete(modal); root.remove(); attach(modal, orderId); };
         root.append(retry);
       });
+  }
+  function revisionControls(state) {
+    const bar = el('div','op-result-date'), group = el('div');
+    const id = 'op-result-date-' + state.orderId;
+    const label = el('label','','Result date'); label.htmlFor = id;
+    const select = el('select'); select.id = id;
+    state.revisions.forEach((revision,i) => {
+      let text = revision.label;
+      if(revision.date_kind === 'last_published' && revision.date)
+        text += ' · updated ' + new Date(revision.date).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+      if(i===0) text += ' · latest';
+      const option = el('option','',text); option.value = revision.id;
+      select.append(option);
+    });
+    select.value = state.revision.id;
+    select.onchange = () => loadRevision(state, select.value);
+    group.append(label,select);
+    bar.append(group,el('span','op-muted','Newest first · this order only'));
+    state.root.append(bar);
+    if(state.revision.note) state.root.append(el('p','op-run-note',state.revision.note));
+  }
+  async function loadRevision(state, revisionId) {
+    const revision = state.revisions.find(r => r.id === revisionId);
+    if(!revision) return;
+    state.revisionController?.abort();
+    const request = new AbortController(), version = ++state.loadVersion;
+    state.revisionController = request; state.revision = revision; state.loaded = false;
+    const signal = request.signal, {root,orderId} = state;
+    root.replaceChildren(); revisionControls(state);
+    root.setAttribute('aria-busy','true');
+    root.append(el('p','op-muted','Loading the selected result date…'));
+    // Discard the old frame immediately: a new date must never label old geometry.
+    state.frame = null; state.message = null;
+    try {
+      const config = revisionDataset(revision);
+      const sources = Promise.all(METHODS.filter(m => m.endpoint).map(async m => {
+        const url = config.resultUrl(m.key, orderId);
+        if(!url) return [m.key,{available:false,notInRevision:true}];
+        try { return [m.key,await json(url,signal)]; }
+        catch(e) { if(signal.aborted) throw e; return [m.key,{error:true}]; }
+      }));
+      const [order,catalog,entries] = await Promise.all([
+        json(config.api+'/orders/'+encodeURIComponent(orderId),signal), json(config.api+'/skus',signal), sources]);
+      if(signal.aborted || state.controller.signal.aborted || !root.isConnected || version!==state.loadVersion) return;
+      if(order.order_id !== orderId) throw new Error('Order data mismatch');
+      state.order = orderSummary(order.items,catalog); state.sources = Object.fromEntries(entries);
+      state.loaded = true; root.setAttribute('aria-busy','false'); render(state);
+    } catch(e) {
+      if(signal.aborted || state.controller.signal.aborted || !root.isConnected || version!==state.loadVersion) return;
+      root.replaceChildren(); revisionControls(state); root.setAttribute('aria-busy','false');
+      root.append(el('p','op-error','This result date could not load. No older pack has been substituted.'));
+      const retry = el('button','op-retry','Retry this date'); retry.type='button';
+      retry.onclick=()=>loadRevision(state,revisionId); root.append(retry);
+    }
   }
   function artifact(state, key) {
     const data = state.sources[key === 'remainder' ? 'packed' : key];
@@ -139,8 +224,11 @@
   function render(state) {
     const {root, order} = state;
     root.replaceChildren();
+    revisionControls(state);
+    const methods = revisionMethods(state.revision);
     const heading = el('div','op-heading');
-    heading.append(el('h2','','Whole order'), el('span','op-muted','Dimensions in metres · weights in kilograms'));
+    heading.append(el('h2','','Whole order'), el('span','op-muted',
+      (state.revision.dataset ? 'Order snapshot for this run · ' : '')+'metres · kilograms'));
     const totals = el('dl','op-totals');
     [[order.items,'Items',0,''],[order.skus,'Unique SKUs',0,''],[order.weight,'Total weight',2,' kg'],[order.volume,'Item volume',4,' m³']]
       .forEach(([value,label,precision,unit]) => { const card=el('div','op-total'); pairs(card,[[label,fmt(value,precision,unit)]]); totals.append(card); });
@@ -155,23 +243,23 @@
     stage.append(frame,message); const details = el('section','op-details'); details.setAttribute('aria-live','polite');
     workspace.append(stage,details); root.append(strategyHeading,strategies,workspace);
     state.frame = frame; state.message = message;
-    const ready = METHODS.filter(m => artifact(state,m.key).available);
+    const ready = methods.filter(m => artifact(state,m.key).available);
     const preferred = ready.find(m => m.key === state.selected) || ready[0];
     function select(method) {
       state.selected = method.key;
       strategies.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.key === method.key)));
       renderDetails(details,state,method);
-      const url = '/viz?embed=1&order=' + encodeURIComponent(state.orderId) + '&view=' + method.key;
+      const url = viewerUrl(state.revision,state.orderId,method.key);
       if (!frame.getAttribute('src')) frame.src = url;
       else frame.contentWindow.postMessage({type:'pallet-select-view',orderId:state.orderId,view:method.key},location.origin);
       message.hidden = false;
     }
     state.select = select;
-    METHODS.forEach(method => {
+    methods.forEach(method => {
       const data = artifact(state,method.key), button = el('button','op-strategy');
       button.type='button'; button.dataset.key=method.key; button.disabled=!data.available;
       button.setAttribute('aria-pressed','false');
-      let status = data.error ? 'Load failed' : 'Not generated', kind = data.error ? 'error' : 'unavailable', count = 'No artifact';
+      let status = data.error ? 'Load failed' : data.notInRevision ? 'Not in this run' : 'Not generated', kind = data.error ? 'error' : 'unavailable', count = 'No artifact';
       if (data.available) {
         if (method.key === 'schematic' || method.key === 'remainder') {
           kind='schematic'; status='Illustration only';
@@ -190,7 +278,7 @@
       button.onclick=()=>select(method); strategies.append(button);
     });
     const first = preferred && strategies.querySelector('[data-key="'+preferred.key+'"]');
-    if (first && !first.disabled) select(preferred); else select(METHODS.find(m=>m.key==='schematic'));
+    if (first && !first.disabled) select(preferred); else select(methods.find(m=>m.key==='schematic'));
     frame.addEventListener('load',()=>frame.contentWindow.postMessage(
       {type:'pallet-select-view',orderId:state.orderId,view:state.selected},location.origin));
     renderItems(root, order);
@@ -211,26 +299,38 @@
       target.append(el('p','op-footer','Counts and geometry are read from this artifact. They do not certify stability or crush strength.'));
     }
     if(method.key==='schematic'){
-      target.append(el('p','op-muted','No generated packing artifact. This illustration uses the current order and item master.'));
+      target.append(el('p','op-muted','No generated packing artifact. This illustration uses the order data for the selected result date.'));
       return;
     }
-    const revision=el('section','op-revision'); revision.append(el('h3','',method.key==='remainder'?'Foundation revision':'Artifact revision'));
+    const revision=el('section','op-revision'); revision.append(el('h3','',method.key==='remainder'?(state.revision.dataset?'Teacher revision':'Foundation revision'):'Artifact revision'));
     const pv=data.provenance, info=el('dl');
-    pairs(info,[['Added',date(pv?.added)],['Updated',date(pv?.updated)]]);
+    if(pv?.run_completed_at) pairs(info,[['Run started',date(pv.run_started_at)],['Run finished',date(pv.run_completed_at)]]);
+    else pairs(info,[['Added',date(pv?.added)],['Updated',date(pv?.updated)]]);
     if (pv?.commit && /^[a-f0-9]{7,40}$/i.test(pv.commit)) {
       const dd=el('dd'), link=el('a','',pv.commit.slice(0,12));
       link.href='https://github.com/Ritvik22/palletizing-benchmark/commit/'+pv.commit;
       link.target='_blank'; link.rel='noopener noreferrer'; dd.append(link); info.append(el('dt','','Commit'),dd);
-    } else pairs(info,[['Commit','Not recorded']]);
+    } else if(!pv?.code_commit) pairs(info,[['Commit','Not recorded']]);
+    if(pv?.code_commit && /^[a-f0-9]{7,40}$/i.test(pv.code_commit)) {
+      const dd=el('dd'), sha=String(pv.code_commit);
+      if(/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/.test(pv.code_repository || '')) {
+        const link=el('a','',sha.slice(0,12)); link.href=pv.code_repository+'/commit/'+sha;
+        link.target='_blank'; link.rel='noopener noreferrer'; dd.append(link);
+      } else dd.textContent=sha;
+      info.append(el('dt','','Suite code'),dd);
+    }
     const source=method.key==='remainder'?'packed':method.key;
     const prefix={packed:'results/',ep:'results_ep/',neat:'results_neat/',rl:'results_rl/',rr:'results_rl_reranker/'}[source];
-    if(prefix) pairs(info,[['File',prefix+state.orderId+(source==='packed'?(method.key==='remainder'?'.remainder.json':'.placed.json'):'.packformation.json')]]);
+    if(pv?.source_file) pairs(info,[['File',pv.source_file],['Order record',pv.source_record || state.orderId]]);
+    else if(prefix) pairs(info,[['File',prefix+state.orderId+(source==='packed'?(method.key==='remainder'?'.remainder.json':'.placed.json'):'.packformation.json')]]);
     revision.append(info);
     if (pv?.subject) { const disclosure=el('details'); disclosure.append(el('summary','','Revision notes'),el('p','',pv.subject)); revision.append(disclosure); }
     const meta=pack?.metadata || pack?.meta || {};
     pairs(info,[['Model',meta.checkpoint || meta.model_version || pack?.checkpoint || 'Not recorded'],
-      ['Algorithm',meta.code_revision || meta.git_commit || 'Not recorded']]);
-    revision.append(el('p','op-footer','Dates and commit identify publication of this pack, not its training run. Missing model/code revisions are shown explicitly.'));
+      ['Algorithm',meta.code_revision || meta.git_commit || pv?.code_commit || 'Not recorded']]);
+    revision.append(el('p','op-footer',pv?.run_completed_at
+      ? 'Run dates describe the archived experiment; suite code identifies its source revision. This is not a model training date.'
+      : 'Dates and commit identify publication of this pack, not its training run. Missing model/code revisions are shown explicitly.'));
     target.append(revision);
   }
   function renderItems(root,order) {
