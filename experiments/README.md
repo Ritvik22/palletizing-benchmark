@@ -4,6 +4,15 @@ These are research artifacts, not replacements for the competition leaderboard.
 The existing database and `dataset_manager/benchmark_ep/summary.json` are not
 modified by this runner. Every run uses a new output directory.
 
+## Latest full-library archive (September 11, 2026)
+
+[baseline-library-20260910-2m](baseline-library-20260910-2m/README.md) adds
+1,000 independently validated EP packs: 305 complete orders and 128,533 of
+155,904 boxes. It also includes the separate P1+2 PPO-candidate replay summary.
+This does not update the official leaderboard, live database, or published
+strategy packs. The earlier pilot instructions below describe the historical
+pipeline; the new archive pins its exact suite revision and frozen source.
+
 ## Reproduce a laptop pilot
 
 From the suite root, with its numerical dependencies installed:

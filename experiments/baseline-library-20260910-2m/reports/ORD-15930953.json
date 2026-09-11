@@ -1,0 +1,152 @@
+{
+  "order_id": "ORD-15930953",
+  "total": 76,
+  "placed": 76,
+  "runtime_s": 21.22217709999677,
+  "research_valid": true,
+  "audit_reason": "valid",
+  "identity_errors": [],
+  "metrics": {
+    "n": 76,
+    "min_support": 0.5300595238095239,
+    "single": 11,
+    "chains": 3,
+    "max_depth": 2,
+    "interlock": 0.7924528301886793,
+    "seam": 0.09433962264150944,
+    "top": 0.89,
+    "com_ok": true,
+    "cum_fails": 0,
+    "iso_single": 0,
+    "deep_iso": 0,
+    "legacy_cum_fails": 0,
+    "legacy_com_ok": true,
+    "minimum_margin_m": 0.00020712108617334385,
+    "cumulative_tolerance_m": 1e-07,
+    "support_model": {
+      "version": "ep-near-level-support-v1",
+      "coordinate_model": "axis-aligned; settling assumed",
+      "support_plane_tol_m": 0.01,
+      "floor_and_anchor_tol_m": 0.001,
+      "flat_area_height_tol_m": 0.01,
+      "outward_tilt_penalty_m": 0.005,
+      "physical_tilt_simulated": false
+    },
+    "assumed_uneven_support_boxes": 0,
+    "tilt_proxy_inward": 0,
+    "tilt_proxy_outward": 0
+  },
+  "packed_volume_m3": 0.546928,
+  "top_m": 0.89,
+  "packed_prism_utilization": 0.6401310861423221,
+  "container_volume_utilization": 0.2848583333333333,
+  "pack_sha256": "6c6df6ce5477290cb89a0cdfb6c21061910d0d4507099c62a58e2748fff19ef7",
+  "void_repair": null,
+  "completion": null,
+  "validated_planner": {
+    "version": "validated-grid-static-greedy-ep-v2",
+    "config": {
+      "budget_s": 60.0,
+      "beam_width": 3,
+      "horizon": 2,
+      "item_choices": 3,
+      "placements_per_item": 2,
+      "candidate_limit": 48,
+      "snap_radius_m": 0.02,
+      "snap_limit": 64,
+      "min_support": 0.5,
+      "repair_fraction": 0.25,
+      "constructor": "greedy",
+      "exact_static": true
+    },
+    "grid_version": "pallet-center-grid-1mm-v1",
+    "grid_step_m": 0.001,
+    "layers": {
+      "groups_accepted": 3,
+      "groups_rejected": 0,
+      "boxes": 44
+    },
+    "repairs": [
+      {
+        "cut": 72,
+        "target": null,
+        "count": 76,
+        "retained": true,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 68,
+        "target": null,
+        "count": 76,
+        "retained": true,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 60,
+        "target": null,
+        "count": 76,
+        "retained": true,
+        "accepted": false,
+        "audit": "not_better"
+      }
+    ],
+    "rejections": {
+      "cumulative_load": 3263,
+      "bounds": 3818,
+      "snap_lift": 35281,
+      "own_com": 1377,
+      "exact_static_leaf_support": 26050,
+      "support_area": 128
+    },
+    "search_stats": {
+      "snap_queries": 1379,
+      "truncated_snap_windows": 1379,
+      "snap_points_checked": 70219
+    },
+    "proposal_s": 0.08784800000285031,
+    "placed": 76,
+    "total": 76,
+    "shape": {
+      "top": 0.89,
+      "upper_empty": 0.7785112359550563,
+      "mean_height": 0.34926169440950183,
+      "volume": 0.546928,
+      "cost": 1.0644294871677826
+    },
+    "quality": {
+      "n": 76,
+      "min_support": 0.5300595238095239,
+      "single": 11,
+      "chains": 3,
+      "max_depth": 2,
+      "interlock": 0.7924528301886793,
+      "seam": 0.09433962264150944,
+      "top": 0.89,
+      "com_ok": true,
+      "cum_fails": 0,
+      "iso_single": 0,
+      "deep_iso": 0,
+      "legacy_cum_fails": 0,
+      "legacy_com_ok": true,
+      "minimum_margin_m": 0.00020712108617334385,
+      "cumulative_tolerance_m": 1e-07,
+      "support_model": {
+        "version": "ep-near-level-support-v1",
+        "coordinate_model": "axis-aligned; settling assumed",
+        "support_plane_tol_m": 0.01,
+        "floor_and_anchor_tol_m": 0.001,
+        "flat_area_height_tol_m": 0.01,
+        "outward_tilt_penalty_m": 0.005,
+        "physical_tilt_simulated": false
+      },
+      "assumed_uneven_support_boxes": 0,
+      "tilt_proxy_inward": 0,
+      "tilt_proxy_outward": 0
+    },
+    "elapsed_s": 21.020271599998523,
+    "stop_reason": "complete",
+    "audit": "valid"
+  }
+}
