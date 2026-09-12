@@ -1,0 +1,151 @@
+{
+  "order_id": "ORD-66932670",
+  "total": 62,
+  "placed": 62,
+  "runtime_s": 5.095143799997459,
+  "research_valid": true,
+  "audit_reason": "valid",
+  "identity_errors": [],
+  "metrics": {
+    "n": 62,
+    "min_support": 0.5115384615384624,
+    "single": 9,
+    "chains": 0,
+    "max_depth": 1,
+    "interlock": 0.7631578947368421,
+    "seam": 0.3157894736842105,
+    "top": 0.52,
+    "com_ok": true,
+    "cum_fails": 0,
+    "iso_single": 4,
+    "deep_iso": 0,
+    "legacy_cum_fails": 0,
+    "legacy_com_ok": true,
+    "minimum_margin_m": 0.017425082540299272,
+    "cumulative_tolerance_m": 1e-07,
+    "support_model": {
+      "version": "ep-near-level-support-v1",
+      "coordinate_model": "axis-aligned; settling assumed",
+      "support_plane_tol_m": 0.01,
+      "floor_and_anchor_tol_m": 0.001,
+      "flat_area_height_tol_m": 0.01,
+      "outward_tilt_penalty_m": 0.005,
+      "physical_tilt_simulated": false
+    },
+    "assumed_uneven_support_boxes": 0,
+    "tilt_proxy_inward": 0,
+    "tilt_proxy_outward": 0
+  },
+  "packed_volume_m3": 0.321817,
+  "top_m": 0.52,
+  "packed_prism_utilization": 0.6446654647435898,
+  "container_volume_utilization": 0.16761302083333335,
+  "pack_sha256": "e867c58d9d6cf302a3d6caf3e09489eb25a9c306303c915fdaf23c978ff02d2c",
+  "void_repair": null,
+  "completion": null,
+  "validated_planner": {
+    "version": "validated-grid-static-greedy-ep-v2",
+    "config": {
+      "budget_s": 60.0,
+      "beam_width": 3,
+      "horizon": 2,
+      "item_choices": 3,
+      "placements_per_item": 2,
+      "candidate_limit": 48,
+      "snap_radius_m": 0.02,
+      "snap_limit": 64,
+      "min_support": 0.5,
+      "repair_fraction": 0.25,
+      "constructor": "greedy",
+      "exact_static": true
+    },
+    "grid_version": "pallet-center-grid-1mm-v1",
+    "grid_step_m": 0.001,
+    "layers": {
+      "groups_accepted": 3,
+      "groups_rejected": 0,
+      "boxes": 50
+    },
+    "repairs": [
+      {
+        "cut": 58,
+        "target": null,
+        "count": 62,
+        "retained": true,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 54,
+        "target": null,
+        "count": 62,
+        "retained": true,
+        "accepted": true,
+        "audit": "valid"
+      },
+      {
+        "cut": 50,
+        "target": null,
+        "count": 62,
+        "retained": true,
+        "accepted": false,
+        "audit": "not_better"
+      }
+    ],
+    "rejections": {
+      "exact_static_leaf_support": 249,
+      "snap_lift": 585,
+      "support_area": 71,
+      "cumulative_load": 40,
+      "bounds": 15
+    },
+    "search_stats": {
+      "snap_queries": 235,
+      "truncated_snap_windows": 235,
+      "snap_points_checked": 1180
+    },
+    "proposal_s": 0.05215389999648323,
+    "placed": 62,
+    "total": 62,
+    "shape": {
+      "top": 0.52,
+      "upper_empty": 0.48756410256410254,
+      "mean_height": 0.2274916645174121,
+      "volume": 0.321817,
+      "cost": 0.600894212814222
+    },
+    "quality": {
+      "n": 62,
+      "min_support": 0.5115384615384624,
+      "single": 9,
+      "chains": 0,
+      "max_depth": 1,
+      "interlock": 0.7631578947368421,
+      "seam": 0.3157894736842105,
+      "top": 0.52,
+      "com_ok": true,
+      "cum_fails": 0,
+      "iso_single": 4,
+      "deep_iso": 0,
+      "legacy_cum_fails": 0,
+      "legacy_com_ok": true,
+      "minimum_margin_m": 0.017425082540299272,
+      "cumulative_tolerance_m": 1e-07,
+      "support_model": {
+        "version": "ep-near-level-support-v1",
+        "coordinate_model": "axis-aligned; settling assumed",
+        "support_plane_tol_m": 0.01,
+        "floor_and_anchor_tol_m": 0.001,
+        "flat_area_height_tol_m": 0.01,
+        "outward_tilt_penalty_m": 0.005,
+        "physical_tilt_simulated": false
+      },
+      "assumed_uneven_support_boxes": 0,
+      "tilt_proxy_inward": 0,
+      "tilt_proxy_outward": 0
+    },
+    "elapsed_s": 4.9780529999989085,
+    "stop_reason": "complete",
+    "audit": "valid"
+  }
+}

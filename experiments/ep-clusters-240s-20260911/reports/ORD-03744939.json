@@ -1,0 +1,788 @@
+{
+  "order_id": "ORD-03744939",
+  "total": 184,
+  "placed": 184,
+  "top_m": 1.6700000000000004,
+  "packed_volume_m3": 1.158744,
+  "runtime_s": 164.26607080000394,
+  "research_valid": true,
+  "audit_reason": "valid",
+  "packed_prism_utilization": 0.7227694610778441,
+  "container_volume_utilization": 0.6035125,
+  "pack_sha256": "9e1d2b6a1922a61b783562741776997f13e3bd993c1aad99a39d3d8d1263f0d7",
+  "metrics": {
+    "n": 184,
+    "min_support": 0.5000000000000004,
+    "single": 129,
+    "chains": 96,
+    "max_depth": 9,
+    "interlock": 0.25,
+    "seam": 0.1569767441860465,
+    "top": 1.6700000000000004,
+    "com_ok": true,
+    "cum_fails": 0,
+    "iso_single": 2,
+    "deep_iso": 0,
+    "legacy_cum_fails": 0,
+    "legacy_com_ok": true,
+    "minimum_margin_m": 0.00027497371188218815,
+    "cumulative_tolerance_m": 1e-07,
+    "support_model": {
+      "version": "ep-near-level-support-v1",
+      "coordinate_model": "axis-aligned; settling assumed",
+      "support_plane_tol_m": 0.01,
+      "floor_and_anchor_tol_m": 0.001,
+      "flat_area_height_tol_m": 0.01,
+      "outward_tilt_penalty_m": 0.005,
+      "physical_tilt_simulated": false
+    },
+    "assumed_uneven_support_boxes": 2,
+    "tilt_proxy_inward": 0,
+    "tilt_proxy_outward": 2
+  },
+  "validated_planner": {
+    "version": "validated-grid-low-frontier-ep-v4",
+    "config": {
+      "budget_s": 240.0,
+      "beam_width": 3,
+      "horizon": 2,
+      "item_choices": 3,
+      "placements_per_item": 2,
+      "candidate_limit": 48,
+      "snap_radius_m": 0.02,
+      "snap_limit": 64,
+      "min_support": 0.5,
+      "repair_fraction": 0.25,
+      "constructor": "greedy",
+      "exact_static": true,
+      "max_exposed_boxes": 2,
+      "broad_pack_fraction": 0.6,
+      "repair_max_attempts": 4,
+      "repair_max_rewind": 96,
+      "repair_max_probes": 30000,
+      "clusters": true
+    },
+    "grid_version": "pallet-center-grid-1mm-v1",
+    "growth_policy": {
+      "version": "ep-broad-frontier-two-box-v1",
+      "max_exposed_boxes": 2,
+      "broad_pack_fraction": 0.6,
+      "reference": "existing skyline over whole pallet footprint"
+    },
+    "grid_step_m": 0.001,
+    "layers": {
+      "groups_accepted": 5,
+      "groups_rejected": 6,
+      "boxes": 41,
+      "phase1_boxes": 38
+    },
+    "clusters": {
+      "enabled": true,
+      "version": "remainder-row-clusters-v2-shape-diversity",
+      "scheduling_version": "phase2-interleaved-clusters-v1",
+      "stage": "phase2-interleaved",
+      "config": {
+        "min_area_fraction": 0.5,
+        "height_tolerance_m": 0.01,
+        "max_templates": 24,
+        "max_anchors": 12,
+        "max_groups": 4,
+        "max_trials": 96,
+        "max_boxes": 64
+      },
+      "max_gap_m": 0.05,
+      "groups": [],
+      "boxes": 0,
+      "trials": 22,
+      "geometric_rejections": 327,
+      "rejections": {
+        "placement_gate": 22,
+        "incomplete_or_spread_geometry": 22
+      },
+      "placement_probe_reasons": {
+        "bounds": 130,
+        "support_area": 92,
+        "exact_static_leaf_support": 778,
+        "snap_lift": 368,
+        "own_com": 40
+      },
+      "rejected_trials": [
+        {
+          "anchor": [
+            0.28,
+            0.0
+          ],
+          "width": 0.49,
+          "depth": 1.2,
+          "requested": 8,
+          "placed_before_rollback": 1,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            false,
+            0.32,
+            0.010000000000000009
+          ],
+          "failure": {
+            "id": 140,
+            "probe_reasons": {
+              "bounds": 28,
+              "support_area": 36
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.28,
+            0.0
+          ],
+          "width": 0.47000000000000003,
+          "depth": 1.2,
+          "requested": 14,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            false,
+            0.42000000000000004,
+            0.010000000000000009
+          ],
+          "failure": {
+            "id": 40,
+            "probe_reasons": {
+              "bounds": 29,
+              "support_area": 35
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22999999999999998,
+            0.0
+          ],
+          "width": 0.5700000000000001,
+          "depth": 0.9400000000000001,
+          "requested": 7,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.44,
+            0.13
+          ],
+          "failure": {
+            "id": 139,
+            "probe_reasons": {
+              "exact_static_leaf_support": 35,
+              "snap_lift": 29
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22000000000000008,
+            0.040000000000000036
+          ],
+          "width": 0.58,
+          "depth": 1.1199999999999999,
+          "requested": 13,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.6000000000000001,
+            0.30000000000000004
+          ],
+          "failure": {
+            "id": 87,
+            "probe_reasons": {
+              "exact_static_leaf_support": 64
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22000000000000008,
+            0.185
+          ],
+          "width": 0.58,
+          "depth": 0.83,
+          "requested": 11,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.6000000000000001,
+            0.30000000000000004
+          ],
+          "failure": {
+            "id": 87,
+            "probe_reasons": {
+              "exact_static_leaf_support": 64
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.31000000000000005,
+            0.0
+          ],
+          "width": 0.49,
+          "depth": 1.2,
+          "requested": 8,
+          "placed_before_rollback": 1,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.32,
+            0.10999999999999999
+          ],
+          "failure": {
+            "id": 140,
+            "probe_reasons": {
+              "bounds": 43,
+              "support_area": 21
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.33,
+            0.0
+          ],
+          "width": 0.47000000000000003,
+          "depth": 1.2,
+          "requested": 14,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.42000000000000004,
+            0.10000000000000003
+          ],
+          "failure": {
+            "id": 40,
+            "probe_reasons": {
+              "exact_static_leaf_support": 64
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22999999999999998,
+            0.0050000000000000044
+          ],
+          "width": 0.5700000000000001,
+          "depth": 0.9400000000000001,
+          "requested": 7,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.44,
+            0.13
+          ],
+          "failure": {
+            "id": 139,
+            "probe_reasons": {
+              "exact_static_leaf_support": 35,
+              "snap_lift": 29
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22000000000000008,
+            0.07499999999999996
+          ],
+          "width": 0.58,
+          "depth": 1.1199999999999999,
+          "requested": 13,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.6000000000000001,
+            0.30000000000000004
+          ],
+          "failure": {
+            "id": 87,
+            "probe_reasons": {
+              "exact_static_leaf_support": 64
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.0,
+            0.0
+          ],
+          "width": 0.47000000000000003,
+          "depth": 1.2,
+          "requested": 14,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.7000000000000001,
+            0.29000000000000004
+          ],
+          "failure": {
+            "id": 40,
+            "probe_reasons": {
+              "bounds": 15,
+              "exact_static_leaf_support": 29,
+              "own_com": 20
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22999999999999998,
+            0.075
+          ],
+          "width": 0.5700000000000001,
+          "depth": 0.9400000000000001,
+          "requested": 7,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.44,
+            0.13
+          ],
+          "failure": {
+            "id": 139,
+            "probe_reasons": {
+              "exact_static_leaf_support": 35,
+              "snap_lift": 29
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22999999999999998,
+            0.10999999999999999
+          ],
+          "width": 0.5700000000000001,
+          "depth": 0.9400000000000001,
+          "requested": 7,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.44,
+            0.13
+          ],
+          "failure": {
+            "id": 139,
+            "probe_reasons": {
+              "exact_static_leaf_support": 36,
+              "snap_lift": 28
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22999999999999998,
+            0.125
+          ],
+          "width": 0.5700000000000001,
+          "depth": 0.9400000000000001,
+          "requested": 7,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.44,
+            0.13
+          ],
+          "failure": {
+            "id": 139,
+            "probe_reasons": {
+              "exact_static_leaf_support": 36,
+              "snap_lift": 28
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22999999999999998,
+            0.12999999999999995
+          ],
+          "width": 0.5700000000000001,
+          "depth": 0.9400000000000001,
+          "requested": 7,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.44,
+            0.13
+          ],
+          "failure": {
+            "id": 139,
+            "probe_reasons": {
+              "exact_static_leaf_support": 36,
+              "snap_lift": 28
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22999999999999998,
+            0.1349999999999999
+          ],
+          "width": 0.5700000000000001,
+          "depth": 0.9400000000000001,
+          "requested": 7,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.44,
+            0.13
+          ],
+          "failure": {
+            "id": 139,
+            "probe_reasons": {
+              "exact_static_leaf_support": 36,
+              "snap_lift": 28
+            }
+          }
+        },
+        {
+          "anchor": [
+            0.22999999999999998,
+            0.15000000000000002
+          ],
+          "width": 0.5700000000000001,
+          "depth": 0.9400000000000001,
+          "requested": 7,
+          "placed_before_rollback": 0,
+          "area_m2": 0.0,
+          "nominal_geometry": [
+            true,
+            0.44,
+            0.13
+          ],
+          "failure": {
+            "id": 139,
+            "probe_reasons": {
+              "exact_static_leaf_support": 35,
+              "snap_lift": 29
+            }
+          }
+        }
+      ],
+      "decisions": [
+        {
+          "prefix_boxes": 38,
+          "ordinary_ids": [],
+          "cluster_ids": [],
+          "ordinary_key": null,
+          "cluster_key": null,
+          "selected": "deferred"
+        },
+        {
+          "prefix_boxes": 38,
+          "ordinary_ids": [],
+          "cluster_ids": [],
+          "ordinary_key": null,
+          "cluster_key": null,
+          "selected": "deferred"
+        },
+        {
+          "prefix_boxes": 38,
+          "ordinary_ids": [],
+          "cluster_ids": [],
+          "ordinary_key": null,
+          "cluster_key": null,
+          "selected": "deferred"
+        },
+        {
+          "prefix_boxes": 38,
+          "ordinary_ids": [
+            72,
+            73,
+            76
+          ],
+          "cluster_ids": [],
+          "ordinary_key": [
+            -0.49,
+            3,
+            0.012096
+          ],
+          "cluster_key": null,
+          "selected": "ordinary"
+        },
+        {
+          "prefix_boxes": 41,
+          "ordinary_ids": [],
+          "cluster_ids": [],
+          "ordinary_key": null,
+          "cluster_key": null,
+          "selected": "deferred"
+        },
+        {
+          "prefix_boxes": 41,
+          "ordinary_ids": [],
+          "cluster_ids": [],
+          "ordinary_key": null,
+          "cluster_key": null,
+          "selected": "deferred"
+        }
+      ],
+      "probes": 2,
+      "unchosen_valid_clusters": 0,
+      "stop_reason": "no_valid_cluster",
+      "remaining_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        14,
+        16,
+        18,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        74,
+        75,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        137,
+        139,
+        140,
+        142,
+        144,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183
+      ]
+    },
+    "repairs": [
+      {
+        "cut": 88,
+        "removed": 96,
+        "rebuild": "frontier",
+        "target": null,
+        "count": 172,
+        "retained": false,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 180,
+        "removed": 4,
+        "rebuild": "beam",
+        "target": null,
+        "count": 184,
+        "retained": true,
+        "accepted": true,
+        "audit": "valid"
+      },
+      {
+        "cut": 176,
+        "removed": 8,
+        "rebuild": "beam",
+        "target": null,
+        "count": 184,
+        "retained": true,
+        "accepted": true,
+        "audit": "valid"
+      },
+      {
+        "cut": 168,
+        "removed": 16,
+        "rebuild": "beam",
+        "target": null,
+        "count": 184,
+        "retained": true,
+        "accepted": false,
+        "audit": "not_better"
+      }
+    ],
+    "rejections": {
+      "exposed_stack_limit": 370,
+      "bounds": 5397,
+      "support_area": 3051,
+      "exact_static_leaf_support": 80431,
+      "snap_lift": 92749,
+      "own_com": 1384,
+      "cumulative_load": 3923,
+      "isolated_column": 1026,
+      "deadline": 1
+    },
+    "search_stats": {
+      "snap_queries": 3568,
+      "truncated_snap_windows": 3568,
+      "snap_points_checked": 188962,
+      "frontier_scans": 227,
+      "frontier_anchors": 133440
+    },
+    "proposal_s": 0.13337290000345092,
+    "placed": 184,
+    "total": 184,
+    "shape": {
+      "top": 1.6700000000000004,
+      "upper_empty": 0.5452058383233538,
+      "mean_height": 0.7515124307008278,
+      "volume": 1.158744,
+      "cost": 1.9286533290048782
+    },
+    "quality": {
+      "n": 184,
+      "min_support": 0.5000000000000004,
+      "single": 129,
+      "chains": 96,
+      "max_depth": 9,
+      "interlock": 0.25,
+      "seam": 0.1569767441860465,
+      "top": 1.6700000000000004,
+      "com_ok": true,
+      "cum_fails": 0,
+      "iso_single": 2,
+      "deep_iso": 0,
+      "legacy_cum_fails": 0,
+      "legacy_com_ok": true,
+      "minimum_margin_m": 0.00027497371188218815,
+      "cumulative_tolerance_m": 1e-07,
+      "support_model": {
+        "version": "ep-near-level-support-v1",
+        "coordinate_model": "axis-aligned; settling assumed",
+        "support_plane_tol_m": 0.01,
+        "floor_and_anchor_tol_m": 0.001,
+        "flat_area_height_tol_m": 0.01,
+        "outward_tilt_penalty_m": 0.005,
+        "physical_tilt_simulated": false
+      },
+      "assumed_uneven_support_boxes": 2,
+      "tilt_proxy_inward": 0,
+      "tilt_proxy_outward": 2
+    },
+    "elapsed_s": 164.26607080000394,
+    "stop_reason": "complete",
+    "audit": "valid"
+  },
+  "completed_at": "2026-09-11T16:04:43.587526+00:00"
+}

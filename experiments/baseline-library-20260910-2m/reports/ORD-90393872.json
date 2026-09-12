@@ -1,0 +1,150 @@
+{
+  "order_id": "ORD-90393872",
+  "total": 48,
+  "placed": 48,
+  "runtime_s": 4.02295530000265,
+  "research_valid": true,
+  "audit_reason": "valid",
+  "identity_errors": [],
+  "metrics": {
+    "n": 48,
+    "min_support": 0.5409090909090903,
+    "single": 2,
+    "chains": 0,
+    "max_depth": 1,
+    "interlock": 0.9310344827586207,
+    "seam": 0.27586206896551724,
+    "top": 0.39,
+    "com_ok": true,
+    "cum_fails": 0,
+    "iso_single": 0,
+    "deep_iso": 0,
+    "legacy_cum_fails": 0,
+    "legacy_com_ok": true,
+    "minimum_margin_m": 0.004958955223880436,
+    "cumulative_tolerance_m": 1e-07,
+    "support_model": {
+      "version": "ep-near-level-support-v1",
+      "coordinate_model": "axis-aligned; settling assumed",
+      "support_plane_tol_m": 0.01,
+      "floor_and_anchor_tol_m": 0.001,
+      "flat_area_height_tol_m": 0.01,
+      "outward_tilt_penalty_m": 0.005,
+      "physical_tilt_simulated": false
+    },
+    "assumed_uneven_support_boxes": 0,
+    "tilt_proxy_inward": 0,
+    "tilt_proxy_outward": 0
+  },
+  "packed_volume_m3": 0.25743900000000003,
+  "top_m": 0.39,
+  "packed_prism_utilization": 0.6876041666666667,
+  "container_volume_utilization": 0.1340828125,
+  "pack_sha256": "93b1001bbf1a5f661afb54549eb47311acf312795c8e358d6b00e1767175e4a4",
+  "void_repair": null,
+  "completion": null,
+  "validated_planner": {
+    "version": "validated-grid-static-greedy-ep-v2",
+    "config": {
+      "budget_s": 60.0,
+      "beam_width": 3,
+      "horizon": 2,
+      "item_choices": 3,
+      "placements_per_item": 2,
+      "candidate_limit": 48,
+      "snap_radius_m": 0.02,
+      "snap_limit": 64,
+      "min_support": 0.5,
+      "repair_fraction": 0.25,
+      "constructor": "greedy",
+      "exact_static": true
+    },
+    "grid_version": "pallet-center-grid-1mm-v1",
+    "grid_step_m": 0.001,
+    "layers": {
+      "groups_accepted": 3,
+      "groups_rejected": 0,
+      "boxes": 28
+    },
+    "repairs": [
+      {
+        "cut": 44,
+        "target": null,
+        "count": 48,
+        "retained": true,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 40,
+        "target": null,
+        "count": 48,
+        "retained": true,
+        "accepted": true,
+        "audit": "valid"
+      },
+      {
+        "cut": 32,
+        "target": null,
+        "count": 48,
+        "retained": true,
+        "accepted": true,
+        "audit": "valid"
+      }
+    ],
+    "rejections": {
+      "exact_static_leaf_support": 2651,
+      "snap_lift": 4549,
+      "support_area": 472,
+      "own_com": 20
+    },
+    "search_stats": {
+      "snap_queries": 318,
+      "truncated_snap_windows": 318,
+      "snap_points_checked": 7890
+    },
+    "proposal_s": 0.05266259999916656,
+    "placed": 48,
+    "total": 48,
+    "shape": {
+      "top": 0.39,
+      "upper_empty": 0.6099759615384612,
+      "mean_height": 0.16676581636814936,
+      "volume": 0.25743900000000003,
+      "cost": 0.460411504882429
+    },
+    "quality": {
+      "n": 48,
+      "min_support": 0.5409090909090903,
+      "single": 2,
+      "chains": 0,
+      "max_depth": 1,
+      "interlock": 0.9310344827586207,
+      "seam": 0.27586206896551724,
+      "top": 0.39,
+      "com_ok": true,
+      "cum_fails": 0,
+      "iso_single": 0,
+      "deep_iso": 0,
+      "legacy_cum_fails": 0,
+      "legacy_com_ok": true,
+      "minimum_margin_m": 0.004958955223880436,
+      "cumulative_tolerance_m": 1e-07,
+      "support_model": {
+        "version": "ep-near-level-support-v1",
+        "coordinate_model": "axis-aligned; settling assumed",
+        "support_plane_tol_m": 0.01,
+        "floor_and_anchor_tol_m": 0.001,
+        "flat_area_height_tol_m": 0.01,
+        "outward_tilt_penalty_m": 0.005,
+        "physical_tilt_simulated": false
+      },
+      "assumed_uneven_support_boxes": 0,
+      "tilt_proxy_inward": 0,
+      "tilt_proxy_outward": 0
+    },
+    "elapsed_s": 3.941630000001169,
+    "stop_reason": "complete",
+    "audit": "valid"
+  }
+}

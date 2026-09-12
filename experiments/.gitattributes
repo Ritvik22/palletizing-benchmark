@@ -1,0 +1,4 @@
+# Preserve artifact bytes so manifest/report SHA-256 values survive checkout.
+*.json -text whitespace=cr-at-eol
+# Raw engine logs retain their original spacing and Windows line endings.
+*.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol

@@ -14,15 +14,16 @@
   "use strict";
   const DN = Math.sqrt(3) / 2, TR = 0.5;
   const assetBase = new URL('.', document.currentScript.src);
-  const panelReady = new Promise((resolve, reject) => {
+  const loadScript = file => new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL('order-panel.js?v=2', assetBase);
+    script.src = new URL(file, assetBase);
     script.onload = resolve; script.onerror = reject;
     document.head.appendChild(script);
-    const css = document.createElement('link');
-    css.rel = 'stylesheet'; css.href = new URL('order-panel.css?v=2', assetBase);
-    document.head.appendChild(css);
   });
+  const panelReady = loadScript('result-dataset.js?v=2').then(() => loadScript('order-panel.js?v=3'));
+  const css = document.createElement('link');
+  css.rel = 'stylesheet'; css.href = new URL('order-panel.css?v=3', assetBase);
+  document.head.appendChild(css);
 
   // ---- (2) mini isometric box thumbnails ---------------------------------
   function pts(str) {

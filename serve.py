@@ -273,6 +273,30 @@ def _viz_index():
     return FileResponse(str(VIZ / "index.html"))
 
 
+# Experimental archives have their own frozen catalogue, orders and endpoints.
+# They do not replace any published strategy files or leaderboard measurements.
+from experiment_results import DATASET, CLUSTER_DATASET, ExperimentResults, ClusterExperimentResults, order_revisions, result_router  # noqa: E402
+EXPERIMENT_LIBRARY = ExperimentResults(HERE / "experiments" / DATASET)
+app.include_router(result_router(HERE / "experiments" / DATASET, EXPERIMENT_LIBRARY))
+EXTRA_EXPERIMENTS = []
+cluster_root = HERE / 'experiments' / CLUSTER_DATASET
+if (cluster_root / 'viewer.json').is_file():
+    cluster_library = ClusterExperimentResults(cluster_root)
+    EXTRA_EXPERIMENTS.append(cluster_library)
+    app.include_router(result_router(cluster_root, cluster_library))
+
+
+@app.get("/viz-api/result-revisions/{order_id}")
+def _viz_result_revisions(order_id: str):
+    EXPERIMENT_LIBRARY._check_id(order_id)
+    with _db() as con:
+        exists = con.execute("SELECT 1 FROM orders WHERE order_id = ?", (order_id,)).fetchone()
+    if not exists:
+        return JSONResponse({"detail": "Order not found"}, status_code=404)
+    return JSONResponse({"order_id": order_id,
+                         "revisions": order_revisions(order_id, EXPERIMENT_LIBRARY, HERE, _prov, EXTRA_EXPERIMENTS)})
+
+
 app.mount("/viz-static", StaticFiles(directory=str(VIZ)), name="viz")
 
 # Hashed assets, then an SPA fallback for client-side routes (/admin, /login, ...).

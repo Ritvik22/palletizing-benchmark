@@ -1,0 +1,252 @@
+
+======================================================================
+PATTERN PLACEMENT COMPLETE: 96 boxes
+======================================================================
+
+======================================================================
+FLAT-SPACE GROUP PLACEMENT FOR 6 REMAINDER BOXES
+======================================================================
+
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 1 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 6
+✅ Total placed so far: 0 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   ✅ Formed 1 dimension-based groups:
+      1. Group 0.300×0.100×0.100m: 6 boxes, volume=0.028m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.300×0.100×0.100m (6 boxes, 0.028224m³) ← Will process 1st
+         Box IDs: [81, 82, 83, 84, 85]...
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 1 groups against flat space 1:
+      Largest flat space: 0.800×0.850m (0.680m²) at height 0.940m
+      🔍 Evaluating group 0.300×0.100×0.100m (6 boxes, 0.028224m³)...
+         ✅ Can place 3/6 boxes, placed volume: 0.014112m³
+
+   🏆 SELECTED GROUP: 0.300×0.100×0.100m
+      Placed volume: 0.014112m³
+      Placed boxes: 3/6
+
+  ✅ PLACEMENT SUCCESSFUL:
+     • Placed: 3/6 boxes
+     • Flat space used: 0.800×0.850m (0.680m²)
+     • Position: (0.000, 0.000) → (0.800, 0.850)
+     • Height: 0.940m
+     • ⚠️  Remaining from group: 3 boxes (will retry later)
+     • Sample placed box: ID=83, pos=(0.140, 0.212, 1.000)
+     • 📝 Note: 3 boxes from this group will be retried in next iteration
+       (They may form new groups or be placed individually)
+     • 📊 Progress: 3 boxes placed total in this iteration
+     • 📊 Total groups placed: 1
+     • 🔄 Moving to next group (will re-scan for flat spaces)...
+
+📊 Iteration 1 Summary:
+   • Boxes placed this iteration: 3
+   • Total boxes placed: 3
+   • Remaining boxes: 3
+
+   ✅ Can form groups from remainder - continuing...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 2 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 3
+✅ Total placed so far: 3 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   ✅ Formed 1 dimension-based groups:
+      1. Group 0.300×0.100×0.100m: 3 boxes, volume=0.014m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.300×0.100×0.100m (3 boxes, 0.014112m³) ← Will process 1st
+         Box IDs: [81, 82, 86]
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 1 groups against flat space 1:
+      Largest flat space: 0.250×0.400m (0.100m²) at height 0.940m
+      🔍 Evaluating group 0.300×0.100×0.100m (3 boxes, 0.014112m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 1 — trying the next one
+
+   🎯 Evaluating all 1 groups against flat space 2:
+      Flat space #2 flat space: 0.800×0.100m (0.080m²) at height 0.940m
+      ⚠️  Group 0.300×0.100×0.100m: Dimensions don't fit - skipping evaluation
+      ⚠️  Nothing fits in flat space 2 — trying the next one
+
+   🎯 Evaluating all 1 groups against flat space 3:
+      Flat space #3 flat space: 0.250×0.300m (0.075m²) at height 0.820m
+      🔍 Evaluating group 0.300×0.100×0.100m (3 boxes, 0.014112m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 3 — trying the next one
+
+   🎯 Evaluating all 1 groups against flat space 4:
+      Flat space #4 flat space: 0.200×0.350m (0.070m²) at height 0.580m
+      🔍 Evaluating group 0.300×0.100×0.100m (3 boxes, 0.014112m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 4 — trying the next one
+
+   ⚠️  No groups can place ≥2 boxes in any of the 4 flat space(s) tried
+   🔄 Will try to form new groups on the next iteration...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 3 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 3
+✅ Total placed so far: 3 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   ✅ Formed 1 dimension-based groups:
+      1. Group 0.300×0.100×0.100m: 3 boxes, volume=0.014m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.300×0.100×0.100m (3 boxes, 0.014112m³) ← Will process 1st
+         Box IDs: [81, 82, 86]
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 1 groups against flat space 1:
+      Largest flat space: 0.250×0.400m (0.100m²) at height 0.940m
+      🔍 Evaluating group 0.300×0.100×0.100m (3 boxes, 0.014112m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 1 — trying the next one
+
+   🎯 Evaluating all 1 groups against flat space 2:
+      Flat space #2 flat space: 0.800×0.100m (0.080m²) at height 0.940m
+      ⚠️  Group 0.300×0.100×0.100m: Dimensions don't fit - skipping evaluation
+      ⚠️  Nothing fits in flat space 2 — trying the next one
+
+   🎯 Evaluating all 1 groups against flat space 3:
+      Flat space #3 flat space: 0.250×0.300m (0.075m²) at height 0.820m
+      🔍 Evaluating group 0.300×0.100×0.100m (3 boxes, 0.014112m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 3 — trying the next one
+
+   🎯 Evaluating all 1 groups against flat space 4:
+      Flat space #4 flat space: 0.200×0.350m (0.070m²) at height 0.580m
+      🔍 Evaluating group 0.300×0.100×0.100m (3 boxes, 0.014112m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 4 — trying the next one
+
+   ⚠️  No groups can place ≥2 boxes in any of the 4 flat space(s) tried
+   🔄 Will try to form new groups on the next iteration...
+
+──────────────────────────────────────────────────────────────────────
+ITERATION 4 - FLAT-SPACE GROUP PLACEMENT
+──────────────────────────────────────────────────────────────────────
+📦 Remaining boxes: 3
+✅ Total placed so far: 3 boxes
+
+🔍 Step 1: Grouping boxes by dimensions (5% tolerance)...
+   Note: Only groups with 2+ boxes will be placed. Single boxes will use greedy placement.
+   ✅ Formed 1 dimension-based groups:
+      1. Group 0.300×0.100×0.100m: 3 boxes, volume=0.014m³
+
+📊 Step 2: Groups sorted by volume (largest first) - PROCESSING ORDER:
+   🔍 DEBUG: Verifying volume calculations and sorting...
+      1. 0.300×0.100×0.100m (3 boxes, 0.014112m³) ← Will process 1st
+         Box IDs: [81, 82, 86]
+
+  🔍 Re-scanning height map for flat spaces...
+  ⚠️  Matplotlib not available, skipping visualization
+     ⚠️  Visualization skipped (no output path)
+
+   🎯 Evaluating all 1 groups against flat space 1:
+      Largest flat space: 0.250×0.400m (0.100m²) at height 0.940m
+      🔍 Evaluating group 0.300×0.100×0.100m (3 boxes, 0.014112m³)...
+         ❌ Can only place 1 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 1 — trying the next one
+
+   🎯 Evaluating all 1 groups against flat space 2:
+      Flat space #2 flat space: 0.800×0.100m (0.080m²) at height 0.940m
+      ⚠️  Group 0.300×0.100×0.100m: Dimensions don't fit - skipping evaluation
+      ⚠️  Nothing fits in flat space 2 — trying the next one
+
+   🎯 Evaluating all 1 groups against flat space 3:
+      Flat space #3 flat space: 0.250×0.300m (0.075m²) at height 0.820m
+      🔍 Evaluating group 0.300×0.100×0.100m (3 boxes, 0.014112m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 3 — trying the next one
+
+   🎯 Evaluating all 1 groups against flat space 4:
+      Flat space #4 flat space: 0.200×0.350m (0.070m²) at height 0.580m
+      🔍 Evaluating group 0.300×0.100×0.100m (3 boxes, 0.014112m³)...
+         ❌ Can only place 0 box(es) - insufficient (need ≥2)
+      ⚠️  Nothing fits in flat space 4 — trying the next one
+
+   ⚠️  No groups can place ≥2 boxes in any of the 4 flat space(s) tried
+   🔄 Will try to form new groups on the next iteration...
+
+   No progress for 3 consecutive iterations - exiting group placement
+
+======================================================================
+✅ FLAT-SPACE GROUP PLACEMENT COMPLETE
+======================================================================
+   • Total boxes placed: 3
+   • Total groups placed: 1
+   • Remaining boxes: 3
+   • Iterations used: 4
+   • Reason for exit: All boxes placed
+
+======================================================================
+PHASE 2r: CUMULATIVE-STABILITY CHECK OF THE BASE PACK
+======================================================================
+   marginal interfaces after Phase 2: 4   worst deficit 24.3 mm (box 93)
+   ids: [48, 49, 93, 112]
+
+======================================================================
+PHASE 3: NEAT PLACEMENT (using trained model)
+======================================================================
+📦 Remaining boxes to place: 3
+⚠️  No trained NEAT network found — Phase 3 skipped.
+
+======================================================================
+PHASE 3b: EXTREME-POINT PACKER — 22 boxes remaining
+======================================================================
+   ✅ Extreme-point packer placed 22/22 (CoM-stable, interlocking-aware)
+
+PHASE 3c/3e/3f skipped (PALLETIZER_COUNT_ONLY=1) — they relocate boxes but cannot change how many are placed.
+======================================================================
+Traceback (most recent call last):
+  File "C:\Palletizing\dataset_manager\run_ep_pilot.py", line 225, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Palletizing\dataset_manager\run_ep_pilot.py", line 168, in main
+    worker(Path(sys.argv[2]), sys.argv[3])
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Palletizing\dataset_manager\run_ep_pilot.py", line 120, in worker
+    pack = pal.pack_all()
+  File "C:\Palletizing\02_EP_176_canonical_1.875m\palletizer\_orchestrate.py", line 451, in pack_all
+    void_report = self._repair_ep_voids(
+        placed_boxes, vertex_manager, {b.ID for b in _phase12_pack})
+  File "C:\Palletizing\02_EP_176_canonical_1.875m\palletizer\_remainder.py", line 144, in _repair_ep_voids
+    improved, report = repair_pack(
+                       ~~~~~~~~~~~^
+        self, placed_boxes, vertex_manager, protected_count=protected_count,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        config=RepairConfig(budget_s=budget_s))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Palletizing\02_EP_176_canonical_1.875m\void_repair.py", line 381, in repair_pack
+    best, report = _repair_pack(palletizer, baseline, scratch_vm, protected_count, config, start)
+                   ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Palletizing\02_EP_176_canonical_1.875m\void_repair.py", line 409, in _repair_pack
+    raise ValueError(f'Incumbent dimensions or weight differ from master for box {b.ID}')
+ValueError: Incumbent dimensions or weight differ from master for box 21

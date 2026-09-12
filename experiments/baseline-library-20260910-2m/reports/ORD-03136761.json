@@ -1,0 +1,186 @@
+{
+  "order_id": "ORD-03136761",
+  "total": 160,
+  "placed": 156,
+  "runtime_s": 64.47804369999722,
+  "research_valid": true,
+  "audit_reason": "valid",
+  "identity_errors": [],
+  "metrics": {
+    "n": 156,
+    "min_support": 0.49999999999999983,
+    "single": 72,
+    "chains": 47,
+    "max_depth": 6,
+    "interlock": 0.48936170212765956,
+    "seam": 0.24113475177304963,
+    "top": 1.96,
+    "com_ok": true,
+    "cum_fails": 0,
+    "iso_single": 0,
+    "deep_iso": 0,
+    "legacy_cum_fails": 0,
+    "legacy_com_ok": true,
+    "minimum_margin_m": 2.323416891657215e-05,
+    "cumulative_tolerance_m": 1e-07,
+    "support_model": {
+      "version": "ep-near-level-support-v1",
+      "coordinate_model": "axis-aligned; settling assumed",
+      "support_plane_tol_m": 0.01,
+      "floor_and_anchor_tol_m": 0.001,
+      "flat_area_height_tol_m": 0.01,
+      "outward_tilt_penalty_m": 0.005,
+      "physical_tilt_simulated": false
+    },
+    "assumed_uneven_support_boxes": 5,
+    "tilt_proxy_inward": 3,
+    "tilt_proxy_outward": 2
+  },
+  "packed_volume_m3": 1.233834,
+  "top_m": 1.96,
+  "packed_prism_utilization": 0.6557366071428572,
+  "container_volume_utilization": 0.6426218750000001,
+  "pack_sha256": "9a5402d8241176a1bef507b7f6c7b1cd81cc6f4c2a8ce08869fbf98a4e0f298d",
+  "void_repair": null,
+  "completion": null,
+  "validated_planner": {
+    "version": "validated-grid-static-greedy-ep-v2",
+    "config": {
+      "budget_s": 60.0,
+      "beam_width": 3,
+      "horizon": 2,
+      "item_choices": 3,
+      "placements_per_item": 2,
+      "candidate_limit": 48,
+      "snap_radius_m": 0.02,
+      "snap_limit": 64,
+      "min_support": 0.5,
+      "repair_fraction": 0.25,
+      "constructor": "greedy",
+      "exact_static": true
+    },
+    "grid_version": "pallet-center-grid-1mm-v1",
+    "grid_step_m": 0.001,
+    "layers": {
+      "groups_accepted": 5,
+      "groups_rejected": 1,
+      "boxes": 61
+    },
+    "repairs": [
+      {
+        "cut": 95,
+        "target": 14,
+        "count": 98,
+        "retained": false,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 131,
+        "target": 14,
+        "count": 134,
+        "retained": false,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 96,
+        "target": 14,
+        "count": 99,
+        "retained": false,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 95,
+        "target": 14,
+        "count": 98,
+        "retained": false,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 152,
+        "target": null,
+        "count": 154,
+        "retained": false,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 148,
+        "target": null,
+        "count": 150,
+        "retained": false,
+        "accepted": false,
+        "audit": "not_better"
+      },
+      {
+        "cut": 140,
+        "target": null,
+        "count": 142,
+        "retained": false,
+        "accepted": false,
+        "audit": "not_better"
+      }
+    ],
+    "rejections": {
+      "cumulative_load": 3974,
+      "bounds": 2194,
+      "exact_static_leaf_support": 69958,
+      "support_area": 1812,
+      "snap_lift": 56858,
+      "own_com": 1000,
+      "isolated_column": 83,
+      "deadline": 4
+    },
+    "search_stats": {
+      "snap_queries": 2444,
+      "truncated_snap_windows": 2444,
+      "snap_points_checked": 136202
+    },
+    "proposal_s": 0.05722000000241678,
+    "placed": 156,
+    "total": 160,
+    "shape": {
+      "top": 1.96,
+      "upper_empty": 0.7180229591836731,
+      "mean_height": 0.8263050134783124,
+      "volume": 1.233834,
+      "cost": 2.326409786139342
+    },
+    "quality": {
+      "n": 156,
+      "min_support": 0.49999999999999983,
+      "single": 72,
+      "chains": 47,
+      "max_depth": 6,
+      "interlock": 0.48936170212765956,
+      "seam": 0.24113475177304963,
+      "top": 1.96,
+      "com_ok": true,
+      "cum_fails": 0,
+      "iso_single": 0,
+      "deep_iso": 0,
+      "legacy_cum_fails": 0,
+      "legacy_com_ok": true,
+      "minimum_margin_m": 2.323416891657215e-05,
+      "cumulative_tolerance_m": 1e-07,
+      "support_model": {
+        "version": "ep-near-level-support-v1",
+        "coordinate_model": "axis-aligned; settling assumed",
+        "support_plane_tol_m": 0.01,
+        "floor_and_anchor_tol_m": 0.001,
+        "flat_area_height_tol_m": 0.01,
+        "outward_tilt_penalty_m": 0.005,
+        "physical_tilt_simulated": false
+      },
+      "assumed_uneven_support_boxes": 5,
+      "tilt_proxy_inward": 3,
+      "tilt_proxy_outward": 2
+    },
+    "elapsed_s": 63.331284400002914,
+    "stop_reason": "time_budget",
+    "audit": "valid"
+  }
+}

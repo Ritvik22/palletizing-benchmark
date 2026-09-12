@@ -1,0 +1,66 @@
+{
+  "version": "hierarchical-pose-v4-partial-layer-grid-1mm",
+  "stability": {
+    "version": "robust-xy-rigid-v1",
+    "error_shape": "per_axis_square",
+    "fixed_z_and_yaw": true,
+    "min_angle_deg": 10.0,
+    "error_mm": 15.0,
+    "contact_tol_m": 0.001,
+    "max_depth": 4,
+    "max_cells": 63
+  },
+  "local": {
+    "radius_mm": 20.0,
+    "step_mm": 1.0,
+    "max_candidates": 1,
+    "layer_anchors": true
+  },
+  "weight_policy": "average-weight-v1",
+  "features": 32,
+  "robust_features": 6,
+  "hm_mm": 10.0,
+  "inventory": true,
+  "support_graph": true,
+  "graph_node_features": 18,
+  "candidate_config": {
+    "support_z_tol": 0.005,
+    "layer_tol": 0.005,
+    "max_skus": 64,
+    "max_anchors": 1200,
+    "max_candidates": 4096,
+    "selector": "sku",
+    "support_ladder": [
+      0.55,
+      0.4,
+      0.3,
+      0.2,
+      0.0
+    ]
+  },
+  "reward": {
+    "valid_base": 1.0,
+    "negative_shaping_fraction": 0.9,
+    "w_support": 0.25,
+    "w_spread": 0.25,
+    "w_side": 0.2,
+    "w_column": 0.3,
+    "w_raise": 0.2,
+    "w_void": 0.4,
+    "w_heavy_on_light": 0.15,
+    "w_group": 0.15,
+    "w_streak": 0.05,
+    "w_layer_top": 0.3,
+    "w_layer_base": 0.1,
+    "invalid_penalty": -0.25,
+    "w_complete": 5.0,
+    "all_placed_bonus": 5.0,
+    "w_lve": 1.0,
+    "lve_cap": 2.0,
+    "w_height": 0.5,
+    "w_flat_top": 0.5
+  },
+  "ranker_sha256": null,
+  "grid": "pallet-center-grid-1mm-v1",
+  "implementation_sha256": "0c856160300fbbddf79cccb146ab1dee50ba1e0e4419435cbc394f13ec290165"
+}

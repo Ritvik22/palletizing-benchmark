@@ -1,0 +1,33 @@
+{
+  "state": "complete_with_failures",
+  "updated_at": "2026-09-11T06:25:31.047298+00:00",
+  "pid": 32376,
+  "ep": {
+    "orders_expected": 1000,
+    "orders_finished": 1000,
+    "orders_valid": 1000,
+    "orders_complete": 305,
+    "orders_failed": 0,
+    "boxes_expected": 155904,
+    "boxes_raw": 128533,
+    "boxes_in_valid_packs": 128533
+  },
+  "teacher": {
+    "orders_expected": 1000,
+    "orders_finished": 1000,
+    "orders_complete_coverage": 993,
+    "orders_failed": 0,
+    "teacher_steps": 29643,
+    "matched_steps": 29643,
+    "historical_layer_boxes": 89275,
+    "exact_coverage_of_audited_steps": 1.0,
+    "complete_coverage": false
+  },
+  "note": "EP valid requires BOTH audits. Teacher replay coverage is not layer retention or order completion.",
+  "recovery": {
+    "record": "recovery/20260910T223101Z-42b432dd/record.json",
+    "record_sha256": "3f29ff2ed92e197ef41016a19fcc05da99507e0f4dd672b4daefe91badc9e90d",
+    "stdout": "recovery/20260910T223101Z-42b432dd/coordinator.stdout.log",
+    "stderr": "recovery/20260910T223101Z-42b432dd/coordinator.stderr.log"
+  }
+}
