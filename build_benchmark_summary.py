@@ -43,6 +43,12 @@ METHODS = [
      "Evolved (NEAT) scorer over the same candidate placements."),
     ("ep",      "EP Hybrid",     "results_ep",   ".packformation.json",
      "Extreme-point heuristic completing the shared Phase 1+2 prefix."),
+    ("ep_v4",   "EP Bounded",    "results_ep_v4", ".packformation.json",
+     "The same extreme-point engine under a bounded-growth rule: it refuses a "
+     "third exposed box along a support chain above the broad pack level, so it "
+     "places fewer boxes into packs with no tall unsupported towers. Published "
+     "beside EP Hybrid because the two make a deliberate trade, not because one "
+     "supersedes the other."),
 ]
 BASELINE = ("phase12", "Phase 1+2", "results", ".placed.json",
             "The deterministic pattern-planning prefix every engine starts "

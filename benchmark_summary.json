@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-08T14:59:28+00:00",
+ "generated": "2026-09-12T00:40:57+00:00",
  "orders_in_db": 1000,
  "boxes_in_db": 155904,
  "container": {
@@ -64,6 +64,20 @@
    "key": "neat",
    "label": "NEAT Hybrid",
    "description": "Evolved (NEAT) scorer over the same candidate placements."
+  },
+  {
+   "packs": 1000,
+   "orders_complete": 342,
+   "boxes_placed": 126025,
+   "boxes_expected": 155904,
+   "placed_frac": 0.8083500102627258,
+   "complete_frac": 0.342,
+   "lve_mean": 1.5121483445384836,
+   "lve_n": 342,
+   "height_mean": 1.25066,
+   "key": "ep_v4",
+   "label": "EP Bounded",
+   "description": "The same extreme-point engine under a bounded-growth rule: it refuses a third exposed box along a support chain above the broad pack level, so it places fewer boxes into packs with no tall unsupported towers. Published beside EP Hybrid because the two make a deliberate trade, not because one supersedes the other."
   }
  ],
  "baseline": {
@@ -81,25 +95,30 @@
   "description": "The deterministic pattern-planning prefix every engine starts from. It stops before the remainder-filling phase by design, so it is the shared starting point rather than a competing method."
  },
  "matched": {
-  "orders": 549,
+  "orders": 294,
   "lve": {
-   "reranker": 1.737023689881291,
-   "rl": 1.8669843755042659,
-   "neat": 2.4749624219904964,
-   "ep": 1.6620984385949462
+   "reranker": 1.7724039235438522,
+   "rl": 1.9408379649866538,
+   "neat": 2.989533115088897,
+   "ep": 1.6986603565382206,
+   "ep_v4": 1.5314228052576504
   },
   "vs_rl": {
    "reranker": {
-    "tighter_than_rl": 383,
-    "of": 549
+    "tighter_than_rl": 216,
+    "of": 294
    },
    "neat": {
-    "tighter_than_rl": 139,
-    "of": 549
+    "tighter_than_rl": 81,
+    "of": 294
    },
    "ep": {
-    "tighter_than_rl": 437,
-    "of": 549
+    "tighter_than_rl": 235,
+    "of": 294
+   },
+   "ep_v4": {
+    "tighter_than_rl": 269,
+    "of": 294
    }
   }
  }

@@ -45,6 +45,7 @@ RESULTS_EP = HERE / "results_ep"  # full EP packs: <order_id>.packformation.json
 RESULTS_NEAT = HERE / "results_neat"  # full NEAT packs, same convention
 RESULTS_RL = HERE / "results_rl"      # full RL packs, same convention
 RESULTS_RR = HERE / "results_rl_reranker"  # RL + learned candidate re-ranker
+RESULTS_EPV4 = HERE / "results_ep_v4"      # EP, bounded-growth engine (v4)
 
 
 #: When each published pack was added and last changed, derived from git history
@@ -193,6 +194,24 @@ def _viz_rr_result(order_id: str):
     return JSONResponse({"available": True, "order_id": order_id,
                          "pack": _json.loads(p.read_text()),
                          "provenance": _prov("reranker", order_id)})
+
+
+@app.get("/viz-api/epv4-result/{order_id}")
+def _viz_epv4_result(order_id: str):
+    """The EP pack from the bounded-growth engine (validated-grid-low-frontier-ep-v4).
+
+    Distinct from /viz-api/ep-result, which is the earlier engine. The two are
+    published side by side because they make a deliberate trade rather than one
+    superseding the other: this one refuses tall exposed support chains, so it
+    places fewer boxes into structurally bounded packs.
+    """
+    import json as _json
+    p = RESULTS_EPV4 / f"{order_id}.packformation.json"
+    if not p.exists():
+        return JSONResponse({"available": False, "order_id": order_id})
+    return JSONResponse({"available": True, "order_id": order_id,
+                         "pack": _json.loads(p.read_text()),
+                         "provenance": _prov("ep_v4", order_id)})
 
 
 @app.get("/viz-api/benchmark-summary")

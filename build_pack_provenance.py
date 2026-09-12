@@ -34,6 +34,7 @@ SOURCES = {
     "neat": ("results_neat", ".packformation.json"),
     "rl": ("results_rl", ".packformation.json"),
     "reranker": ("results_rl_reranker", ".packformation.json"),
+    "ep_v4": ("results_ep_v4", ".packformation.json"),
 }
 
 
