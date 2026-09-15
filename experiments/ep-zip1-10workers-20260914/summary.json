@@ -1,0 +1,31 @@
+{
+  "totals": {
+    "orders_expected": 500,
+    "orders_finished": 500,
+    "orders_valid": 484,
+    "orders_complete": 214,
+    "orders_partial": 270,
+    "orders_failed": 16,
+    "boxes_expected": 77950,
+    "boxes_in_valid_packs": 65496
+  },
+  "failures": {
+    "ORD-10118492": "RuntimeError: EP worker exited 1; see logs/ORD-10118492.log",
+    "ORD-69979346": "RuntimeError: EP worker exited 1; see logs/ORD-69979346.log",
+    "ORD-55882190": "RuntimeError: EP worker exited 1; see logs/ORD-55882190.log",
+    "ORD-11907649": "RuntimeError: EP worker exited 1; see logs/ORD-11907649.log",
+    "ORD-56824644": "RuntimeError: EP worker exited 1; see logs/ORD-56824644.log",
+    "ORD-38009502": "RuntimeError: EP worker exited 1; see logs/ORD-38009502.log",
+    "ORD-33107335": "RuntimeError: EP worker exited 1; see logs/ORD-33107335.log",
+    "ORD-51434000": "RuntimeError: EP worker exited 1; see logs/ORD-51434000.log",
+    "ORD-98834409": "RuntimeError: EP worker exited 1; see logs/ORD-98834409.log",
+    "ORD-81253400": "RuntimeError: EP worker exited 1; see logs/ORD-81253400.log",
+    "ORD-18236715": "RuntimeError: EP worker exited 1; see logs/ORD-18236715.log",
+    "ORD-66704068": "RuntimeError: EP worker exited 1; see logs/ORD-66704068.log",
+    "ORD-91021251": "RuntimeError: EP worker exited 1; see logs/ORD-91021251.log",
+    "ORD-05008049": "RuntimeError: EP worker exited 1; see logs/ORD-05008049.log",
+    "ORD-36625830": "RuntimeError: EP worker exited 1; see logs/ORD-36625830.log",
+    "ORD-53006821": "RuntimeError: EP worker exited 1; see logs/ORD-53006821.log"
+  },
+  "note": "Suite outcomes. Missing website submissions are the rejected suite runs; all stay in the denominator."
+}

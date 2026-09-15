@@ -1,0 +1,22 @@
+{
+  "version": "ep-assignment-archive-v1",
+  "dataset": "ep-zip1-10workers-20260914",
+  "algorithm_commit": "644c7c32282a363c3b4d96bb32871454aa5f1c04",
+  "input_sha256": "f56074cd8651ab094ce4668ac61ade36c2ed59b8455d06669f0954cbc013495f",
+  "container": {
+    "width": 0.8,
+    "depth": 1.2,
+    "height": 2.0
+  },
+  "plan_budget_s": 240,
+  "clusters": true,
+  "workers": 10,
+  "assignment": "ep-laptop-1",
+  "parent_input_sha256": "048e5f21da9382912e1b2ccf7d2c27696047c6b976d6c846db9a82810c145cc8",
+  "assignment_zip_sha256": "0a29c9611482b0f4e6c3d480c0767e3db6c20a13e8260a6fcf49c9a914dc676f",
+  "run_started_at": "2026-09-14T22:06:32.027429+00:00",
+  "run_completed_at": "2026-09-15T00:47:24.531851+00:00",
+  "elapsed_s": 9652.5,
+  "publication": "Experimental archive; not a leaderboard revision or PPO teacher",
+  "source_manifest_sha256": "741b70eba5a6b846d0762674b5252eca61d85e02df277d875cb18964e5ad7479"
+}

@@ -3,16 +3,17 @@
   'use strict';
   const EXPERIMENT = 'baseline-library-20260910-2m';
   const CLUSTER_EXPERIMENT = 'ep-clusters-240s-20260911';
+  const ZIP1_EXPERIMENT = 'ep-zip1-10workers-20260914';
   function fromSearch(search) {
     const id = new URLSearchParams(search).get('dataset');
-    const epOnly = id === CLUSTER_EXPERIMENT;
+    const epOnly = id === CLUSTER_EXPERIMENT || id === ZIP1_EXPERIMENT;
     const experimental = id === EXPERIMENT || epOnly;
     const valid = !id || experimental;
     const api = experimental ? '/viz-api/experiments/' + id : '/viz-api';
     return {valid, experimental, epOnly, api,
       labels: {packed: experimental ? 'P1+2 teacher audit' : 'Phase 1+2',
         remainder: experimental ? 'P1+2 teacher audit Remainder' : 'Phase 1+2 Remainder',
-        ep: epOnly ? 'EP clusters · 240 s' : experimental ? 'EP Sep 10 experiment' : 'EP Hybrid', neat: 'NEAT Hybrid',
+        ep: id === ZIP1_EXPERIMENT ? 'EP clusters · ZIP 1 · 240 s' : epOnly ? 'EP clusters · 240 s' : experimental ? 'EP Sep 10 experiment' : 'EP Hybrid', neat: 'NEAT Hybrid',
         rl: 'RL Full', rr: 'RL + ReRanker', epv4: 'EP Bounded',
         schematic: 'Schematic by SKU'},
       resultUrl(method, orderId) {
@@ -30,7 +31,7 @@
         return '/viz?' + qs;
       }};
   }
-  const api = {EXPERIMENT, CLUSTER_EXPERIMENT, fromSearch};
+  const api = {EXPERIMENT, CLUSTER_EXPERIMENT, ZIP1_EXPERIMENT, fromSearch};
   if (typeof module === 'object' && module.exports) module.exports = api;
   else root.PalletResultDataset = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

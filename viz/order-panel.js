@@ -88,7 +88,7 @@
   function revisionMethods(revision) {
     if (!revisionDataset(revision).experimental) return METHODS;
     if (revisionDataset(revision).epOnly) return METHODS.filter(m=>['ep','schematic'].includes(m.key)).map(m=>m.key==='ep'
-      ? {...m,label:'EP clusters · 240 s',description:'Interleaved Phase 2 clusters and individual EP placements. This run does not contain PPO teacher demonstrations.'} : m);
+      ? {...m,label:revisionDataset(revision).labels.ep,description:'Interleaved Phase 2 clusters and individual EP placements. This run does not contain PPO teacher demonstrations.'} : m);
     const descriptions = {
       packed:'Certified P1+2 teacher placements from this audit. This is not the EP run\'s foundation.',
       ep:'Full EP result from the selected research run. It is not a leaderboard replacement.',

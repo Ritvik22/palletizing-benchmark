@@ -16,6 +16,7 @@ from fastapi import APIRouter, HTTPException
 
 DATASET = "baseline-library-20260910-2m"
 CLUSTER_DATASET = "ep-clusters-240s-20260911"
+ZIP1_DATASET = "ep-zip1-10workers-20260914"
 
 
 class ExperimentResults:
@@ -157,6 +158,11 @@ class ClusterExperimentResults(ExperimentResults):
     def teacher_result(self, order_id):
         self._check_id(order_id)
         return dict(available=False, order_id=order_id)
+
+
+class Zip1ExperimentResults(ClusterExperimentResults):
+    """Dated half-assignment; rejected orders have inventory but no valid pack."""
+    dataset = ZIP1_DATASET
 
 
 def order_revisions(order_id, library, website, provenance, extra_libraries=()):

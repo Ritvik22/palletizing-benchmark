@@ -20,7 +20,7 @@
     script.onload = resolve; script.onerror = reject;
     document.head.appendChild(script);
   });
-  const panelReady = loadScript('result-dataset.js?v=2').then(() => loadScript('order-panel.js?v=3'));
+  const panelReady = loadScript('result-dataset.js?v=3').then(() => loadScript('order-panel.js?v=4'));
   const css = document.createElement('link');
   css.rel = 'stylesheet'; css.href = new URL('order-panel.css?v=3', assetBase);
   document.head.appendChild(css);

@@ -2,7 +2,19 @@ const {test} = require('node:test');
 const assert = require('node:assert/strict');
 const {readFileSync} = require('node:fs');
 const {join} = require('node:path');
-const {EXPERIMENT, CLUSTER_EXPERIMENT, fromSearch} = require('../viz/result-dataset.js');
+const {EXPERIMENT, CLUSTER_EXPERIMENT, ZIP1_EXPERIMENT, fromSearch} = require('../viz/result-dataset.js');
+
+test('ZIP 1 stays isolated from the prior cluster run and EP Bounded', () => {
+  const d=fromSearch('?dataset='+ZIP1_EXPERIMENT);
+  assert.equal(d.valid,true); assert.equal(d.epOnly,true);
+  assert.equal(d.labels.ep,'EP clusters · ZIP 1 · 240 s');
+  assert.equal(d.resultUrl('ep','ORD-08511033'),`/viz-api/experiments/${ZIP1_EXPERIMENT}/ep-result/ORD-08511033`);
+  for(const method of ['packed','remainder','neat','rl','rr','epv4']) assert.equal(d.resultUrl(method,'ORD-08511033'),null);
+  const M=require('../viz/order-panel.js');
+  assert.deepEqual(M.revisionMethods({dataset:ZIP1_EXPERIMENT}).map(m=>m.key),['ep','schematic']);
+  assert.equal(M.revisionMethods({dataset:ZIP1_EXPERIMENT})[0].label,d.labels.ep);
+  assert.equal(fromSearch('').resultUrl('epv4','ORD-08511033'),'/viz-api/epv4-result/ORD-08511033');
+});
 
 test('cluster revision only exposes its own EP data, never a borrowed teacher', () => {
   const d=fromSearch('?dataset='+CLUSTER_EXPERIMENT);

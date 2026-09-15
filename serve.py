@@ -275,15 +275,16 @@ def _viz_index():
 
 # Experimental archives have their own frozen catalogue, orders and endpoints.
 # They do not replace any published strategy files or leaderboard measurements.
-from experiment_results import DATASET, CLUSTER_DATASET, ExperimentResults, ClusterExperimentResults, order_revisions, result_router  # noqa: E402
+from experiment_results import DATASET, CLUSTER_DATASET, ZIP1_DATASET, ExperimentResults, ClusterExperimentResults, Zip1ExperimentResults, order_revisions, result_router  # noqa: E402
 EXPERIMENT_LIBRARY = ExperimentResults(HERE / "experiments" / DATASET)
 app.include_router(result_router(HERE / "experiments" / DATASET, EXPERIMENT_LIBRARY))
 EXTRA_EXPERIMENTS = []
-cluster_root = HERE / 'experiments' / CLUSTER_DATASET
-if (cluster_root / 'viewer.json').is_file():
-    cluster_library = ClusterExperimentResults(cluster_root)
-    EXTRA_EXPERIMENTS.append(cluster_library)
-    app.include_router(result_router(cluster_root, cluster_library))
+for dataset, library_type in ((CLUSTER_DATASET, ClusterExperimentResults), (ZIP1_DATASET, Zip1ExperimentResults)):
+    archive_root = HERE / 'experiments' / dataset
+    if (archive_root / 'viewer.json').is_file():
+        archive_library = library_type(archive_root)
+        EXTRA_EXPERIMENTS.append(archive_library)
+        app.include_router(result_router(archive_root, archive_library))
 
 
 @app.get("/viz-api/result-revisions/{order_id}")
