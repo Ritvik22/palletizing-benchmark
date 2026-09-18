@@ -1,0 +1,80 @@
+{
+  "publication": "experimental audit only; not submitted or published",
+  "evaluator_source_sha256": {
+    "evaluator.py": "7cbe25dc6ce42883dd20f71da425585727db283e7d3c4ab146f7deb6bc29a4a9",
+    "models.py": "26a61a4cf0ff960d7df91a7a4809d58719217bb0af3eb4e6d261e3ab17b811bd",
+    "audit_ep_experiment.py": "e2d432e7d49616f5f99be4cdcd9042efc119e6b001f8354b15a0b4b72f4a29c2"
+  },
+  "model": "Exact-contact rigid-body static gravity equilibrium, 1 micrometre tolerance; no wrap, friction, settling or robot reach model.",
+  "stacking_rule": null,
+  "input_sha256": "ad6c1351250c82b4375e3cd465a223281aa6692800afef528888dd3d64685e02",
+  "totals": {
+    "orders_expected": 3,
+    "orders_submitted": 3,
+    "orders_missing": 0,
+    "orders_invalid": 0,
+    "orders_complete": 1,
+    "completion_fraction": 0.3333333333333333,
+    "boxes_expected": 605,
+    "boxes_accepted": 602,
+    "lve_complete_mean": 1.5314146827909834,
+    "lve_n": 1,
+    "evaluator_version": "rigid-static-v1.0.0"
+  },
+  "orders": {
+    "ORD-48034965": {
+      "evaluator_version": "rigid-static-v1.0.0",
+      "valid": true,
+      "complete": false,
+      "expected": 221,
+      "submitted": 219,
+      "accepted_boxes": 219,
+      "remaining": 2,
+      "height_m": 2.0000000000000004,
+      "volume_m3": 1.2328719999999984,
+      "weight_kg": 625.2299999999993,
+      "lve": null,
+      "static_equilibrium": "balanced",
+      "errors": [],
+      "artifact_sha256": "937c997652b105b471904db05f4fe7098af75fc75d6296395bb8fc57f9165641",
+      "support_contact_count": 387,
+      "source_pack_sha256": "47c6d49c386edcd9be4a14d882f8cab6ca01374e14516227c827af2c429af5ab"
+    },
+    "ORD-65995248": {
+      "evaluator_version": "rigid-static-v1.0.0",
+      "valid": true,
+      "complete": false,
+      "expected": 199,
+      "submitted": 198,
+      "accepted_boxes": 198,
+      "remaining": 1,
+      "height_m": 2.0,
+      "volume_m3": 1.2300840000000022,
+      "weight_kg": 314.13999999999976,
+      "lve": null,
+      "static_equilibrium": "balanced",
+      "errors": [],
+      "artifact_sha256": "55466d7833e043bffdd7cf4541a6f4d2362ddf55c1d307f59bbca3720d153f21",
+      "support_contact_count": 256,
+      "source_pack_sha256": "21dd769494bb299c9eb90fe68f723f61895f59bd7603c65ab75149c2dac045d9"
+    },
+    "ORD-90358207": {
+      "evaluator_version": "rigid-static-v1.0.0",
+      "valid": true,
+      "complete": true,
+      "expected": 185,
+      "submitted": 185,
+      "accepted_boxes": 185,
+      "remaining": 0,
+      "height_m": 1.9900000000000007,
+      "volume_m3": 1.2474740000000009,
+      "weight_kg": 352.7500000000008,
+      "lve": 1.5314146827909834,
+      "static_equilibrium": "balanced",
+      "errors": [],
+      "artifact_sha256": "da8dfccecc41f4d8f75987f4b72bee01f1e73aa4fea045535b59f73947562a78",
+      "support_contact_count": 202,
+      "source_pack_sha256": "a9cc8ec1bdd51d5affe2b5eadf876cc05f29e3da6863f1cffc4c4c251d40f592"
+    }
+  }
+}

@@ -607,7 +607,7 @@ async function loadPack(orderId){
 async function boot(){
   if(!DATASET.valid) throw new Error('Unknown result dataset');
   document.getElementById('datasetNote').hidden = !DATASET.experimental;
-  if(DATASET.epOnly) document.getElementById('datasetNote').textContent = 'EP clusters · 240-second research run. No PPO teacher or leaderboard submission.';
+  if(DATASET.epOnly) document.getElementById('datasetNote').textContent = DATASET.epDescription;
   document.querySelectorAll('#sourceList .view').forEach(button=>{
     button.querySelector('.vname').textContent = VIEW_LABELS[button.dataset.src];
     button.hidden = DATASET.epOnly ? !['ep','schematic'].includes(button.dataset.src) : DATASET.experimental && ['neat','rl','rr'].includes(button.dataset.src);

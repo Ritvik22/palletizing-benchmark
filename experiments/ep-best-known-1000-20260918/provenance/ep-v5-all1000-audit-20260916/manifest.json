@@ -1,0 +1,22 @@
+{
+  "version": "ep-assignment-archive-v1",
+  "dataset": "ep-v5-all1000-audit-20260916",
+  "algorithm_commit": "395234e7ca20249226bfbd468cd2b488b947aef2",
+  "input_sha256": "048e5f21da9382912e1b2ccf7d2c27696047c6b976d6c846db9a82810c145cc8",
+  "container": {
+    "width": 0.8,
+    "depth": 1.2,
+    "height": 2.0
+  },
+  "plan_budget_s": 240,
+  "clusters": true,
+  "workers": 10,
+  "assignment": "ep-library-1000",
+  "parent_input_sha256": "048e5f21da9382912e1b2ccf7d2c27696047c6b976d6c846db9a82810c145cc8",
+  "assignment_zip_sha256": null,
+  "run_started_at": "2026-09-15T17:22:47.080670+00:00",
+  "run_completed_at": "2026-09-15T22:13:12.883331+00:00",
+  "elapsed_s": 17425.8,
+  "publication": "Experimental archive; not a leaderboard revision or PPO teacher",
+  "source_manifest_sha256": "7c7d1d75f2cae92519632983281f8f4e0f065c568e1b16c48be77219a2cb4f1b"
+}

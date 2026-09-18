@@ -17,6 +17,7 @@ from fastapi import APIRouter, HTTPException
 DATASET = "baseline-library-20260910-2m"
 CLUSTER_DATASET = "ep-clusters-240s-20260911"
 ZIP1_DATASET = "ep-zip1-10workers-20260914"
+BEST_KNOWN_DATASET = "ep-best-known-1000-20260918"
 
 
 class ExperimentResults:
@@ -78,6 +79,7 @@ class ExperimentResults:
                     source_file=source_file, source_record=order_id,
                     run_started_at=self.metadata["run_started_at"],
                     run_completed_at=self.metadata["run_completed_at"],
+                    date_kind=self.metadata.get('date_kind', 'run_completed'),
                     experiment=self.dataset, training_approved=False, leaderboard=False)
 
     def teacher_result(self, order_id: str):
@@ -165,6 +167,11 @@ class Zip1ExperimentResults(ClusterExperimentResults):
     dataset = ZIP1_DATASET
 
 
+class BestKnownExperimentResults(ClusterExperimentResults):
+    """Audited best-per-order development collection, not one generation run."""
+    dataset = BEST_KNOWN_DATASET
+
+
 def order_revisions(order_id, library, website, provenance, extra_libraries=()):
     """Only revisions with actual artifacts for this order; no cross-run fallback."""
     library._check_id(order_id)
@@ -175,7 +182,7 @@ def order_revisions(order_id, library, website, provenance, extra_libraries=()):
         if order_id in extra.teachers and extra.ep_result(order_id)['available']:
             revisions.append(dict(id=extra.dataset, dataset=extra.dataset,
                 label=extra.metadata['label'], date=extra.metadata['run_completed_at'],
-                date_kind='run_completed', note=extra.metadata['ep_subject']))
+                date_kind=extra.metadata.get('date_kind', 'run_completed'), note=extra.metadata['ep_subject']))
     if order_id in library.teachers:
         revisions.append(dict(id=DATASET, dataset=DATASET,
             label="Sep 10–11, 2026 · EP and P1+2 teacher audit",

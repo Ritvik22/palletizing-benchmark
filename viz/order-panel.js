@@ -88,7 +88,7 @@
   function revisionMethods(revision) {
     if (!revisionDataset(revision).experimental) return METHODS;
     if (revisionDataset(revision).epOnly) return METHODS.filter(m=>['ep','schematic'].includes(m.key)).map(m=>m.key==='ep'
-      ? {...m,label:revisionDataset(revision).labels.ep,description:'Interleaved Phase 2 clusters and individual EP placements. This run does not contain PPO teacher demonstrations.'} : m);
+      ? {...m,label:revisionDataset(revision).labels.ep,description:revisionDataset(revision).epDescription} : m);
     const descriptions = {
       packed:'Certified P1+2 teacher placements from this audit. This is not the EP run\'s foundation.',
       ep:'Full EP result from the selected research run. It is not a leaderboard replacement.',
@@ -304,7 +304,8 @@
     }
     const revision=el('section','op-revision'); revision.append(el('h3','',method.key==='remainder'?(state.revision.dataset?'Teacher revision':'Foundation revision'):'Artifact revision'));
     const pv=data.provenance, info=el('dl');
-    if(pv?.run_completed_at) pairs(info,[['Run started',date(pv.run_started_at)],['Run finished',date(pv.run_completed_at)]]);
+    if(pv?.date_kind === 'collection_created') pairs(info,[['Collection assembled',date(pv.run_completed_at)],['Source revisions','Multiple frozen development runs; see revision notes']]);
+    else if(pv?.run_completed_at) pairs(info,[['Run started',date(pv.run_started_at)],['Run finished',date(pv.run_completed_at)]]);
     else pairs(info,[['Added',date(pv?.added)],['Updated',date(pv?.updated)]]);
     if (pv?.commit && /^[a-f0-9]{7,40}$/i.test(pv.commit)) {
       const dd=el('dd'), link=el('a','',pv.commit.slice(0,12));
@@ -328,7 +329,9 @@
     const meta=pack?.metadata || pack?.meta || {};
     pairs(info,[['Model',meta.checkpoint || meta.model_version || pack?.checkpoint || 'Not recorded'],
       ['Algorithm',meta.code_revision || meta.git_commit || pv?.code_commit || 'Not recorded']]);
-    revision.append(el('p','op-footer',pv?.run_completed_at
+    revision.append(el('p','op-footer',pv?.date_kind === 'collection_created'
+      ? 'This date identifies assembly of the best-known collection, not one packing or training run.'
+      : pv?.run_completed_at
       ? 'Run dates describe the archived experiment; suite code identifies its source revision. This is not a model training date.'
       : 'Dates and commit identify publication of this pack, not its training run. Missing model/code revisions are shown explicitly.'));
     target.append(revision);

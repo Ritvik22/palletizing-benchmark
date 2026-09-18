@@ -1,0 +1,84 @@
+{
+  "order_id": "ORD-31839638",
+  "container": {
+    "width": 0.8,
+    "depth": 1.2,
+    "height": 2.0
+  },
+  "strategy": "EP interleaved clusters (240 s)",
+  "boxes": [
+    {
+      "id": 0,
+      "sku_id": "SKU-EV04EK",
+      "weight": 3.5,
+      "rotation": 90,
+      "position": {
+        "x": 0.055,
+        "y": 0.1,
+        "z": 0.12
+      },
+      "dimensions": {
+        "width": 0.11,
+        "depth": 0.2,
+        "height": 0.24
+      }
+    },
+    {
+      "id": 1,
+      "sku_id": "SKU-EV04EK",
+      "weight": 3.5,
+      "rotation": 90,
+      "position": {
+        "x": 0.055,
+        "y": 0.3,
+        "z": 0.12
+      },
+      "dimensions": {
+        "width": 0.11,
+        "depth": 0.2,
+        "height": 0.24
+      }
+    },
+    {
+      "id": 2,
+      "sku_id": "SKU-EV04EK",
+      "weight": 3.5,
+      "rotation": 90,
+      "position": {
+        "x": 0.055,
+        "y": 0.5,
+        "z": 0.12
+      },
+      "dimensions": {
+        "width": 0.11,
+        "depth": 0.2,
+        "height": 0.24
+      }
+    },
+    {
+      "id": 3,
+      "sku_id": "SKU-EV04EK",
+      "weight": 3.5,
+      "rotation": 90,
+      "position": {
+        "x": 0.055,
+        "y": 0.7000000000000001,
+        "z": 0.12
+      },
+      "dimensions": {
+        "width": 0.11,
+        "depth": 0.2,
+        "height": 0.24
+      }
+    }
+  ],
+  "input_sha256": "494785a0922c7922f395f623bf9a20853416f479a65e11d1c3ad850476e6baf2",
+  "metadata": {
+    "code_revision": "395234e7ca20249226bfbd468cd2b488b947aef2",
+    "algorithm": "validated-grid-low-frontier-ep-v5",
+    "plan_budget_s": 240,
+    "clusters": true,
+    "training_approved": false,
+    "leaderboard": false
+  }
+}

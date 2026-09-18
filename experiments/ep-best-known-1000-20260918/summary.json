@@ -1,0 +1,67 @@
+{
+  "totals": {
+    "orders_expected": 1000,
+    "orders_complete": 998,
+    "orders_partial": 2,
+    "orders_unverified": 0,
+    "boxes_expected": 155904,
+    "boxes_accepted": 155901,
+    "boxes_missing": 3
+  },
+  "note": "Best-known audited development collection selected across multiple searches; not a fresh common-schedule benchmark, PPO teacher, leaderboard submission, or transport-safety certification. 998 complete orders and 2 partial orders; 155901 of 155904 boxes packed. Fresh 1000-order generation was not performed.",
+  "incomplete_orders": [
+    {
+      "order_id": "ORD-48034965",
+      "placed": 219,
+      "total": 221,
+      "complete": false,
+      "missing": 2,
+      "height_m": 2.0000000000000004,
+      "archive": "C:\\Palletizing\\tmp\\ep-same-count-incumbent-recovery-subset26-20260918",
+      "pack_path": "C:\\Palletizing\\tmp\\ep-same-count-incumbent-recovery-subset26-20260918\\packs\\ORD-48034965.packformation.json",
+      "pack_sha256": "47c6d49c386edcd9be4a14d882f8cab6ca01374e14516227c827af2c429af5ab",
+      "remaining": [
+        {
+          "sku_id": "SKU-QGNMFZ",
+          "quantity": 2,
+          "box_ids": [
+            136,
+            137
+          ],
+          "dimensions": {
+            "width": 0.28,
+            "depth": 0.18,
+            "height": 0.14
+          },
+          "unit_mass": 4.54
+        }
+      ]
+    },
+    {
+      "order_id": "ORD-65995248",
+      "placed": 198,
+      "total": 199,
+      "complete": false,
+      "missing": 1,
+      "height_m": 2.0,
+      "archive": "C:\\Palletizing\\tmp\\ep-half-coverage-construct-repair-hard-subset23-20260918",
+      "pack_path": "C:\\Palletizing\\tmp\\ep-half-coverage-construct-repair-hard-subset23-20260918\\packs\\ORD-65995248.packformation.json",
+      "pack_sha256": "f8324bf458a963d82236519cd37aa55a6a0c9704d82791058a0b219c91e71dff",
+      "remaining": [
+        {
+          "sku_id": "SKU-8I8B45",
+          "quantity": 1,
+          "box_ids": [
+            179
+          ],
+          "dimensions": {
+            "width": 0.32,
+            "depth": 0.24,
+            "height": 0.18
+          },
+          "unit_mass": 2.15
+        }
+      ]
+    }
+  ]
+}

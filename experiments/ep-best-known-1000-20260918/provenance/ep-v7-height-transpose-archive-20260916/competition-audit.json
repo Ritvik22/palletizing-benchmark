@@ -1,0 +1,62 @@
+{
+  "publication": "experimental audit only; not submitted or published",
+  "evaluator_source_sha256": {
+    "evaluator.py": "7cbe25dc6ce42883dd20f71da425585727db283e7d3c4ab146f7deb6bc29a4a9",
+    "models.py": "26a61a4cf0ff960d7df91a7a4809d58719217bb0af3eb4e6d261e3ab17b811bd",
+    "audit_ep_experiment.py": "e2d432e7d49616f5f99be4cdcd9042efc119e6b001f8354b15a0b4b72f4a29c2"
+  },
+  "model": "Exact-contact rigid-body static gravity equilibrium, 1 micrometre tolerance; no wrap, friction, settling or robot reach model.",
+  "stacking_rule": null,
+  "input_sha256": "246fcfb343ca4327caed6d799b0bfadc0dde1ff248867b8be480b780273be0e2",
+  "totals": {
+    "orders_expected": 2,
+    "orders_submitted": 2,
+    "orders_missing": 0,
+    "orders_invalid": 0,
+    "orders_complete": 1,
+    "completion_fraction": 0.5,
+    "boxes_expected": 413,
+    "boxes_accepted": 361,
+    "lve_complete_mean": 1.5132507448643537,
+    "lve_n": 1,
+    "evaluator_version": "rigid-static-v1.0.0"
+  },
+  "orders": {
+    "ORD-40166959": {
+      "evaluator_version": "rigid-static-v1.0.0",
+      "valid": true,
+      "complete": false,
+      "expected": 176,
+      "submitted": 124,
+      "accepted_boxes": 124,
+      "remaining": 52,
+      "height_m": 1.3,
+      "volume_m3": 0.7339669999999993,
+      "weight_kg": 255.79999999999976,
+      "lve": null,
+      "static_equilibrium": "balanced",
+      "errors": [],
+      "artifact_sha256": "457615d28aa6cf847e8d51cd0bf480aecbd2bbc216db202438b62d00dfedf0c5",
+      "support_contact_count": 177,
+      "source_pack_sha256": "751596cfff8c3caea86fe4c7bf0523a44aa8697d5c468c914a37f2473d4bce1b"
+    },
+    "ORD-16512287": {
+      "evaluator_version": "rigid-static-v1.0.0",
+      "valid": true,
+      "complete": true,
+      "expected": 237,
+      "submitted": 237,
+      "accepted_boxes": 237,
+      "remaining": 0,
+      "height_m": 1.9300000000000006,
+      "volume_m3": 1.2243840000000024,
+      "weight_kg": 578.689999999998,
+      "lve": 1.5132507448643537,
+      "static_equilibrium": "balanced",
+      "errors": [],
+      "artifact_sha256": "d5d18cef8797c3cd002f9fa6e42567d57bf3862e3c4be4c0a783eb6e70edaa6b",
+      "support_contact_count": 292,
+      "source_pack_sha256": "bc5f9590a052410c0159166d18a7922723e13742d27bf5176373c04a4cf6d294"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "publication": "experimental audit only; not submitted or published",
+  "evaluator_source_sha256": {
+    "evaluator.py": "7cbe25dc6ce42883dd20f71da425585727db283e7d3c4ab146f7deb6bc29a4a9",
+    "models.py": "26a61a4cf0ff960d7df91a7a4809d58719217bb0af3eb4e6d261e3ab17b811bd",
+    "audit_ep_experiment.py": "e2d432e7d49616f5f99be4cdcd9042efc119e6b001f8354b15a0b4b72f4a29c2"
+  },
+  "model": "Exact-contact rigid-body static gravity equilibrium, 1 micrometre tolerance; no wrap, friction, settling or robot reach model.",
+  "stacking_rule": null,
+  "input_sha256": "246fcfb343ca4327caed6d799b0bfadc0dde1ff248867b8be480b780273be0e2",
+  "totals": {
+    "orders_expected": 2,
+    "orders_submitted": 2,
+    "orders_missing": 0,
+    "orders_invalid": 0,
+    "orders_complete": 0,
+    "completion_fraction": 0.0,
+    "boxes_expected": 413,
+    "boxes_accepted": 376,
+    "lve_complete_mean": null,
+    "lve_n": 0,
+    "evaluator_version": "rigid-static-v1.0.0"
+  },
+  "orders": {
+    "ORD-40166959": {
+      "evaluator_version": "rigid-static-v1.0.0",
+      "valid": true,
+      "complete": false,
+      "expected": 176,
+      "submitted": 157,
+      "accepted_boxes": 157,
+      "remaining": 19,
+      "height_m": 1.62,
+      "volume_m3": 1.054614000000001,
+      "weight_kg": 338.00000000000017,
+      "lve": null,
+      "static_equilibrium": "balanced",
+      "errors": [],
+      "artifact_sha256": "272d50ce2d66d90c2521d206aa084cf63b95a926498f8d3b52433e91ae1c9489",
+      "support_contact_count": 179,
+      "source_pack_sha256": "7303626933d89ee4406a6deaead9339475827c0a109675a2d9b72557d0aa86f6"
+    },
+    "ORD-16512287": {
+      "evaluator_version": "rigid-static-v1.0.0",
+      "valid": true,
+      "complete": false,
+      "expected": 237,
+      "submitted": 219,
+      "accepted_boxes": 219,
+      "remaining": 18,
+      "height_m": 1.8400000000000003,
+      "volume_m3": 1.133451000000001,
+      "weight_kg": 507.04999999999995,
+      "lve": null,
+      "static_equilibrium": "balanced",
+      "errors": [],
+      "artifact_sha256": "d687fb4c03f51abe4b1f8e64649a5acc869710f83d6e7515bbbbbc6e44457528",
+      "support_contact_count": 236,
+      "source_pack_sha256": "3e03de960e4beab8fa038eca3b5cb03aa1385d3d4c99d78659353164371270c0"
+    }
+  }
+}

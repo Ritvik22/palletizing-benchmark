@@ -4,6 +4,18 @@ const {readFileSync} = require('node:fs');
 const {join} = require('node:path');
 const {EXPERIMENT, CLUSTER_EXPERIMENT, ZIP1_EXPERIMENT, fromSearch} = require('../viz/result-dataset.js');
 
+test('best-known collection has its own EP endpoint and honest labels', () => {
+  const {BEST_KNOWN_EXPERIMENT}=require('../viz/result-dataset.js');
+  const d=fromSearch('?dataset='+BEST_KNOWN_EXPERIMENT);
+  assert.equal(d.valid,true); assert.equal(d.epOnly,true); assert.equal(d.bestKnown,true);
+  assert.equal(d.resultUrl('ep','ORD-48034965'),`/viz-api/experiments/${BEST_KNOWN_EXPERIMENT}/ep-result/ORD-48034965`);
+  assert.match(d.epDescription,/998\/1000/); assert.match(d.epDescription,/Not a fresh/);
+  for(const key of ['packed','remainder','neat','rl','rr','epv4']) assert.equal(d.resultUrl(key,'ORD-48034965'),null);
+  const methods=require('../viz/order-panel.js').revisionMethods({dataset:BEST_KNOWN_EXPERIMENT});
+  assert.deepEqual(methods.map(m=>m.key),['ep','schematic']);
+  assert.equal(methods[0].description,d.epDescription);
+});
+
 test('ZIP 1 stays isolated from the prior cluster run and EP Bounded', () => {
   const d=fromSearch('?dataset='+ZIP1_EXPERIMENT);
   assert.equal(d.valid,true); assert.equal(d.epOnly,true);
