@@ -4,6 +4,16 @@ const {readFileSync} = require('node:fs');
 const {join} = require('node:path');
 const {EXPERIMENT, CLUSTER_EXPERIMENT, ZIP1_EXPERIMENT, fromSearch} = require('../viz/result-dataset.js');
 
+test('fresh 1000-order EP run has honest counts and an isolated endpoint', () => {
+  const {LATEST_EP_EXPERIMENT}=require('../viz/result-dataset.js');
+  const d=fromSearch('?dataset='+LATEST_EP_EXPERIMENT);
+  assert.equal(d.valid,true); assert.equal(d.epOnly,true); assert.equal(d.latestEP,true);
+  assert.equal(d.labels.ep,'EP fresh run · Sep 18–19');
+  assert.match(d.epDescription,/953\/1000/); assert.match(d.epDescription,/155,607 of 155,904/);
+  assert.equal(d.resultUrl('ep','ORD-08511033'),`/viz-api/experiments/${LATEST_EP_EXPERIMENT}/ep-result/ORD-08511033`);
+  for(const key of ['packed','remainder','neat','rl','rr','epv4']) assert.equal(d.resultUrl(key,'ORD-08511033'),null);
+});
+
 test('best-known collection has its own EP endpoint and honest labels', () => {
   const {BEST_KNOWN_EXPERIMENT}=require('../viz/result-dataset.js');
   const d=fromSearch('?dataset='+BEST_KNOWN_EXPERIMENT);

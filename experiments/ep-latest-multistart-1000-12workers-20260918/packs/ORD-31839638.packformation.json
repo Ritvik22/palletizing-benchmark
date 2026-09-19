@@ -1,0 +1,85 @@
+{
+  "order_id": "ORD-31839638",
+  "container": {
+    "width": 0.8,
+    "depth": 1.2,
+    "height": 2.0
+  },
+  "input_sha256": "048e5f21da9382912e1b2ccf7d2c27696047c6b976d6c846db9a82810c145cc8",
+  "strategy": "EP cold-start portfolio",
+  "metadata": {
+    "algorithm": "ep-cold-portfolio-v2",
+    "recovery": null,
+    "measurement": "fresh common-schedule EP; no archived solutions",
+    "code_revision": "4a6d175d47f747cd12a3c5fdba4f99e36fb05e89",
+    "source_manifest_sha256": "1b15c3707f37a1286259bddb76540cf6746b61abe7936a52a9dc082a07464bcf",
+    "training_approved": false,
+    "leaderboard": false
+  },
+  "boxes": [
+    {
+      "id": 0,
+      "sku_id": "SKU-EV04EK",
+      "weight": 3.5,
+      "rotation": 90,
+      "position": {
+        "x": 0.055,
+        "y": 0.1,
+        "z": 0.12
+      },
+      "dimensions": {
+        "width": 0.11,
+        "depth": 0.2,
+        "height": 0.24
+      }
+    },
+    {
+      "id": 1,
+      "sku_id": "SKU-EV04EK",
+      "weight": 3.5,
+      "rotation": 0,
+      "position": {
+        "x": 0.21,
+        "y": 0.055,
+        "z": 0.12
+      },
+      "dimensions": {
+        "width": 0.2,
+        "depth": 0.11,
+        "height": 0.24
+      }
+    },
+    {
+      "id": 2,
+      "sku_id": "SKU-EV04EK",
+      "weight": 3.5,
+      "rotation": 90,
+      "position": {
+        "x": 0.055,
+        "y": 0.3,
+        "z": 0.12
+      },
+      "dimensions": {
+        "width": 0.11,
+        "depth": 0.2,
+        "height": 0.24
+      }
+    },
+    {
+      "id": 3,
+      "sku_id": "SKU-EV04EK",
+      "weight": 3.5,
+      "rotation": 0,
+      "position": {
+        "x": 0.31,
+        "y": 0.165,
+        "z": 0.12
+      },
+      "dimensions": {
+        "width": 0.2,
+        "depth": 0.11,
+        "height": 0.24
+      }
+    }
+  ]
+}

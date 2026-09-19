@@ -18,6 +18,7 @@ DATASET = "baseline-library-20260910-2m"
 CLUSTER_DATASET = "ep-clusters-240s-20260911"
 ZIP1_DATASET = "ep-zip1-10workers-20260914"
 BEST_KNOWN_DATASET = "ep-best-known-1000-20260918"
+LATEST_EP_DATASET = "ep-latest-multistart-1000-12workers-20260918"
 
 
 class ExperimentResults:
@@ -170,6 +171,11 @@ class Zip1ExperimentResults(ClusterExperimentResults):
 class BestKnownExperimentResults(ClusterExperimentResults):
     """Audited best-per-order development collection, not one generation run."""
     dataset = BEST_KNOWN_DATASET
+
+
+class LatestEPExperimentResults(ClusterExperimentResults):
+    """Fresh, common-schedule 1000-order EP run with independent audit."""
+    dataset = LATEST_EP_DATASET
 
 
 def order_revisions(order_id, library, website, provenance, extra_libraries=()):
