@@ -9,7 +9,7 @@ import sqlite3
 import threading
 import time
 
-from .evaluator import VERSION, canonical, digest, evaluate, summarize
+from .evaluator import VERSION, canonical, digest, evaluate, summarize, normalize_lve
 from .models import Pack
 
 
@@ -229,7 +229,8 @@ class Store:
             r['reports'] = {x['order_id']: {k:v for k,v in json.loads(x['report']).items() if k!='support_contacts'}
                             for x in db.execute('SELECT order_id,report FROM packs WHERE revision_id=?', (rid,))}
         r['config'] = json.loads(r['config'])
-        r['summary'] = json.loads(r['summary']) if r['summary'] else summarize(self.benchmark(r['benchmark_id']), r['reports'])
+        r['reports'] = {oid:normalize_lve(report) for oid,report in r['reports'].items()}
+        r['summary'] = summarize(self.benchmark(r['benchmark_id']), r['reports'])
         return r
 
     def put_packs(self, owner, rid, packs):
@@ -302,9 +303,9 @@ class Store:
                        'FROM revisions r JOIN strategies s ON s.id=r.strategy_id JOIN users u ON u.id=s.owner '
                        'WHERE r.benchmark_id=? AND r.state=? ORDER BY r.published DESC',(bid,'published'))]
         for e in entries:
-            e['summary'] = json.loads(e['summary'])
+            e['summary'] = self.revision(e['id'])['summary']
         # Only fully completed benchmark revisions receive a compactness rank.
-        full = sorted([e for e in entries if e['summary']['completion_fraction']==1],key=lambda e:(e['summary']['lve_complete_mean'],e['published'],e['id']))
+        full = sorted([e for e in entries if e['summary']['completion_fraction']==1],key=lambda e:(-e['summary']['lve_complete_mean'],e['published'],e['id']))
         rank = {e['id']:i+1 for i,e in enumerate(full)}
         for e in entries:
             e['rank'] = rank.get(e['id'])

@@ -12,7 +12,7 @@ from collections import Counter
 
 from .models import Pack
 
-VERSION = 'rigid-static-v1.0.0'
+VERSION = 'rigid-static-v2.0.0'
 TOL = 1e-6  # metres; part of this evaluator version
 
 
@@ -134,7 +134,7 @@ def evaluate(benchmark, pack: Pack):
     volume = sum(math.prod(b['dimensions'].values()) for b in boxes)
     top = max((e[2][1] for e in extents), default=0)
     complete = valid and expected > 0 and len(boxes) == expected
-    lve = sizes[0] * sizes[1] * top / volume if complete and volume else None
+    lve = min(1.0, volume / (sizes[0] * sizes[1] * top)) if complete and volume and top > 0 else None
     return {'evaluator_version': VERSION, 'valid': valid, 'complete': complete,
             'expected': expected, 'submitted': len(pack.boxes),
             'accepted_boxes': len(boxes) if valid else 0,
@@ -145,15 +145,32 @@ def evaluate(benchmark, pack: Pack):
             'support_contacts': graph if valid else [], 'artifact_sha256': digest(pack.model_dump())}
 
 
+def normalize_lve(report):
+    """Read-only per-pack conversion; never invert an aggregate mean."""
+    report = dict(report)
+    if report.get('lve_version') == 'pallet-volume-efficiency-v2':
+        return report
+    if report.get('evaluator_version') == 'rigid-static-v1.0.0':
+        old = report.get('lve')
+        report['legacy_inverse_lve'] = old
+        report['lve'] = min(1.0, 1.0/old) if old is not None and old > 0 else None
+    elif report.get('evaluator_version') != VERSION:
+        raise ValueError('Unknown evaluator metric convention')
+    report['lve_version'] = 'pallet-volume-efficiency-v2'
+    return report
+
+
 def summarize(benchmark, reports):
     """Fixed denominators; invalid and missing orders cannot improve coverage."""
     n = len(benchmark['orders'])
     wanted = sum(len(o['instances']) for o in benchmark['orders'].values())
-    reports = {oid: r for oid, r in reports.items() if oid in benchmark['orders']}
+    reports = {oid: normalize_lve(r) if r.get('lve_version') != 'pallet-volume-efficiency-v2' else r
+               for oid, r in reports.items() if oid in benchmark['orders']}
     complete = [r for r in reports.values() if r['complete']]
     return {'orders_expected': n, 'orders_submitted': len(reports),
             'orders_missing': n-len(reports), 'orders_invalid': sum(not r['valid'] for r in reports.values()),
             'orders_complete': len(complete), 'completion_fraction': len(complete)/n if n else 0,
             'boxes_expected': wanted, 'boxes_accepted': sum(r['accepted_boxes'] for r in reports.values()),
             'lve_complete_mean': sum(r['lve'] for r in complete)/len(complete) if complete else None,
-            'lve_n': len(complete), 'evaluator_version': VERSION}
+            'lve_n': len(complete), 'evaluator_version': benchmark.get('evaluator_version', VERSION),
+            'lve_version': 'pallet-volume-efficiency-v2'}

@@ -47,7 +47,7 @@ def import_dataset(store,source,bid,name,order_ids=None,license_name='Not specif
          'weight_class_note':'Unweighted mean across SKU master; proxy only, not measured crush strength.',
          'rules':{'coordinates':'centres in metres, x/y horizontal, z up','mass':'kg from immutable SKU master',
                   'rotations':[0,90],'tolerance_m':1e-6,'completion':'all canonical box IDs valid and statically balanced',
-                  'ranking':'full benchmark completion required; mean LVE ascending',
+                  'ranking':'full benchmark completion required; mean LVE descending (0–1)',
                   'stability':'nonnegative vertical contact reactions and per-box force/moment equilibrium',
                   'not_modelled':['friction','dynamic tipping','box deformation','robot reachability','placement sequence']}}
     store.add_benchmark(doc)

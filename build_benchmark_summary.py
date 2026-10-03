@@ -13,9 +13,9 @@ and it deliberately stops before the phase that fills the remainder. Ranking it
 against the full engines would be meaningless, so it is reported separately as
 the shared starting point rather than as a fourth entry in the comparison.
 
-LVE (liquid volume efficiency) is the pack's bounding volume over the volume of
-the boxes in it -- pallet footprint times top-of-stack height, divided by the
-summed box volumes. **Lower is better**: 1.0 would be a perfectly solid block.
+LVE (liquid volume efficiency) is summed placed-box volume divided by
+full pallet footprint times top-of-stack height. **Higher is better**, in
+the range 0–1: 1.0 would be a perfectly solid block across the pallet.
 It is computed only over orders a method packed completely, because a pack that
 placed fewer boxes gets a flattering LVE simply by being smaller, and comparing
 across different completion rates would reward giving up early.
@@ -88,7 +88,7 @@ def per_order(d, suffix, totals):
                   * b["dimensions"]["height"] for b in boxes)
         want = totals.get(oid)
         done = bool(want and len(boxes) == want)
-        lve = (C.get("width", 0.8) * C.get("depth", 1.2) * top / vol) if vol else None
+        lve = min(1.0, vol / (C.get("width", 0.8) * C.get("depth", 1.2) * top)) if vol and top > 0 else None
         out[oid] = (len(boxes), done, lve)
     return out
 
@@ -119,7 +119,7 @@ def matched(totals):
         for k, t in tables.items():
             if k == "rl":
                 continue
-            wins = sum(1 for o in common if t[o][2] < tables["rl"][o][2])
+            wins = sum(1 for o in common if t[o][2] > tables["rl"][o][2])
             out["vs_rl"][k] = {"tighter_than_rl": wins, "of": len(common)}
     return out
 
@@ -159,7 +159,7 @@ def measure(d, suffix, totals):
             complete += 1
             bbox = C.get("width", 0.8) * C.get("depth", 1.2) * top
             if vol > 0:
-                lves.append(bbox / vol)
+                lves.append(min(1.0, vol / bbox))
     if not packs:
         return None
     mean = lambda xs: (sum(xs) / len(xs)) if xs else None      # noqa: E731
@@ -177,7 +177,8 @@ def main():
            "orders_in_db": len(totals),
            "boxes_in_db": sum(totals.values()),
            "container": {"width": 0.8, "depth": 1.2, "height": 2.0},
-           "lve_note": ("bounding volume / box volume; lower is better. "
+           "lve_version": "pallet-volume-efficiency-v2",
+           "lve_note": ("box volume / (pallet area * stack height); range 0–1, higher is better. "
                         "Computed only over orders the method packed "
                         "completely, since a smaller pack scores a flattering "
                         "LVE and comparing across completion rates would "
@@ -190,7 +191,7 @@ def main():
             m.update({"key": key, "label": label, "description": desc})
             out["methods"].append(m)
     out["methods"].sort(key=lambda m: (-m["complete_frac"],
-                                       m["lve_mean"] or 9e9))
+                                       -(m["lve_mean"] or 0)))
 
     out["matched"] = matched(totals)
 
@@ -205,11 +206,13 @@ def main():
         json.dump(out, f, indent=1)
 
     def line(m):
+        efficiency = 'n/a' if m['lve_mean'] is None else f"{m['lve_mean']:.4f}"
+        height = 'n/a' if m['height_mean'] is None else f"{m['height_mean']:.3f}"
         return (f"  {m['label']:14s} packs {m['packs']:4d}  complete "
                 f"{m['orders_complete']:4d} ({100*m['complete_frac']:5.1f}%)  "
                 f"boxes {100*(m['placed_frac'] or 0):6.2f}%  "
-                f"LVE {m['lve_mean']:.4f} (n={m['lve_n']})  "
-                f"height {m['height_mean']:.3f} m")
+                f"LVE {efficiency} (n={m['lve_n']})  "
+                f"height {height} m")
     print(f"{out['orders_in_db']} orders, {out['boxes_in_db']:,} boxes in the database\n")
     for m in out["methods"]:
         print(line(m))
@@ -219,7 +222,7 @@ def main():
     if out["matched"]:
         m = out["matched"]
         print(f"\n  matched on the {m['orders']} orders EVERY engine completed:")
-        for k, v in sorted(m["lve"].items(), key=lambda kv: kv[1]):
+        for k, v in sorted(m["lve"].items(), key=lambda kv: -kv[1]):
             extra = ""
             if k in (m.get("vs_rl") or {}):
                 w = m["vs_rl"][k]

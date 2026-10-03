@@ -206,11 +206,13 @@ async function loadBenchmark(){
   try { d = await (await fetch("/viz-api/benchmark-summary")).json(); }
   catch(e){ return; }
   if(!d || !d.available || !(d.methods||[]).length) return;
+  // Historic aggregate means cannot be reciprocated. Regenerate from packs.
+  if(d.lve_version !== 'pallet-volume-efficiency-v2') return;
   const pc = v => v==null ? "&mdash;" : (100*v).toFixed(1)+"%";
   const n3 = v => v==null ? "&mdash;" : v.toFixed(3);
   // Best per column, so the leader is visible without reading every number.
   const bestComplete = Math.max(...d.methods.map(m=>m.complete_frac??0));
-  const bestLve = Math.min(...d.methods.map(m=>m.lve_mean??9e9));
+  const bestLve = Math.max(...d.methods.map(m=>m.lve_mean??0));
   let h = '<table><tr><th>engine</th><th>complete</th><th>boxes</th><th>LVE</th></tr>';
   for(const m of d.methods){
     const c1 = (m.complete_frac===bestComplete) ? ' class="best"' : '';
@@ -221,13 +223,13 @@ async function loadBenchmark(){
   h += '</table>';
   h += `<div class="note">${d.orders_in_db} orders, `
      + `${(d.boxes_in_db||0).toLocaleString()} boxes. `
-     + `LVE is bounding volume over box volume &mdash; <b>lower is tighter</b>, `
+     + `LVE is box volume over pallet area × stack height &mdash; <b>higher is better (0–1)</b>, `
      + `and 1.0 would be a solid block. Each engine's LVE covers only the orders `
      + `it packed in full, so the columns are not on the same footing.</div>`;
   // The matched view is the one that IS on the same footing.
   if(d.matched && d.matched.lve){
     const byKey = Object.fromEntries(d.methods.map(m=>[m.key,m.label]));
-    const rows = Object.entries(d.matched.lve).sort((a,b)=>a[1]-b[1]);
+    const rows = Object.entries(d.matched.lve).sort((a,b)=>b[1]-a[1]);
     h += `<div class="sub"><b>On the ${d.matched.orders} orders every engine `
        + `completed</b> &mdash; the like-for-like compactness comparison:<table>`
        + `<tr><th>engine</th><th>LVE</th></tr>`
@@ -517,7 +519,7 @@ function renderStats(){
     const st=PalletOrderModel.packStats(shown,order);
     rows.push(['Placed',`${st.placed} / ${order.items}`],['Remaining',st.remaining],
       ['Stack height (m)',num(st.top)],['Placed volume (m³)',num(st.volume,4)],
-      ['LVE · lower is tighter',num(st.lve)]);
+      ['LVE · higher is better (0–1)',num(st.lve)]);
     st.warnings.forEach(w=>rows.push(['Check artifact',w]));
   }
   if(sourceMode==="remainder" && has)

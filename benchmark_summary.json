@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-12T00:40:57+00:00",
+ "generated": "2026-09-30T15:26:12+00:00",
  "orders_in_db": 1000,
  "boxes_in_db": 155904,
  "container": {
@@ -7,7 +7,8 @@
   "depth": 1.2,
   "height": 2.0
  },
- "lve_note": "bounding volume / box volume; lower is better. Computed only over orders the method packed completely, since a smaller pack scores a flattering LVE and comparing across completion rates would reward giving up early.",
+ "lve_version": "pallet-volume-efficiency-v2",
+ "lve_note": "box volume / (pallet area * stack height); range 0\u20131, higher is better. Computed only over orders the method packed completely, since a smaller pack scores a flattering LVE and comparing across completion rates would reward giving up early.",
  "methods": [
   {
    "packs": 999,
@@ -16,9 +17,9 @@
    "boxes_expected": 155734,
    "placed_frac": 1.0,
    "complete_frac": 1.0,
-   "lve_mean": 1.6362242577705182,
+   "lve_mean": 0.6222106777659097,
    "lve_n": 999,
-   "height_mean": 1.65984984984985,
+   "height_mean": 1.6598498498498546,
    "key": "ep",
    "label": "EP Hybrid",
    "description": "Extreme-point heuristic completing the shared Phase 1+2 prefix."
@@ -30,9 +31,9 @@
    "boxes_expected": 155904,
    "placed_frac": 1.0,
    "complete_frac": 1.0,
-   "lve_mean": 1.672187581449513,
+   "lve_mean": 0.608700596131339,
    "lve_n": 1000,
-   "height_mean": 1.69392,
+   "height_mean": 1.6939200000000085,
    "key": "reranker",
    "label": "RL + ReRanker",
    "description": "The same PPO policy as RL Full, but a learned re-ranker (CNN over the height map, the support-dependency graph and the remaining order) scores the full ~8,100-placement enumeration and hands the policy its best 256 -- where RL Full gets 256 drawn at random from a smaller enumeration. The policy itself is unchanged and was never retrained for this."
@@ -44,9 +45,9 @@
    "boxes_expected": 155904,
    "placed_frac": 0.9999230295566502,
    "complete_frac": 0.994,
-   "lve_mean": 1.760366403777058,
+   "lve_mean": 0.5795266753030965,
    "lve_n": 994,
-   "height_mean": 1.76695,
+   "height_mean": 1.7669500000000082,
    "key": "rl",
    "label": "RL Full",
    "description": "Candidate-ranking PPO policy, trained on whole orders with a hard centre-of-mass stability gate."
@@ -58,9 +59,9 @@
    "boxes_expected": 155569,
    "placed_frac": 0.9764927459840971,
    "complete_frac": 0.5501002004008017,
-   "lve_mean": 2.4749624219904964,
+   "lve_mean": 0.5086234687661739,
    "lve_n": 549,
-   "height_mean": 1.855250501002004,
+   "height_mean": 1.8552505010020124,
    "key": "neat",
    "label": "NEAT Hybrid",
    "description": "Evolved (NEAT) scorer over the same candidate placements."
@@ -72,9 +73,9 @@
    "boxes_expected": 155904,
    "placed_frac": 0.8083500102627258,
    "complete_frac": 0.342,
-   "lve_mean": 1.5121483445384836,
+   "lve_mean": 0.6855424990647682,
    "lve_n": 342,
-   "height_mean": 1.25066,
+   "height_mean": 1.2506600000000012,
    "key": "ep_v4",
    "label": "EP Bounded",
    "description": "The same extreme-point engine under a bounded-growth rule: it refuses a third exposed box along a support chain above the broad pack level, so it places fewer boxes into packs with no tall unsupported towers. Published beside EP Hybrid because the two make a deliberate trade, not because one supersedes the other."
@@ -87,9 +88,9 @@
   "boxes_expected": 155904,
   "placed_frac": 0.6160586001642037,
   "complete_frac": 0.013,
-  "lve_mean": 1.6922988563680943,
+  "lve_mean": 0.5993047241798861,
   "lve_n": 13,
-  "height_mean": 1.2105402650782093,
+  "height_mean": 1.2105402650782109,
   "key": "phase12",
   "label": "Phase 1+2",
   "description": "The deterministic pattern-planning prefix every engine starts from. It stops before the remainder-filling phase by design, so it is the shared starting point rather than a competing method."
@@ -97,29 +98,33 @@
  "matched": {
   "orders": 294,
   "lve": {
-   "reranker": 1.7724039235438522,
-   "rl": 1.9408379649866538,
-   "neat": 2.989533115088897,
-   "ep": 1.6986603565382206,
-   "ep_v4": 1.5314228052576504
+   "reranker": 0.5872455596847279,
+   "rl": 0.5335259148463334,
+   "neat": 0.47683628130717537,
+   "ep": 0.6139344963338197,
+   "ep_v4": 0.6800624290647984
   },
   "vs_rl": {
    "reranker": {
-    "tighter_than_rl": 216,
+    "tighter_than_rl": 223,
     "of": 294
    },
    "neat": {
-    "tighter_than_rl": 81,
+    "tighter_than_rl": 85,
     "of": 294
    },
    "ep": {
-    "tighter_than_rl": 235,
+    "tighter_than_rl": 239,
     "of": 294
    },
    "ep_v4": {
-    "tighter_than_rl": 269,
+    "tighter_than_rl": 272,
     "of": 294
    }
   }
+ },
+ "pack_source": {
+  "git_revision": "48294328fa897ecc11977c3273644414bb5cb4d9",
+  "local_pack_overrides": true
  }
 }

@@ -178,7 +178,7 @@ Leaderboard rules:
 - All orders in the frozen benchmark remain in the denominator.
 - Invalid packs contribute zero accepted boxes; missing orders are visible.
 - Only revisions completing **every** order receive a compactness rank.
-- LVE = pallet footprint × actual top height / placed item volume, lower tighter.
+- LVE = placed item volume / (pallet footprint × actual top height), 0–1, higher better.
   Its mean is taken over completed orders. Partial-run LVE is descriptive only.
 - Pairwise comparisons use only the common completed orders and report their count.
 - Runtime is not ranked because external hardware/time claims are unverified.

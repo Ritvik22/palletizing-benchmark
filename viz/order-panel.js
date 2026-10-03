@@ -59,7 +59,7 @@
     const volume = sum(volumes), weight = sum(weights), c = pack.container || {};
     if (positive(c.height) && top > c.height + 1e-6) warnings.push('The stack exceeds the reported container height.');
     const lve = geometryValid && positive(c.width) && positive(c.depth) && positive(top) && positive(volume)
-      ? c.width * c.depth * top / volume : null;
+      ? Math.min(1, volume / (c.width * c.depth * top)) : (boxes.length === 0 ? 0 : null);
     const complete = order.items > 0 && boxes.length === order.items && identityValid;
     return {placed: boxes.length, remaining: identityValid && identityKnown ? Math.max(0, order.items - boxes.length) : null, volume, weight,
       top: geometryValid ? top : null, lve, complete, identityKnown, identityValid, warnings, container: c};
@@ -290,11 +290,11 @@
       const s=packStats(pack,state.order);
       cells.push(['Placed',fmt(s.placed,0)+' / '+fmt(state.order.items,0)],['Remaining',fmt(s.remaining,0)],
         ['Stack height',fmt(s.top,3,' m')],['Placed item volume',fmt(s.volume,4,' m³')],
-        ['Placed weight',fmt(s.weight,2,' kg')],['LVE · lower is tighter',fmt(s.lve,3)]);
+        ['Placed weight',fmt(s.weight,2,' kg')],['LVE · higher is better (0–1)',fmt(s.lve,3)]);
       const metrics=el('dl','op-metrics'); pairs(metrics,cells); target.append(metrics);
       const c=s.container;
       target.append(el('p','op-muted','Container: '+[c.width,c.depth,c.height].map(v=>fmt(v,3)).join(' × ')+' m'));
-      target.append(el('p','op-footer','LVE = pallet footprint × stack height ÷ placed item volume. Partial packs are not directly comparable to complete packs.'));
+      target.append(el('p','op-footer','LVE = placed item volume ÷ (pallet footprint × stack height). Range 0–1; higher is better. Partial packs are not directly comparable to complete packs.'));
       s.warnings.forEach(w=>target.append(el('p','op-notice',w)));
       target.append(el('p','op-footer','Counts and geometry are read from this artifact. They do not certify stability or crush strength.'));
     }

@@ -21,7 +21,7 @@ test('missing SKU data is unknown, never a misleading zero',()=>{
 });
 test('zero is a real total for an empty order, but cannot certify completion',()=>{
   const o=M.orderSummary([],catalog);assert.equal(o.weight,0);assert.equal(o.volume,0);
-  const s=M.packStats(pack([]),o);assert.equal(s.complete,false);assert.equal(s.lve,null);
+  const s=M.packStats(pack([]),o);assert.equal(s.complete,false);assert.equal(s.lve,0);
 });
 test('duplicate order lines contribute quantity but not additional unique SKUs',()=>{
   const o=M.orderSummary([{sku_id:'a',quantity:2},{sku_id:'a',quantity:3}],catalog);
@@ -43,7 +43,7 @@ test('extra SKU quantities cannot count as a complete pack',()=>{
   assert.equal(M.packStats(pack([box(1),box(2),box(3)]),order).complete,false);
 });
 test('LVE uses the reported pallet footprint and actual stack height, not ceiling',()=>{
-  const s=M.packStats(pack([box(1)]),order);assert.ok(Math.abs(s.lve-4)<1e-10);assert.equal(s.top,.1);
+  const s=M.packStats(pack([box(1)]),order);assert.ok(Math.abs(s.lve-.25)<1e-10);assert.equal(s.top,.1);
 });
 test('unknown geometry yields unavailable metrics instead of NaN',()=>{
   const b=box(1);delete b.dimensions.height;

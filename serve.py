@@ -229,6 +229,8 @@ def _viz_benchmark_summary():
         d = _j.loads(p.read_text())
     except Exception:                                          # noqa: BLE001
         return JSONResponse({"available": False})
+    if d.get('lve_version') != 'pallet-volume-efficiency-v2':
+        return JSONResponse({"available": False, "reason": "Regenerate benchmark summary for LVE v2"})
     d["available"] = True
     return JSONResponse(d)
 

@@ -58,7 +58,7 @@ def draft(client,headers):
 def test_pallet_support_and_fixed_denominator():
     b=benchmark();r=evaluate(b,Pack.model_validate(pack()))
     assert r['valid'] and r['complete'] and r['static_equilibrium']=='balanced'
-    assert r['lve']==16 and r['weight_kg']==2
+    assert r['lve']==1/16 and r['weight_kg']==2
     s=summarize(b,{'one':r})
     assert s['completion_fraction']==.5 and s['orders_missing']==1
 
