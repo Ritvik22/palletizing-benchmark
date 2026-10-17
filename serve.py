@@ -17,13 +17,12 @@ BACKEND = HERE / "backend"
 DIST = HERE / "frontend" / "dist"
 INDEX = DIST / "index.html"
 
-# database.pyc reads DATABASE_URL; pin it to the bundled DB with an absolute path
-# so the app works regardless of the current working directory.
-os.environ.setdefault("DATABASE_URL", f"sqlite:///{BACKEND / 'palletizer.db'}")
+# backend.database selects DATABASE_URL, DATA_DIR, or the bundled local database.
 os.environ.setdefault("SECRET_KEY", "local-dev-secret")
 
 sys.path.insert(0, str(HERE))
 from backend import main  # noqa: E402  (bytecode package)
+from backend.database import engine as database_engine  # noqa: E402
 from starlette.staticfiles import StaticFiles  # noqa: E402
 from starlette.responses import FileResponse, JSONResponse, HTMLResponse  # noqa: E402
 import sqlite3  # noqa: E402
@@ -39,7 +38,7 @@ app.router.routes = [r for r in app.router.routes if getattr(r, "path", None) !=
 # can render packs without carrying a bearer token. Local, read-only.
 # ---------------------------------------------------------------------------
 VIZ = HERE / "viz"
-DB_PATH = str(BACKEND / "palletizer.db")
+DB_PATH = database_engine.url.database
 RESULTS = HERE / "results"  # phase-1/2 outputs: <order_id>.placed.json / .remainder.json
 RESULTS_EP = HERE / "results_ep"  # full EP packs: <order_id>.packformation.json
 RESULTS_NEAT = HERE / "results_neat"  # full NEAT packs, same convention

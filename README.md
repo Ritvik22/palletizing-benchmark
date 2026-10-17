@@ -38,9 +38,17 @@ The backend is **Python 3.11-only** bytecode, so it needs a host that runs a rea
 3. Render injects `$PORT`; `serve.py` binds `0.0.0.0:$PORT` automatically.
 4. Set a real `SECRET_KEY` (the blueprint generates one).
 
-Note: the container filesystem is ephemeral — the SQLite DB (and the bootstrapped
-admin) resets on each redeploy/restart. Attach a Render **Disk** mounted over
-`backend/` if you need writes to persist.
+The free deployment includes **Palletizing Benchmark v1**, a public snapshot of
+all 500 SKUs and 1,000 orders, in the bundled database. It is immediately
+browsable and downloadable without an admin publishing step, and ships again
+on every redeploy. No paid service or persistent disk is required for this release.
+
+The free container filesystem is ephemeral: additional releases and admin edits
+made through the live UI can still be lost on restart or redeploy. To permanently
+publish a new version on this plan, commit its dataset snapshot to the bundled
+database. For optional persistent storage, `backend/database.py` honors
+`DATABASE_URL` or seeds `DATA_DIR/palletizer.db` once when `DATA_DIR` is set.
+Any disk must be mounted separately from `backend/` so it does not hide code.
 
 > Not deployable on Vercel: its Python runtime is 3.12/3.13/3.14, and sourceless
 > `.pyc` won't import on anything but 3.11. Vercel functions also can't write the
