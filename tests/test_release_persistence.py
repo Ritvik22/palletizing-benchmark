@@ -57,6 +57,26 @@ with engine.begin() as connection:
 ''')
             self.assertTrue(target.exists())
 
+    def test_bundled_release_is_public_on_fresh_deploys(self):
+        # Each directory represents a fresh free-tier container seeded from Git.
+        for _ in range(2):
+            with tempfile.TemporaryDirectory() as directory:
+                env = dict(os.environ, DATA_DIR=directory, SECRET_KEY='test-only-key')
+                env.pop('DATABASE_URL', None)
+                self.run_process(env, '''
+from fastapi.testclient import TestClient
+from backend.main import app
+client = TestClient(app)
+releases = client.get('/public/releases/').json()
+r = next(r for r in releases if r['slug'] == 'palletizing-benchmark-v1')
+assert (r['sku_count'], r['order_count']) == (500, 1000)
+data = client.get(f"/public/releases/{r['id']}").json()
+assert len(data['skus']) == 500 and len(data['orders']) == 1000
+for file in ['dataset.json', 'skus.csv', 'orders.csv']:
+    response = client.get(f"/public/releases/{r['id']}/download/{file}")
+    assert response.status_code == 200 and len(response.content) > 1000
+''')
+
 
 if __name__ == '__main__':
     unittest.main()

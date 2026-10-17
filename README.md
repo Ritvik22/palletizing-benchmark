@@ -38,19 +38,17 @@ The backend is **Python 3.11-only** bytecode, so it needs a host that runs a rea
 3. Render injects `$PORT`; `serve.py` binds `0.0.0.0:$PORT` automatically.
 4. Set a real `SECRET_KEY` (the blueprint generates one).
 
-The Blueprint uses a paid Starter service with a persistent disk at `/var/data`
-and `DATA_DIR=/var/data`. On first boot the bundled database is copied to the
-disk; subsequent boots preserve releases, accounts, and edits. Do not mount a
-disk over `backend/`, because that hides the application modules.
+The free deployment includes **Palletizing Benchmark v1**, a public snapshot of
+all 500 SKUs and 1,000 orders, in the bundled database. It is immediately
+browsable and downloadable without an admin publishing step, and ships again
+on every redeploy. No paid service or persistent disk is required for this release.
 
-For an existing service, back up its current SQLite database before redeploying,
-upgrade to a disk-capable plan, attach the disk at `/var/data`, and set `DATA_DIR`
-to `/var/data`. Restore the backup there as `palletizer.db` before starting the
-updated application if it contains data to retain. Merely pushing this Blueprint
-does not configure an independently created Render service. `DATABASE_URL`, if
-set, takes precedence over `DATA_DIR`; remove any old override when using the disk.
-Releases already lost from ephemeral storage require recovery from a backup or
-republication. Without either setting, local development uses the bundled DB.
+The free container filesystem is ephemeral: additional releases and admin edits
+made through the live UI can still be lost on restart or redeploy. To permanently
+publish a new version on this plan, commit its dataset snapshot to the bundled
+database. For optional persistent storage, `backend/database.py` honors
+`DATABASE_URL` or seeds `DATA_DIR/palletizer.db` once when `DATA_DIR` is set.
+Any disk must be mounted separately from `backend/` so it does not hide code.
 
 > Not deployable on Vercel: its Python runtime is 3.12/3.13/3.14, and sourceless
 > `.pyc` won't import on anything but 3.11. Vercel functions also can't write the
@@ -61,8 +59,7 @@ republication. Without either setting, local development uses the bundled DB.
 - **`serve.py`** — imports the backend, pins it to `backend/palletizer.db`, mounts
   the 3D viewer, and serves the frontend same-origin so its relative API calls
   work without CORS. Also injects the runtime UI enhancement (below).
-- **`backend/`** — FastAPI app as **sourceless Python 3.11 bytecode** (`*.pyc`),
-  with an editable `database.py` for shared persistent storage configuration.
+- **`backend/`** — FastAPI app as **sourceless Python 3.11 bytecode** (`*.pyc`).
   The original `.py` sources were unavailable; the bytecode runs as-is **only on
   Python 3.11** (the `.pyc` magic is interpreter-specific). Routers: `/auth`,
   `/skus`, `/orders`, `/releases`, `/upload`, `/public`.

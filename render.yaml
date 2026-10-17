@@ -5,17 +5,11 @@ services:
   - type: web
     name: palletizing-benchmark
     runtime: docker
-    plan: starter
-    disk:
-      name: palletizing-data
-      mountPath: /var/data
-      sizeGB: 1
+    plan: free
     dockerfilePath: ./Dockerfile
     healthCheckPath: /health
     autoDeploy: true
     envVars:
-      - key: DATA_DIR
-        value: /var/data
       # Set a real secret in the Render dashboard for anything non-demo.
       - key: SECRET_KEY
         generateValue: true
